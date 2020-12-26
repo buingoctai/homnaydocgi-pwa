@@ -17,7 +17,9 @@ const Article = () => {
 
   return totalRecord ? (
     <div style={{ width: '100%', height: '100%' }}>
-      <button id="btn-add">Add To Home Screen</button>
+      <button id="btn-add" style={{ width: '100%', height: '35px', fontSize: '25px' }}>
+        Add To Home Screen
+      </button>
       <div className="article__container" style={{ width: '100%', height: '100%' }}>
         <AutoSizer>
           {({ width, height }) => {
@@ -35,7 +37,11 @@ const Article = () => {
                     columnIndex={0}
                   >
                     {({ measure }) => (
-                      <div style={{ ...style }} className="article__wrap" data-id={index}>
+                      <div
+                        style={{ ...style, margin: '0px 8px' }}
+                        className="article__wrap"
+                        data-id={index}
+                      >
                         <div>
                           <Header post={data[index]} />
                           <Content

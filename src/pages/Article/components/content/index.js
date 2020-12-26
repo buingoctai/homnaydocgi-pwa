@@ -20,8 +20,10 @@ const Content = ({ post, listRef, cache, index, readedList, setReadedList }) => 
   };
   return (
     <div>
-      <span>{capitalize(post.Title.toLowerCase())}</span>
-      <p style={{ marginTop: '0px' }}>
+      <span style={{ fontSize: '25px', fontWeight: '400px' }}>
+        {capitalize(post.Title.toLowerCase())}
+      </span>
+      <p style={{ marginTop: '0px', fontSize: '25px', fontWeight: '400px' }}>
         {readedList[post.Id] ? detailPost.Content : post.Brief}
         {!readedList[post.Id] && (
           <a href="#" onClick={() => onReadMore()} style={{ textDecoration: 'none' }}>

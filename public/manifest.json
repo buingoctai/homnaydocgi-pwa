@@ -1,6 +1,6 @@
 {
-  "short_name": "My PWA",
-  "name": "My PWA",
+  "short_name": "PWA",
+  "name": "PWA",
   "icons": [
     {
       "src": "favicon.ico",

@@ -25,12 +25,12 @@ const Header = ({ post }) => {
             marginLeft: '5px',
           }}
         >
-          <span style={{ fontWeight: '700' }}>{post.Author}</span>
-          <div>{post.SubmitDate.split('T')[0]}</div>
+          <span style={{ fontWeight: '700', fontSize: '25px' }}>{post.Author}</span>
+          <div style={{ fontSize: '20px' }}>{post.SubmitDate.split('T')[0]}</div>
         </div>
       </div>
 
-      <div>action more</div>
+      <div>more action</div>
     </div>
   );
 };
