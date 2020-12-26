@@ -8,7 +8,7 @@ module.exports = merge(common, {
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
-      API_BASE: 'https://homnaydocgi-server.herokuapp.com',
+      API_BASE: 'http://178.128.209.216',
       APP_BASE: 'https://homnaydocgi-client.herokuapp.com',
     }),
   ],
