@@ -8,12 +8,12 @@ const Header = ({ post }) => {
           <img
             src="https://www.rosephan.com/data/users/avatars/default-avatar.png"
             alt="avatar"
-            width="50"
-            height="50"
+            width="100"
+            height="100"
             style={{
               filter: 'grayscale(100%)',
               borderRadius: '50%',
-              marginTop: '5PX',
+              marginTop: '5pX',
             }}
           />
         </div>
@@ -25,8 +25,8 @@ const Header = ({ post }) => {
             marginLeft: '5px',
           }}
         >
-          <span style={{ fontWeight: '700', fontSize: '25px' }}>{post.Author}</span>
-          <div style={{ fontSize: '20px' }}>{post.SubmitDate.split('T')[0]}</div>
+          <span style={{ fontWeight: '700', fontSize: '45px' }}>{post.Author}</span>
+          <div style={{ fontSize: '35px' }}>{post.SubmitDate.split('T')[0]}</div>
         </div>
       </div>
 
