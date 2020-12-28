@@ -1,10 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { List, AutoSizer, CellMeasurer, CellMeasurerCache } from 'react-virtualized';
-import Header from './components/header';
-import Content from './components/content';
+import Header from './components/Header';
+import Content from './components/Content';
+import ArticleItem from './components/Article';
 import { useGetAllArticle } from 'srcRoot/Hooks';
 
-var cache = new CellMeasurerCache({
+import './style.scss';
+
+let heightStore = new CellMeasurerCache({
   defaultHeight: 300,
   fixedWidth: true,
 });
@@ -47,45 +50,35 @@ const Article = () => {
     });
   }, []);
   return totalRecord ? (
-    <div style={{ width: '100%', height: '100%' }}>
-      <button id="btn-add" style={{ width: '100%', height: '60px', fontSize: '45px' }}>
+    <div className="article">
+      <button id="btn-add" className="button-home">
         Add To Home Screen
       </button>
-      <div className="article__container" style={{ width: '100%', height: '100%' }}>
+      <div className="article-list">
         <AutoSizer>
           {({ width, height }) => {
             return (
               <List
                 width={width}
                 height={height}
-                rowHeight={cache.rowHeight}
+                rowHeight={heightStore.rowHeight}
                 rowRenderer={({ index, key, style, parent }) => (
                   <CellMeasurer
-                    cache={cache}
+                    cache={heightStore}
                     key={key}
                     parent={parent}
                     rowIndex={index}
                     columnIndex={0}
                   >
-                    {({ measure }) => (
-                      <div
-                        style={{ ...style, padding: '0px 10px' }}
-                        className="article__wrap"
-                        data-id={index}
-                      >
-                        <div>
-                          <Header post={data[index]} />
-                          <Content
-                            post={data[index]}
-                            listRef={listRef.current}
-                            cache={cache}
-                            index={index}
-                            readedList={readedList}
-                            setReadedList={setReadedList}
-                          />
-                        </div>
-                      </div>
-                    )}
+                    {ArticleItem({
+                      style,
+                      index,
+                      post: data[index],
+                      listRef: listRef.current,
+                      heightStore,
+                      readedList,
+                      setReadedList,
+                    })}
                   </CellMeasurer>
                 )}
                 rowCount={totalRecord}

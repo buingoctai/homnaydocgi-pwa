@@ -1,32 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDetailArticle } from 'srcRoot/Hooks';
+import './style.scss';
 
-const imgDefault =
-  'https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.0-9/70930564_923020218065096_7174011323368341504_n.jpg?_nc_cat=100&ccb=2&_nc_sid=174925&_nc_ohc=JebNwt_2DD4AX9D4CiP&_nc_ht=scontent.fsgn5-5.fna&oh=5c30346edb198746933fca88f14fbd63&oe=5FE85A14';
-const Content = ({ post, listRef, cache, index, readedList, setReadedList }) => {
-  const [detailPost, setDetailPost] = useDetailArticle(post.Id);
+const Content = ({ index, post, listRef, heightStore, readedList, setReadedList }) => {
+  const { Id, Title, Brief } = post;
+  const [detailPost, setDetailPost] = useDetailArticle(Id);
   let newReadedList = {};
+
   const onReadMore = async () => {
-    console.log('list ref', listRef);
-    cache.clear(index);
+    heightStore.clear(index);
     listRef.recomputeRowHeights(index);
     listRef.forceUpdateGrid();
     newReadedList = { ...readedList };
-    newReadedList[post.Id] = true;
+    newReadedList[Id] = true;
     setReadedList(newReadedList);
   };
   const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
+
   return (
     <div>
-      <span style={{ fontSize: '45px', fontWeight: '400px' }}>
-        {capitalize(post.Title.toLowerCase())}
-      </span>
-      <p style={{ marginTop: '0px', fontSize: '45px', fontWeight: '400px' }}>
-        {readedList[post.Id] ? detailPost.Content : post.Brief}
-        {!readedList[post.Id] && (
-          <a href="#" onClick={() => onReadMore()} style={{ textDecoration: 'none' }}>
+      <span className="title">{capitalize(Title.toLowerCase())}</span>
+      <p className="content">
+        {readedList[Id] ? detailPost.Content : Brief}
+        {!readedList[Id] && (
+          <a href="#" onClick={() => onReadMore()} className="button-more">
             ...Xem thêm
           </a>
         )}

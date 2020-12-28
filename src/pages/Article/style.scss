@@ -1,0 +1,16 @@
+$fullWidth: 100%;
+$fullHeight: 100%;
+
+.article {
+  width: $fullWidth;
+  height: $fullHeight;
+  .button-home {
+    width: $fullWidth;
+    height: 60px;
+    font-size: 45px;
+  }
+  .article-list {
+    width: $fullWidth;
+    height: $fullHeight;
+  }
+}

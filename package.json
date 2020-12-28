@@ -11,8 +11,7 @@
     "start": "serve -s build",
     "dev": "webpack-dev-server --mode development --open --config webpack.dev.js",
     "build": "webpack --mode production --config webpack.prod.js",
-    "format": "prettier --write .",
-    "heroku-postbuild": "npm run build"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@babel/runtime": "^7.12.0",

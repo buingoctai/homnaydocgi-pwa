@@ -1,9 +1,10 @@
 import React from 'react';
+import './style.scss';
 
-const Header = ({ post }) => {
+const Header = ({ author, time }) => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+    <div className="header">
+      <div className="author">
         <div>
           <img
             src="https://www.rosephan.com/data/users/avatars/default-avatar.png"
@@ -13,20 +14,13 @@ const Header = ({ post }) => {
             style={{
               filter: 'grayscale(100%)',
               borderRadius: '50%',
-              marginTop: '5pX',
+              marginTop: '5PX',
             }}
           />
         </div>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            marginLeft: '5px',
-          }}
-        >
-          <span style={{ fontWeight: '700', fontSize: '45px' }}>{post.Author}</span>
-          <div style={{ fontSize: '35px' }}>{post.SubmitDate.split('T')[0]}</div>
+        <div className="name_time">
+          <span className="name">{author}</span>
+          <div className="time">{time.split('T')[0]}</div>
         </div>
       </div>
 
