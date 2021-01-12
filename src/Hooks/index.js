@@ -21,7 +21,7 @@ export const useGetAllArticle = () => {
 
   useEffect(() => {
     getAllPost({
-      paging: { pageIndex: 1, pageSize: 31 },
+      paging: { pageIndex: -1, pageSize: 31 },
       orderList: { orderBy: 'SubmitDate', orderType: 'DESC' },
     })
       .then((res) => {

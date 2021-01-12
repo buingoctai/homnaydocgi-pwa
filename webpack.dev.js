@@ -9,7 +9,7 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
-    port: 3000,
+    port: 3007,
     liveReload: true,
     historyApiFallback: true,
   },
@@ -19,7 +19,7 @@ module.exports = merge(common, {
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
-      API_BASE: 'http://178.128.209.216',
+      API_BASE: 'https://homnaydocgiserver.xyz',
       APP_BASE: 'http://localhost:3007',
     }),
   ],
