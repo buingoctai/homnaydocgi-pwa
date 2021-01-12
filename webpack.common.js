@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 // const ESLintPlugin = require("eslint-webpack-plugin");
 // const options = {
 //     "parserOptions": {
@@ -66,5 +67,6 @@ module.exports = {
     new CopyPlugin({
       patterns: [{ from: 'public', to: '.' }],
     }),
+    new CaseSensitivePathsPlugin()
   ],
 };
