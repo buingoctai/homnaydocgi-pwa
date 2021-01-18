@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { CellMeasurerCache } from 'react-virtualized';
 
 import { useGetAllArticle } from 'srcRoot/Hooks';
-import Header from './components/Header';
-import Content from './components/Content';
+import Header from './components/header';
+import Content from './components/content';
 
 var heightStore = new CellMeasurerCache({
   defaultHeight: 300,
