@@ -1,26 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDetailArticle } from 'srcRoot/Hooks';
 import './style.scss';
 
 const Content = ({ index, post, listRef, heightStore, readedList, setReadedList }) => {
   const { Id, Title, Brief } = post;
-  const [detailPost, setDetailPost] = useDetailArticle(Id);
   let newReadedList = {};
 
-  const onReadMore = async () => {
+  const onUpdateListUI=(articleId)=>{
+    console.log('onUpdateListUI',index,heightStore,listRef);
+
     heightStore.clear(index);
-    listRef.recomputeRowHeights(index);
-    listRef.forceUpdateGrid();
+    // listRef.current.recomputeRowHeights(index);
+    // listRef.current.forceUpdateGrid();
     newReadedList = { ...readedList };
-    newReadedList[Id] = true;
+    newReadedList[articleId] = true;
     setReadedList(newReadedList);
+  }
+
+  
+  let [detailPost, setArticleId] = useDetailArticle(null,onUpdateListUI);
+
+
+  const onReadMore = async () => {
+    setArticleId(Id);
   };
+
+ 
   const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
+  useEffect(()=>{
+    heightStore.clear(index);
+    if(Id in readedList){
+      delete readedList[Id];
+    }
+  },[]);
   return (
-    <div>
+    <div className="full-content">
       <span className="title">{capitalize(Title.toLowerCase())}</span>
       <p className="content">
         {readedList[Id] ? detailPost.Content : Brief}

@@ -67,6 +67,6 @@ module.exports = {
     new CopyPlugin({
       patterns: [{ from: 'public', to: '.' }],
     }),
-    new CaseSensitivePathsPlugin()
+    new CaseSensitivePathsPlugin(),
   ],
 };

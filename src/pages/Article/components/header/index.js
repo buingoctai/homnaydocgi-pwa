@@ -7,7 +7,7 @@ const Header = ({ author, time }) => {
       <div className="author">
         <div>
           <img
-            src="https://www.rosephan.com/data/users/avatars/default-avatar.png"
+            src="https://image.shutterstock.com/image-vector/male-default-placeholder-avatar-profile-260nw-387516193.jpg"
             alt="avatar"
             width="100"
             height="100"
