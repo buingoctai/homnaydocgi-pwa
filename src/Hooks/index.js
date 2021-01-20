@@ -35,8 +35,7 @@ export const useGetAllArticle = (pageIndex = 1) => {
   return [response.totalRecord, response.data];
 };
 
-export const useDetailArticle = (id,onUpdateListUI) => {
-
+export const useDetailArticle = (id, onUpdateListUI) => {
   const [data, setData] = useState({});
   const [articleId, setArticleId] = useState(id);
 

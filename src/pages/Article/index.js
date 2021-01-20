@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { List, AutoSizer, CellMeasurer } from 'react-virtualized';
 
+import Shape from 'srcRoot/pages/components/skeleton/shape';
 import enhance from './enhance';
 import './style.scss';
 
@@ -47,6 +48,10 @@ const Article = (props) => {
   ) : (
     <span>Loading...</span>
   );
+  // return (<div className='loading'>
+  // <Shape/>
+
+  // </div>);
 };
 
 export default enhance(Article);

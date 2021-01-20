@@ -6,8 +6,8 @@ const Content = ({ index, post, listRef, heightStore, readedList, setReadedList 
   const { Id, Title, Brief } = post;
   let newReadedList = {};
 
-  const onUpdateListUI=(articleId)=>{
-    console.log('onUpdateListUI',index,heightStore,listRef);
+  const onUpdateListUI = (articleId) => {
+    console.log('onUpdateListUI', index, heightStore, listRef);
 
     heightStore.clear(index);
     // listRef.current.recomputeRowHeights(index);
@@ -15,27 +15,24 @@ const Content = ({ index, post, listRef, heightStore, readedList, setReadedList 
     newReadedList = { ...readedList };
     newReadedList[articleId] = true;
     setReadedList(newReadedList);
-  }
+  };
 
-  
-  let [detailPost, setArticleId] = useDetailArticle(null,onUpdateListUI);
-
+  let [detailPost, setArticleId] = useDetailArticle(null, onUpdateListUI);
 
   const onReadMore = async () => {
     setArticleId(Id);
   };
 
- 
   const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     heightStore.clear(index);
-    if(Id in readedList){
+    if (Id in readedList) {
       delete readedList[Id];
     }
-  },[]);
+  }, []);
   return (
     <div className="full-content">
       <span className="title">{capitalize(Title.toLowerCase())}</span>
