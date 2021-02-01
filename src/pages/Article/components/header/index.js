@@ -9,8 +9,8 @@ const Header = ({ author, time }) => {
           <img
             src="https://image.shutterstock.com/image-vector/male-default-placeholder-avatar-profile-260nw-387516193.jpg"
             alt="avatar"
-            width="100"
-            height="100"
+            width="50"
+            height="50"
             style={{
               filter: 'grayscale(100%)',
               borderRadius: '50%',

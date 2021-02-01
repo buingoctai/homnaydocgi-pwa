@@ -41,7 +41,7 @@ const enhance = (Article) => () => {
 
   const renderItem = ({ index, style, listRef }) => {
     return (
-      <div style={{ ...style, padding: '0px 10px' }}>
+      <div style={{ ...style }}>
         <div>
           <Header author={data[index].Author} time={data[index].SubmitDate} />
           <Content

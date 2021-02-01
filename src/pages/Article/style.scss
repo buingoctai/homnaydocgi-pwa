@@ -2,12 +2,11 @@ $fullWidth: 100%;
 $fullHeight: 100%;
 
 .article {
-  width: $fullWidth;
   height: $fullHeight;
+  padding: 0px 10px;
   .button-home {
     width: $fullWidth;
     height: 60px;
-    font-size: 45px;
   }
   .article-list {
     width: $fullWidth;
