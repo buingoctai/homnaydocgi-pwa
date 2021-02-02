@@ -1,15 +1,15 @@
-import request from 'srcRoot/utils/request';
+import { requestPost, requestGet } from 'srcRoot/utils/request';
 
 export const getAllPost = (param) => {
-  return request(`${process.env.API_BASE}/blog/allPost`, {
-    method: 'POST',
+  return requestGet(`${process.env.API_BASE}/blog/allPost`, {
+    method: 'GET',
     data: { ...param },
   });
 };
 
 export const getDetailPost = (param) => {
-  return request(`${process.env.API_BASE}/blog/getDetailPost`, {
-    method: 'POST',
+  return requestGet(`${process.env.API_BASE}/blog/getDetailPost`, {
+    method: 'GET',
     data: { ...param },
   });
 };

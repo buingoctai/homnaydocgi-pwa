@@ -7,6 +7,7 @@ import './style.scss';
 
 const Article = (props) => {
   const { totalRecord, heightStore, renderItem } = props;
+  console.log('total record', totalRecord, 'render item', renderItem);
   const listRef = useRef();
 
   return totalRecord ? (

@@ -17,29 +17,20 @@ const enhance = (Article) => () => {
   const [readedList, setReadedList] = useState({});
   console.log('data', data);
 
-  // useEffect(() => {
-  //   window.addEventListener('scroll', () => {
-  //     // const article=document.getElementById('article');
-  //     // const contentHeight=article.offsetHeight;
-  //     // const yoffset=window.pageYOffset;
-  //     // const y=yoffset+window.innerHeight;
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const scrollTop = document.documentElement.scrollTop;
+      const realHeight = document.documentElement.offsetHeight;
+      const heightOnSroll = scrollTop + window.innerHeight;
 
-  //     // console.log('### y',y);
-  //     // console.log('### contentHeight',contentHeight);
-  //     const scrollTop = document.documentElement.scrollTop;
-  //     const realHeight = document.documentElement.offsetHeight;
-  //     const heightOnSroll = scrollTop + window.innerHeight;
-
-  //     console.log('###', heightOnSroll, realHeight);
-  //     if (heightOnSroll >= realHeight - 100 && scrollTop) {
-  //       console.log('### load more', currentPage);
-  //       const nextPage = currentPage + 1;
-  //       setCurrentPage(nextPage);
-  //     }
-  //   });
-  // }, []);
+      if (heightOnSroll >= realHeight - 100 && scrollTop) {
+        console.log('### load more');
+      }
+    });
+  }, []);
 
   const renderItem = ({ index, style, listRef }) => {
+    console.log('index', index, data[index]);
     return (
       <div style={{ ...style }}>
         <div>

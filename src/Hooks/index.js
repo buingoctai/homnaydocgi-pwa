@@ -22,8 +22,12 @@ export const useGetAllArticle = (pageIndex = 1) => {
   useEffect(() => {
     console.log('### call api');
     getAllPost({
-      paging: { pageIndex, pageSize: 5 },
-      orderList: { orderBy: 'SubmitDate', orderType: 'DESC' },
+      // paging: { pageIndex, pageSize: 5 },
+      // orderList: { orderBy: 'SubmitDate', orderType: 'DESC' },
+      pageIndex: -1,
+      pageSize: 5,
+      orderBy: 'SubmitDate',
+      orderType: 'DESC',
     })
       .then((result) => {
         const updateData = [...response.data, ...result.data];

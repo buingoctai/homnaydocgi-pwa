@@ -1,10 +1,14 @@
 import axios from 'axios';
 
-const request = (url, options) => {
+const requestPost = (url, options) => {
   return axios({
     url,
     ...options,
   });
+};
+
+const requestGet = (url, options) => {
+  return axios.get(url, { params: { ...options.data } });
 };
 
 const HandleStatus = (response) => {
@@ -46,4 +50,4 @@ axios.interceptors.response.use(
   }
 );
 
-export default request;
+export { requestGet, requestPost };

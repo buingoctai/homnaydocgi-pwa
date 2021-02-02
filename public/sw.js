@@ -7,22 +7,53 @@ self.addEventListener('install', function (event) {
 });
 
 self.addEventListener('fetch', function (event) {
-  console.log('url', event.request.url);
-  console.log('request', event.request);
-  if (!event.request.url.includes('image.shutterstock')) {
-    return;
+  if (event.request.url.includes('image.shutterstock')) {
+    event.respondWith(
+      caches.open('avatar').then(function (cache) {
+        return cache.match(event.request).then(function (response) {
+          return (
+            response ||
+            fetch(event.request).then(function (response) {
+              cache.put(event.request, response.clone());
+              return response;
+            })
+          );
+        });
+      })
+    );
   }
-  event.respondWith(
-    caches.open('avatar').then(function (cache) {
-      return cache.match(event.request).then(function (response) {
-        return (
-          response ||
-          fetch(event.request).then(function (response) {
-            cache.put(event.request, response.clone());
-            return response;
-          })
-        );
-      });
-    })
-  );
+  if (event.request.url.includes('blog/allPost')) {
+    event.respondWith(
+      caches.open('all post').then(function (cache) {
+        return cache.match(event.request).then(function (response) {
+          return (
+            response ||
+            fetch(event.request).then(function (response) {
+              cache.put(event.request, response.clone());
+              return response;
+            })
+          );
+        });
+      })
+    );
+  }
+  console.log('url', event.request, event.request.url);
+
+  if (event.request.url.includes('blog/getDetailPost')) {
+    const id = event.request.url.substring(event.request.url.indexOf('id') + 3);
+
+    event.respondWith(
+      caches.open(`post - ${id}`).then(function (cache) {
+        return cache.match(event.request).then(function (response) {
+          return (
+            response ||
+            fetch(event.request).then(function (response) {
+              cache.put(event.request, response.clone());
+              return response;
+            })
+          );
+        });
+      })
+    );
+  }
 });
