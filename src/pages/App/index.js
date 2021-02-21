@@ -42,9 +42,9 @@ const App = () => {
   }, []);
   return (
     <>
-      <button id="btn-add" className="button-home">
+      {/* <button id="btn-add" className="button-home">
         Add To Home Screen
-      </button>
+      </button> */}
       <Article />
     </>
   );

@@ -22,21 +22,21 @@ self.addEventListener('fetch', function (event) {
       })
     );
   }
-  if (event.request.url.includes('blog/allPost')) {
-    event.respondWith(
-      caches.open('all post').then(function (cache) {
-        return cache.match(event.request).then(function (response) {
-          return (
-            response ||
-            fetch(event.request).then(function (response) {
-              cache.put(event.request, response.clone());
-              return response;
-            })
-          );
-        });
-      })
-    );
-  }
+  // if (event.request.url.includes('blog/allPost')) {
+  //   event.respondWith(
+  //     caches.open('all post').then(function (cache) {
+  //       return cache.match(event.request).then(function (response) {
+  //         return (
+  //           response ||
+  //           fetch(event.request).then(function (response) {
+  //             cache.put(event.request, response.clone());
+  //             return response;
+  //           })
+  //         );
+  //       });
+  //     })
+  //   );
+  // }
   console.log('url', event.request, event.request.url);
 
   if (event.request.url.includes('blog/getDetailPost')) {

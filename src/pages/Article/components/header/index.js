@@ -24,7 +24,7 @@ const Header = ({ author, time }) => {
         </div>
       </div>
 
-      <div>more action</div>
+      {/* <div>more action</div> */}
     </div>
   );
 };
