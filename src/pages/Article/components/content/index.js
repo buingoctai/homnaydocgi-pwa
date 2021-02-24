@@ -35,7 +35,7 @@ const Content = ({ index, post, listRef, heightStore, readedList, setReadedList 
   }, []);
   return (
     <div className="full-content">
-      <span className="title">{capitalize(Title.toLowerCase())}</span>
+      <h1 className="title">{capitalize(Title.toLowerCase())}</h1>
       <p className="content">
         {readedList[Id] ? detailPost.Content : Brief}
         {!readedList[Id] && (

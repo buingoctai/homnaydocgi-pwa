@@ -18,19 +18,28 @@ const enhance = (Article) => () => {
   console.log('data', data);
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      const scrollTop = document.documentElement.scrollTop;
-      const realHeight = document.documentElement.offsetHeight;
-      const heightOnSroll = scrollTop + window.innerHeight;
+    // window.addEventListener('scroll', () => {
+    //   console.log('scroll');
+    //   // const scrollTop = document.documentElement.scrollTop;
+    //   // const realHeight = document.documentElement.offsetHeight;
+    //   // const heightOnSroll = scrollTop + window.innerHeight;
 
-      if (heightOnSroll >= realHeight - 100 && scrollTop) {
-        console.log('### load more');
-      }
-    });
-  }, []);
+    //   // if (heightOnSroll >= realHeight - 100 && scrollTop) {
+    //   //   console.log('### load more');
+    //   // }
+    // });
+
+    const list=document.getElementsByClassName('ReactVirtualized__Grid ReactVirtualized__List')[0];
+    console.log('list',list);
+    if(list) {
+      list.addEventListener('scroll',()=>{
+        console.log('scroll event fired!');
+      });
+    }
+   
+  }, [totalRecord]);
 
   const renderItem = ({ index, style, listRef }) => {
-    console.log('index', index, data[index]);
     return (
       <div style={{ ...style }}>
         <div>
