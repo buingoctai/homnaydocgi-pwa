@@ -7,7 +7,6 @@ import './style.scss';
 
 const Article = (props) => {
   const { totalRecord, heightStore, renderItem, listRef } = props;
-  console.log('total record', totalRecord, 'render item', renderItem);
 
   return totalRecord ? (
     <div className="article" id="article">
@@ -46,7 +45,7 @@ const Article = (props) => {
       </div>
     </div>
   ) : (
-    <Loading className='article loading'/>
+    <Loading className="article loading" />
   );
   // return (<div className='loading'>
   // <Shape/>

@@ -13,9 +13,10 @@ var heightStore = new CellMeasurerCache({
 const enhance = (Article) => () => {
   const listRef = useRef();
 
-  const [totalRecord, data, currentPage, setCurrentPage] = useGetAllArticle(listRef);
+  const [totalRecord, data, currentPage, setCurrentPage, isLoadData] = useGetAllArticle(
+    heightStore
+  );
   const [readedList, setReadedList] = useState({});
-  console.log('data', data);
 
   useEffect(() => {
     const list = document.getElementsByClassName(
@@ -23,9 +24,11 @@ const enhance = (Article) => () => {
     )[0];
     if (list) {
       list.addEventListener('scroll', () => {
-        if (list.scrollTop + window.innerHeight >= list.scrollHeight - 20) {
+        if (isLoadData.current) return;
+        if (list.scrollTop + window.innerHeight >= list.scrollHeight - 10) {
           console.log('scrool bottom');
           const newPage = currentPage.current + 1;
+          // if (newPage === 4) return;
           console.log(currentPage.current);
           setCurrentPage(newPage);
         }

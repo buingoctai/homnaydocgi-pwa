@@ -1,7 +1,7 @@
 self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open('js').then(function (cache) {
-      return cache.addAll(['/index.bundle.js', './favicon.ico', '/logo192.png', '/logo512.png']);
+      return cache.addAll(['/index.bundle.js', '/favico.png', '/logo192.png', '/logo512.png','/thumbnail.png']);
     })
   );
 });
@@ -37,7 +37,6 @@ self.addEventListener('fetch', function (event) {
   //     })
   //   );
   // }
-  console.log('url', event.request, event.request.url);
 
   if (event.request.url.includes('blog/getDetailPost')) {
     const id = event.request.url.substring(event.request.url.indexOf('id') + 3);

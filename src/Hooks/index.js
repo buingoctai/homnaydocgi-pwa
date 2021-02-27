@@ -16,23 +16,24 @@ export const useDebounce = (value, deplay) => {
   return debouncedValue;
 };
 
-export const useGetAllArticle = (listRef) => {
+export const useGetAllArticle = () => {
   const [response, setResponse] = useState({ totalRecord: 0, data: [] });
-  const [page, setPage] = useState(-1);
-  const currentPage = useRef(-1);
+  const [page, setPage] = useState(1);
+
+  const currentPage = useRef(1);
   const setCurrentPage = (value) => {
     currentPage.current = value;
     setPage(value);
-    listRef.current.recomputeRowHeights();
-    listRef.current.forceUpdateGrid();
   };
-
+  const isLoadData = useRef(false);
+  const setIsLoadData = (value) => {
+    isLoadData.current = value;
+  };
   useEffect(() => {
+    setIsLoadData(true);
     getAllPost({
-      // paging: { pageIndex, pageSize: 5 },
-      // orderList: { orderBy: 'SubmitDate', orderType: 'DESC' },
       pageIndex: currentPage.current,
-      pageSize: 3,
+      pageSize: 4,
       orderBy: 'SubmitDate',
       orderType: 'DESC',
     })
@@ -40,21 +41,20 @@ export const useGetAllArticle = (listRef) => {
         const updateData = [...response.data, ...result.data];
         const newResult = { totalRecord: result.totalRecord, data: updateData };
         setResponse(newResult);
+        setIsLoadData(false);
       })
-      .catch(() => {});
+      .catch(() => {
+        setIsLoadData(false);
+      });
   }, [page]);
-  console.log('### call api', response.data);
 
-  return [response.totalRecord, response.data, currentPage, setCurrentPage];
+  return [response.totalRecord, response.data, currentPage, setCurrentPage, isLoadData];
 };
 
 export const useDetailArticle = (id, onUpdateListUI) => {
   const [data, setData] = useState({});
   const [articleId, setArticleId] = useState(id);
 
-  // if(!articleId){
-  //   return [{},setArticleId]
-  // }
   useEffect(() => {
     if (!articleId) {
       return [{}, setArticleId];
