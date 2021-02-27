@@ -9,7 +9,7 @@ const Article = (props) => {
   const { totalRecord, heightStore, renderItem, listRef } = props;
   console.log('total record', totalRecord, 'render item', renderItem);
 
-  return !totalRecord ? (
+  return totalRecord ? (
     <div className="article" id="article">
       {/* <button id="btn-add" className="button-home">
         Add To Home Screen
