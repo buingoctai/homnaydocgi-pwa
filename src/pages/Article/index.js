@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { List, AutoSizer, CellMeasurer } from 'react-virtualized';
 
-import Loading from 'srcRoot/pages/components/Loading';
+import Skeleton from 'srcRoot/pages/components/Skeleton';
 import enhance from './enhance';
 import './style.scss';
 
@@ -45,12 +45,8 @@ const Article = (props) => {
       </div>
     </div>
   ) : (
-    <Loading className="article loading" />
+    [1, 2, 3, 4, 5, 6].map((item, index) => <Skeleton key={index} className="article skeleton" />)
   );
-  // return (<div className='loading'>
-  // <Shape/>
-
-  // </div>);
 };
 
 export default enhance(Article);

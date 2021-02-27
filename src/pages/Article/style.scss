@@ -20,4 +20,7 @@ $fullHeight: 100%;
     align-items: center;
     justify-content: center;
   }
+  &.skeleton {
+    background-color: #fcfaf6;
+  }
 }

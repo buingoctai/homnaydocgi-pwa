@@ -19,7 +19,7 @@ module.exports = merge(common, {
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
-      API_BASE: 'https://homnaydocgiserver.xyz',
+      API_BASE: 'http://localhost:8080',
       // APP_BASE: 'http://localhost:3007',
     }),
   ],
