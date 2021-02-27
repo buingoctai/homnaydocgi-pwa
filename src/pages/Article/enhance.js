@@ -11,35 +11,31 @@ var heightStore = new CellMeasurerCache({
 });
 
 const enhance = (Article) => () => {
-  const [currentPage, setCurrentPage] = useState(-1);
+  const listRef = useRef();
 
-  const [totalRecord, data] = useGetAllArticle(currentPage);
+  const [totalRecord, data, currentPage, setCurrentPage] = useGetAllArticle(listRef);
   const [readedList, setReadedList] = useState({});
   console.log('data', data);
 
   useEffect(() => {
-    // window.addEventListener('scroll', () => {
-    //   console.log('scroll');
-    //   // const scrollTop = document.documentElement.scrollTop;
-    //   // const realHeight = document.documentElement.offsetHeight;
-    //   // const heightOnSroll = scrollTop + window.innerHeight;
-
-    //   // if (heightOnSroll >= realHeight - 100 && scrollTop) {
-    //   //   console.log('### load more');
-    //   // }
-    // });
-
-    const list=document.getElementsByClassName('ReactVirtualized__Grid ReactVirtualized__List')[0];
-    console.log('list',list);
-    if(list) {
-      list.addEventListener('scroll',()=>{
-        console.log('scroll event fired!');
+    const list = document.getElementsByClassName(
+      'ReactVirtualized__Grid ReactVirtualized__List'
+    )[0];
+    if (list) {
+      list.addEventListener('scroll', () => {
+        if (list.scrollTop + window.innerHeight >= list.scrollHeight - 20) {
+          console.log('scrool bottom');
+          const newPage = currentPage.current + 1;
+          console.log(currentPage.current);
+          setCurrentPage(newPage);
+        }
       });
     }
-   
   }, [totalRecord]);
 
   const renderItem = ({ index, style, listRef }) => {
+    if (data.length === 0) return null;
+
     return (
       <div style={{ ...style }}>
         <div>
@@ -57,7 +53,14 @@ const enhance = (Article) => () => {
     );
   };
 
-  return <Article totalRecord={totalRecord} heightStore={heightStore} renderItem={renderItem} />;
+  return (
+    <Article
+      totalRecord={data.length}
+      heightStore={heightStore}
+      renderItem={renderItem}
+      listRef={listRef}
+    />
+  );
 };
 
 export default enhance;

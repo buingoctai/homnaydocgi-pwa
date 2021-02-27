@@ -1,16 +1,15 @@
 import React, { useRef } from 'react';
 import { List, AutoSizer, CellMeasurer } from 'react-virtualized';
 
-import Shape from 'srcRoot/pages/components/skeleton/shape';
+import Loading from 'srcRoot/pages/components/Loading';
 import enhance from './enhance';
 import './style.scss';
 
 const Article = (props) => {
-  const { totalRecord, heightStore, renderItem } = props;
+  const { totalRecord, heightStore, renderItem, listRef } = props;
   console.log('total record', totalRecord, 'render item', renderItem);
-  const listRef = useRef();
 
-  return totalRecord ? (
+  return !totalRecord ? (
     <div className="article" id="article">
       {/* <button id="btn-add" className="button-home">
         Add To Home Screen
@@ -47,7 +46,7 @@ const Article = (props) => {
       </div>
     </div>
   ) : (
-    <span>Loading...</span>
+    <Loading className='article loading'/>
   );
   // return (<div className='loading'>
   // <Shape/>

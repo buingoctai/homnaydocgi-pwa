@@ -34,8 +34,8 @@ const Content = ({ index, post, listRef, heightStore, readedList, setReadedList 
     }
   }, []);
   const breakContent = (content) => {
-    const contentList  = content ? content.split('\n') : [];
-    const contentHtml = contentList.map(paragraph=>(
+    const contentList = content ? content.split('\n') : [];
+    const contentHtml = contentList.map((paragraph) => (
       <>
         {paragraph}
         <br />
@@ -43,7 +43,7 @@ const Content = ({ index, post, listRef, heightStore, readedList, setReadedList 
     ));
 
     return contentHtml;
-  }
+  };
   return (
     <div className="full-content">
       <h1 className="title">{capitalize(Title.toLowerCase())}</h1>

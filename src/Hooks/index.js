@@ -16,16 +16,23 @@ export const useDebounce = (value, deplay) => {
   return debouncedValue;
 };
 
-export const useGetAllArticle = (pageIndex = 1) => {
+export const useGetAllArticle = (listRef) => {
   const [response, setResponse] = useState({ totalRecord: 0, data: [] });
+  const [page, setPage] = useState(-1);
+  const currentPage = useRef(-1);
+  const setCurrentPage = (value) => {
+    currentPage.current = value;
+    setPage(value);
+    listRef.current.recomputeRowHeights();
+    listRef.current.forceUpdateGrid();
+  };
 
   useEffect(() => {
-    console.log('### call api');
     getAllPost({
       // paging: { pageIndex, pageSize: 5 },
       // orderList: { orderBy: 'SubmitDate', orderType: 'DESC' },
-      pageIndex: -1,
-      pageSize: 5,
+      pageIndex: currentPage.current,
+      pageSize: 3,
       orderBy: 'SubmitDate',
       orderType: 'DESC',
     })
@@ -35,8 +42,10 @@ export const useGetAllArticle = (pageIndex = 1) => {
         setResponse(newResult);
       })
       .catch(() => {});
-  }, [pageIndex]);
-  return [response.totalRecord, response.data];
+  }, [page]);
+  console.log('### call api', response.data);
+
+  return [response.totalRecord, response.data, currentPage, setCurrentPage];
 };
 
 export const useDetailArticle = (id, onUpdateListUI) => {
