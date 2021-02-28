@@ -16,6 +16,17 @@ const App = () => {
       applicationServerKey: pushServerPublicKey,
     });
   };
+  const getUserSubscription = () => {
+    //wait for service worker installation to be ready, and then
+    return navigator.serviceWorker.ready
+      .then(function (serviceWorker) {
+        const r = serviceWorker.pushManager.getSubscription();
+        return r;
+      })
+      .then(function (pushSubscription) {
+        return pushSubscription;
+      });
+  };
 
   useEffect(() => {
     if ('serviceWorker' in navigator) {
@@ -25,12 +36,20 @@ const App = () => {
           .then((consent) => {
             console.log('consent', consent);
             if (consent != 'granted') return;
-            createSubcription()
-              .then((subscrition) => {
-                console.log('subscrition', subscrition);
-                saveSubscription(subscrition);
+
+            getUserSubscription()
+              .then((sub) => {
+                console.log('get subscription', sub);
               })
-              .catch(() => {});
+              .catch(() => {
+                console.log('get error');
+                createSubcription()
+                  .then((subscrition) => {
+                    console.log('subscrition', subscrition);
+                    saveSubscription(subscrition);
+                  })
+                  .catch(() => {});
+              });
           })
           .catch(() => {});
       });
