@@ -40,15 +40,17 @@ const App = () => {
             getUserSubscription()
               .then((sub) => {
                 console.log('get subscription', sub);
+                if (!sub) {
+                  createSubcription()
+                    .then((subscrition) => {
+                      console.log('subscrition', subscrition);
+                      saveSubscription(subscrition);
+                    })
+                    .catch(() => {});
+                }
               })
               .catch(() => {
                 console.log('get error');
-                createSubcription()
-                  .then((subscrition) => {
-                    console.log('subscrition', subscrition);
-                    saveSubscription(subscrition);
-                  })
-                  .catch(() => {});
               });
           })
           .catch(() => {});
