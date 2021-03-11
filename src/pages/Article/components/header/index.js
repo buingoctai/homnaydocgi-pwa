@@ -1,7 +1,15 @@
-import React from 'react';
+import React , {useRef}from 'react';
+import PopoverManager from 'srcRoot/pages/components/Popover/popover-manager';
+import Menu from '../menu';
 import './style.scss';
 
-const Header = ({ author, time }) => {
+const Header = ({ author, time,showPopover, }) => {
+  const actionRef=useRef(null);
+
+  const onOpenMenu = () => () => {
+    PopoverManager.open(<Menu/> );
+  }
+  
   return (
     <div className="header">
       <div className="author">
@@ -14,7 +22,7 @@ const Header = ({ author, time }) => {
             style={{
               filter: 'grayscale(100%)',
               borderRadius: '50%',
-              marginTop: '5PX',
+              marginTop: '5pX',
             }}
           />
         </div>
@@ -24,7 +32,7 @@ const Header = ({ author, time }) => {
         </div>
       </div>
 
-      {/* <div>more action</div> */}
+      <div className="action" ref={actionRef} onClick={onOpenMenu()}/>
     </div>
   );
 };

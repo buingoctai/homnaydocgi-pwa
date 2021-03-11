@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
+import ReactDOM  from 'react-dom';
 import { CellMeasurerCache } from 'react-virtualized';
 
 import { useGetAllArticle } from 'srcRoot/Hooks';
+import PopoverManager from 'srcRoot/pages/components/Popover/popover-manager';
 import Header from './components/header';
 import Content from './components/content';
 
@@ -29,13 +31,17 @@ const enhance = (Article) => () => {
           console.log('scrool bottom');
           const newPage = currentPage.current + 1;
           // if (newPage === 4) return;
+          
           console.log(currentPage.current);
           setCurrentPage(newPage);
         }
+        PopoverManager.close();
       });
     }
   }, [totalRecord]);
 
+
+ 
   const renderItem = ({ index, style, listRef }) => {
     if (data.length === 0) return null;
 

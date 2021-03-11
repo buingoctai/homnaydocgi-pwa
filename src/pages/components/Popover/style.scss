@@ -1,0 +1,42 @@
+.container {
+    width: 100%;
+    position: fixed;
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: 0;
+    background-color: antiquewhite;
+    display: block;
+    opacity: 1;
+    background: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    z-index: 9999;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 18%);
+    border: 1px solid #e1e4ea;
+    animation-name: examples;
+    animation-duration: 1s;
+}
+@keyframes examples{
+    0%   {height:0px}
+    10%   {height:10px}
+    20%  {height:20px}
+    30%  {height:30px}
+    40%  {height:40px}
+    50%  {height:50px}
+    60%  {height:60px}
+    70%  {height:70px}
+    100% {}
+}
+
+@keyframes examples1{
+    0%   {}
+    10%   {height:70px}
+    20%  {height:60px}
+    30%  {height:50px}
+    40%  {height:40px}
+    50%  {height:30px}
+    60%  {height:20px}
+    70%  {height:10px}
+    100% {}
+}
