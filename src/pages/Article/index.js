@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { List, AutoSizer, CellMeasurer } from 'react-virtualized';
 
-import Skeleton from 'srcRoot/pages/components/Skeleton';
+import SkeletonV2 from 'srcRoot/pages/components/SkeletonV2';
 import enhance from './enhance';
 import './style.scss';
 
@@ -45,7 +45,7 @@ const Article = (props) => {
       </div>
     </div>
   ) : (
-    [1, 2, 3, 4, 5, 6].map((item, index) => <Skeleton key={index} className="article skeleton" />)
+    [6,5,7].map((item, index) => <SkeletonV2 numLine={item} />)
   );
 };
 

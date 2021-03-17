@@ -47,7 +47,7 @@ const enhance = (Article) => () => {
 
     return (
       <div style={{ ...style }}>
-        <div>
+        <div className='article-item'>
           <Header author={data[index].Author} time={data[index].SubmitDate} />
           <Content
             index={index}

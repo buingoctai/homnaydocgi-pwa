@@ -14,29 +14,30 @@
     z-index: 9999;
     box-shadow: 0 0 10px 0 rgb(0 0 0 / 18%);
     border: 1px solid #e1e4ea;
-    animation-name: examples;
+    animation-name: animation;
     animation-duration: 1s;
 }
-@keyframes examples{
+@keyframes animation{
     0%   {height:0px}
-    10%   {height:10px}
-    20%  {height:20px}
-    30%  {height:30px}
-    40%  {height:40px}
-    50%  {height:50px}
-    60%  {height:60px}
-    70%  {height:70px}
-    100% {}
-}
+    5%   {height:5px}
 
-@keyframes examples1{
-    0%   {}
-    10%   {height:70px}
-    20%  {height:60px}
-    30%  {height:50px}
+    10%   {height:10px}
+    15%   {height:15px}
+    20%  {height:20px}
+    25%  {height:25px}
+
+    30%  {height:30px}
+    35%  {height:35px}
+
     40%  {height:40px}
-    50%  {height:30px}
-    60%  {height:20px}
-    70%  {height:10px}
+    45%  {height:45px}
+
+    50%  {height:50px}
+    55%  {height:55px}
+
+    60%  {height:60px}
+    65%  {height:65px}
+
+    70%  {height:70px}
     100% {}
 }
