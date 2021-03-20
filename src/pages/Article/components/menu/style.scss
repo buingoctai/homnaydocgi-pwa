@@ -1,23 +1,26 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
-.menu-container{
-    .menu-item{
-
-    }
-    .title-item{
-        font-size: 15px;
-        text-align: left;
-        display: flex;
-        align-items: center;
-        font-weight: 500;
-    }
-    .description-item{
-        font-size: 12px;
-        text-align: left;
-        display: flex;
-        align-items: center;
-        font-weight: 500;
-    }
-   .icon{
-       font-size: 24px;
-   }
+.menu-container {
+  .menu-item {
+    margin-bottom: 8px;
+  }
+  .menu-item:last-child {
+    margin-bottom: 0px;
+  }
+  .title-item {
+    font-size: 15px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+  }
+  .description-item {
+    font-size: 12px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+  }
+  .icon {
+    font-size: 24px;
+  }
 }

@@ -1,5 +1,5 @@
-import React from "react";
-import "../style.scss";
+import React from 'react';
+import '../style.scss';
 
 function SkeletonElement({ type }) {
   const classes = `skeleton ${type}`;

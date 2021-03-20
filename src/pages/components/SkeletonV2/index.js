@@ -1,10 +1,10 @@
-import React from "react";
-import "./style.scss";
-import SkeletonElement from "./components/skeleton-unit";
-import Shimmer from "./components/shimmer";
+import React from 'react';
+import './style.scss';
+import SkeletonElement from './components/skeleton-unit';
+import Shimmer from './components/shimmer';
 
 function SkeletonProfile({ theme, numLine }) {
-  const themeClass = theme || "light";
+  const themeClass = theme || 'light';
 
   return (
     <div className={`skeleton-wrapper ${themeClass}`}>
@@ -20,25 +20,16 @@ function SkeletonProfile({ theme, numLine }) {
       </div>
       <Shimmer />
       <div className="skeleton-article">
-      <SkeletonElement type="title" />
-       {Array.from({length: numLine}).map((item,index)=>
-         {
-           if(index===numLine-1){
-            return(
-              <SkeletonElement type={`sentence last--${numLine}`}/>
-             )
-           }
-           return(
-            <SkeletonElement type="sentence" />
-
-           )
-         }
-        
-       )}
+        <SkeletonElement type="title" />
+        {Array.from({ length: numLine }).map((item, index) => {
+          if (index === numLine - 1) {
+            return <SkeletonElement key={index} type={`sentence last--${numLine}`} />;
+          }
+          return <SkeletonElement key={index} type="sentence" />;
+        })}
       </div>
     </div>
   );
 }
 
-
-export default SkeletonProfile
+export default SkeletonProfile;

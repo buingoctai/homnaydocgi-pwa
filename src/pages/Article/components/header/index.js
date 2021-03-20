@@ -1,15 +1,30 @@
-import React , {useRef}from 'react';
+import React, { useRef } from 'react';
 import PopoverManager from 'srcRoot/pages/components/Popover/popover-manager';
 import Menu from '../menu';
 import './style.scss';
 
-const Header = ({ author, time,showPopover, }) => {
-  const actionRef=useRef(null);
+const Header = ({ id, author, time, showPopover }) => {
+  const actionRef = useRef(null);
+  const onCopyUrl = () => {
+    console.log(id);
+    const url = `${process.env.APP_BASE}/article?id=${id}`;
 
+    if (navigator.clipboard) {
+      navigator.clipboard
+        .writeText(url)
+        .then(() => {
+          console.log('copy to clipboard success');
+        })
+        .catch(() => {
+          console.log('copy to clipboard failed');
+        });
+    }
+    PopoverManager.close();
+  };
   const onOpenMenu = () => () => {
-    PopoverManager.open(<Menu/> );
-  }
-  
+    PopoverManager.open(<Menu onCopyUrl={onCopyUrl} />);
+  };
+
   return (
     <div className="header">
       <div className="author">
@@ -32,7 +47,7 @@ const Header = ({ author, time,showPopover, }) => {
         </div>
       </div>
 
-      <div className="action" ref={actionRef} onClick={onOpenMenu()}/>
+      <div className="action" ref={actionRef} onClick={onOpenMenu()} />
     </div>
   );
 };

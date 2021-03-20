@@ -16,7 +16,7 @@ export const useDebounce = (value, deplay) => {
   return debouncedValue;
 };
 
-export const useGetAllArticle = () => {
+export const useGetAllArticle = (headArticle) => {
   const [response, setResponse] = useState({ totalRecord: 0, data: [] });
   const [page, setPage] = useState(1);
 
@@ -29,6 +29,11 @@ export const useGetAllArticle = () => {
   const setIsLoadData = (value) => {
     isLoadData.current = value;
   };
+  const foundHead = useRef(false);
+  const setFoundHead = (value) => {
+    foundHead.current = value;
+  };
+
   useEffect(() => {
     setIsLoadData(true);
     getAllPost({
@@ -36,10 +41,14 @@ export const useGetAllArticle = () => {
       pageSize: 4,
       orderBy: 'SubmitDate',
       orderType: 'DESC',
+      headArticle: foundHead.current ? null : headArticle,
+      found: foundHead.current,
     })
       .then((result) => {
         const updateData = [...response.data, ...result.data];
         const newResult = { totalRecord: result.totalRecord, data: updateData };
+
+        setFoundHead(result.found);
         setResponse(newResult);
         setIsLoadData(false);
       })

@@ -4,15 +4,10 @@ import Popover from './index';
 
 class PopoverManager {
   open(menu) {
-    ReactDOM.render(
-      <Popover
-        child={menu}
-      />,
-      document.getElementById('popover')
-    );
+    ReactDOM.render(<Popover child={menu} />, document.getElementById('popover'));
   }
   close() {
-    if(!document.getElementById("popover").hasChildNodes()) return;
+    if (!document.getElementById('popover').hasChildNodes()) return;
     ReactDOM.unmountComponentAtNode(document.getElementById('popover'));
   }
 }

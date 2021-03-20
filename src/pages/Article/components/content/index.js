@@ -3,7 +3,7 @@ import { useDetailArticle } from 'srcRoot/Hooks';
 import './style.scss';
 
 const Content = ({ index, post, listRef, heightStore, readedList, setReadedList }) => {
-  const { Id, Title, Brief } = post;
+  const { Id, Content, Title, Brief } = post;
   let newReadedList = {};
 
   const onUpdateListUI = (articleId) => {
@@ -48,8 +48,8 @@ const Content = ({ index, post, listRef, heightStore, readedList, setReadedList 
     <div className="full-content">
       <h1 className="title">{capitalize(Title.toLowerCase())}</h1>
       <p className="content">
-        {readedList[Id] ? breakContent(detailPost.Content) : Brief}
-        {!readedList[Id] && (
+        {Content || (readedList[Id] && breakContent(detailPost.Content)) || Brief}
+        {!readedList[Id] && !Content && (
           <a href="#" onClick={() => onReadMore()} className="button-more">
             ...Xem thêm
           </a>

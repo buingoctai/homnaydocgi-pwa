@@ -45,7 +45,7 @@ const Article = (props) => {
       </div>
     </div>
   ) : (
-    [6,5,7].map((item, index) => <SkeletonV2 numLine={item} />)
+    [6, 5, 7].map((item, index) => <SkeletonV2 numLine={item} />)
   );
 };
 

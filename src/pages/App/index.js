@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { saveSubscription } from '../../services/Notification';
 
 import './style.scss';
@@ -27,6 +27,8 @@ const App = () => {
         return pushSubscription;
       });
   };
+
+  const [headArticle, setHeadArticle] = useState(null);
 
   useEffect(() => {
     if ('serviceWorker' in navigator) {
@@ -86,13 +88,31 @@ const App = () => {
       });
     });
   }, []);
+
+  function getQueryStringValue(key) {
+    if (!window.location.href.includes(`${process.env.APP_BASE}/article?`)) {
+      return null;
+    }
+    return decodeURIComponent(
+      window.location.search.replace(
+        new RegExp(
+          '^(?:.*[&\\?]' +
+            encodeURIComponent(key).replace(/[\.\+\*]/g, '\\$&') +
+            '(?:\\=([^&]*))?)?.*$',
+          'i'
+        ),
+        '$1'
+      )
+    );
+  }
+
   return (
     <>
       {/* <button id="btn-add" className="button-home">
         Add To Home Screen
       </button> */}
-      <Article />
-      <div id='popover'/>
+      <Article headArticle={getQueryStringValue('id')} />
+      <div id="popover" />
     </>
   );
 };

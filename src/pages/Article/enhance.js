@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import ReactDOM  from 'react-dom';
+import ReactDOM from 'react-dom';
 import { CellMeasurerCache } from 'react-virtualized';
 
 import { useGetAllArticle } from 'srcRoot/Hooks';
@@ -12,11 +12,11 @@ var heightStore = new CellMeasurerCache({
   fixedWidth: true,
 });
 
-const enhance = (Article) => () => {
+const enhance = (Article) => ({ headArticle }) => {
   const listRef = useRef();
 
   const [totalRecord, data, currentPage, setCurrentPage, isLoadData] = useGetAllArticle(
-    heightStore
+    headArticle
   );
   const [readedList, setReadedList] = useState({});
 
@@ -31,7 +31,7 @@ const enhance = (Article) => () => {
           console.log('scrool bottom');
           const newPage = currentPage.current + 1;
           // if (newPage === 4) return;
-          
+
           console.log(currentPage.current);
           setCurrentPage(newPage);
         }
@@ -40,15 +40,13 @@ const enhance = (Article) => () => {
     }
   }, [totalRecord]);
 
-
- 
   const renderItem = ({ index, style, listRef }) => {
     if (data.length === 0) return null;
 
     return (
-      <div style={{ ...style }}>
-        <div className='article-item'>
-          <Header author={data[index].Author} time={data[index].SubmitDate} />
+      <div style={{ ...style }} key={data[index].Id}>
+        <div className="article-item">
+          <Header id={data[index].Id} author={data[index].Author} time={data[index].SubmitDate} />
           <Content
             index={index}
             post={data[index]}
