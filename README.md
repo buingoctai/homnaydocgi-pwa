@@ -1,5 +1,7 @@
 # homnaydocgi-app
+
 ## In queue:
+
 - Research preload resource
 - Server side rendering (refer copy url article)
 - Backup db azure to client storage (indexDB, Sql Lite)

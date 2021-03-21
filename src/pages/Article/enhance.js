@@ -6,6 +6,7 @@ import { useGetAllArticle } from 'srcRoot/Hooks';
 import PopoverManager from 'srcRoot/pages/components/Popover/popover-manager';
 import Header from './components/header';
 import Content from './components/content';
+import Video from './components/video';
 
 var heightStore = new CellMeasurerCache({
   defaultHeight: 300,
@@ -33,6 +34,15 @@ const enhance = (Article) => ({ headArticle }) => {
         }
         PopoverManager.close();
       });
+    }
+
+    if (!localStorage.getItem('intro')) {
+      PopoverManager.open(<Video />, { width: '118px', padding: '0px 0px' });
+      setTimeout(() => {
+        PopoverManager.close();
+      }, 18000);
+
+      localStorage.setItem('intro', true);
     }
   }, [totalRecord]);
 

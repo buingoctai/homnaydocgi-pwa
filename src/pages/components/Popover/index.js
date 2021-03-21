@@ -3,6 +3,10 @@ import React from 'react';
 import './style.scss';
 
 const Popover = (props) => {
-  return <div className="container">{props.child}</div>;
+  return (
+    <div style={{ ...props.newStyle }} className="container">
+      {props.child}
+    </div>
+  );
 };
 export default Popover;
