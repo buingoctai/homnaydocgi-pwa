@@ -3,20 +3,21 @@ import PopoverManager from 'srcRoot/pages/components/Popover/popover-manager';
 import Menu from '../menu';
 import './style.scss';
 
-const Header = ({ id, author, time, showPopover }) => {
+const Header = ({ id, title, author, time, showPopover }) => {
   const actionRef = useRef(null);
   const onCopyUrl = () => {
-    console.log(id);
-    const url = `${process.env.APP_BASE}/article?id=${id}`;
+    const url = `${process.env.APP_BASE}/article?id=${id}&${title
+      .toLowerCase()
+      .replaceAll(' ', '-')}`;
 
     if (navigator.clipboard) {
       navigator.clipboard
         .writeText(url)
         .then(() => {
-          console.log('copy to clipboard success');
+          console.log('Copy to clipboard success');
         })
         .catch(() => {
-          console.log('copy to clipboard failed');
+          console.log('Copy to clipboard failed');
         });
     }
     PopoverManager.close();

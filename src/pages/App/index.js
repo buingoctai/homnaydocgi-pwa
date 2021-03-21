@@ -33,27 +33,21 @@ const App = () => {
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js').then(function () {
-        console.log('Service Worker Registered');
         Notification.requestPermission()
           .then((consent) => {
-            console.log('consent', consent);
             if (consent != 'granted') return;
 
             getUserSubscription()
               .then((sub) => {
-                console.log('get subscription', sub);
                 if (!sub) {
                   createSubcription()
                     .then((subscrition) => {
-                      console.log('subscrition', subscrition);
                       saveSubscription(subscrition);
                     })
                     .catch(() => {});
                 }
               })
-              .catch(() => {
-                console.log('get error');
-              });
+              .catch(() => {});
           })
           .catch(() => {});
       });
@@ -63,7 +57,6 @@ const App = () => {
     // addBtn.style.display = 'none';
 
     window.addEventListener('beforeinstallprompt', (e) => {
-      console.log('beforeinstallprompt');
       // Prevent Chrome 67 and earlier from automatically showing the prompt
       e.preventDefault();
       // Stash the event so it can be triggered later.

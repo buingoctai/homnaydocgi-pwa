@@ -94,7 +94,6 @@ self.addEventListener('fetch', function (event) {
 });
 
 function receivePushNotification(event) {
-  console.log('[Service Worker] Push Received.', event);
   // const { title, body } = event.data.json();
   // const { title, text, tag, url } = event.data.json();
   var data = JSON.parse(event.data.text());
@@ -109,8 +108,6 @@ function receivePushNotification(event) {
 }
 
 function openPushNotification(event) {
-  console.log('[Service Worker] Notification click Received.', event.notification.data);
-
   event.notification.close();
   event.waitUntil(clients.openWindow(event.notification.data));
 }

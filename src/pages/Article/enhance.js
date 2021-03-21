@@ -28,11 +28,7 @@ const enhance = (Article) => ({ headArticle }) => {
       list.addEventListener('scroll', () => {
         if (isLoadData.current) return;
         if (list.scrollTop + window.innerHeight >= list.scrollHeight - 10) {
-          console.log('scrool bottom');
           const newPage = currentPage.current + 1;
-          // if (newPage === 4) return;
-
-          console.log(currentPage.current);
           setCurrentPage(newPage);
         }
         PopoverManager.close();
@@ -46,7 +42,12 @@ const enhance = (Article) => ({ headArticle }) => {
     return (
       <div style={{ ...style }} key={data[index].Id}>
         <div className="article-item">
-          <Header id={data[index].Id} author={data[index].Author} time={data[index].SubmitDate} />
+          <Header
+            id={data[index].Id}
+            title={data[index].Title}
+            author={data[index].Author}
+            time={data[index].SubmitDate}
+          />
           <Content
             index={index}
             post={data[index]}

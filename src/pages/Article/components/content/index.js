@@ -21,6 +21,7 @@ const Content = ({ index, post, listRef, heightStore, readedList, setReadedList 
 
   const onReadMore = async () => {
     setArticleId(Id);
+    document.title = Title.charAt(0).toUpperCase() + Title.toLowerCase().slice(1);
   };
 
   const capitalize = (str) => {
@@ -31,6 +32,10 @@ const Content = ({ index, post, listRef, heightStore, readedList, setReadedList 
     heightStore.clear(index);
     if (Id in readedList) {
       delete readedList[Id];
+    }
+
+    if (Content) {
+      document.title = Title.charAt(0).toUpperCase() + Title.toLowerCase().slice(1);
     }
   }, []);
   const breakContent = (content) => {
