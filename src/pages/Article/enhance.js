@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import ReactDOM from 'react-dom';
 import { CellMeasurerCache } from 'react-virtualized';
 
 import { useGetAllArticle } from 'srcRoot/Hooks';
@@ -22,6 +21,7 @@ const enhance = (Article) => ({ headArticle }) => {
   const [readedList, setReadedList] = useState({});
 
   useEffect(() => {
+
     const list = document.getElementsByClassName(
       'ReactVirtualized__Grid ReactVirtualized__List'
     )[0];
@@ -77,7 +77,9 @@ const enhance = (Article) => ({ headArticle }) => {
       heightStore={heightStore}
       renderItem={renderItem}
       listRef={listRef}
+      firstArticle={data[0]}
     />
+    
   );
 };
 

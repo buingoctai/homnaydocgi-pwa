@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDetailArticle } from 'srcRoot/Hooks';
 import './style.scss';
+import { TitleRounded } from '@material-ui/icons';
 
 const Content = ({ index, post, listRef, heightStore, readedList, setReadedList }) => {
   const { Id, Content, Title, Brief } = post;
@@ -35,7 +36,7 @@ const Content = ({ index, post, listRef, heightStore, readedList, setReadedList 
     }
 
     if (Content) {
-      document.title = Title.charAt(0).toUpperCase() + Title.toLowerCase().slice(1);
+      //document.title = Title.charAt(0).toUpperCase() + Title.toLowerCase().slice(1);
     }
   }, []);
   const breakContent = (content) => {

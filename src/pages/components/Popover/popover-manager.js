@@ -3,12 +3,18 @@ import React from 'react';
 import Popover from './index';
 
 class PopoverManager {
-  open(menu, style) {
-    ReactDOM.render(<Popover newStyle={style} child={menu} />, document.getElementById('popover'));
+  constructor(){
+    this.dispatch = null;
   }
-  close() {
-    if (!document.getElementById('popover').hasChildNodes()) return;
-    ReactDOM.unmountComponentAtNode(document.getElementById('popover'));
+
+  bindDispatch(func){
+    this.dispatch = func;
+  }
+  open(child,style){
+    this.dispatch({isShow: true, data:{child,style}});
+  }
+  close(){
+    this.dispatch({isShow: false, data:{}});
   }
 }
 

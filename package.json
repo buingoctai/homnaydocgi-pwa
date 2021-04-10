@@ -26,6 +26,7 @@
     "copy-webpack-plugin": "^7.0.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "react-helmet": "^6.1.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-virtualized": "^9.22.3",

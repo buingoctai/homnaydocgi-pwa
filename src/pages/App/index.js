@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, } from 'react';
 import { saveSubscription } from '../../services/Notification';
 
 import './style.scss';
 import Article from '../Article';
+import Popover from 'srcRoot/pages/components/Popover';
+
+import PopoverManager from 'srcRoot/pages/components/Popover/popover-manager';
 
 const App = () => {
   const createSubcription = async () => {
@@ -27,10 +30,10 @@ const App = () => {
         return pushSubscription;
       });
   };
-
-  const [headArticle, setHeadArticle] = useState(null);
+  const [popover,setPopover] =useState({isShow: false, data:{}});
 
   useEffect(() => {
+    PopoverManager.bindDispatch(setPopover);
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js').then(function () {
         Notification.requestPermission()
@@ -99,13 +102,16 @@ const App = () => {
     );
   }
 
+
   return (
     <>
       {/* <button id="btn-add" className="button-home">
         Add To Home Screen
       </button> */}
       <Article headArticle={getQueryStringValue('id')} />
-      <div id="popover" />
+      {popover.isShow && (
+        <Popover newStyle={popover.data.style} child={popover.data.child}/>
+      )}
     </>
   );
 };
