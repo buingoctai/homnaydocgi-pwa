@@ -3,18 +3,18 @@ import React from 'react';
 import Popover from './index';
 
 class PopoverManager {
-  constructor(){
+  constructor() {
     this.dispatch = null;
   }
 
-  bindDispatch(func){
+  bindDispatch(func) {
     this.dispatch = func;
   }
-  open(child,style){
-    this.dispatch({isShow: true, data:{child,style}});
+  open(child, style) {
+    this.dispatch({ payload: { data: { child, style } }, type: 'OPEN_POPOVER' });
   }
-  close(){
-    this.dispatch({isShow: false, data:{}});
+  close() {
+    this.dispatch({ payload: { data: null }, type: 'CLOSE_POPOVER' });
   }
 }
 

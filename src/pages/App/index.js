@@ -1,64 +1,28 @@
-import React, { useEffect, useState, } from 'react';
+import React, { useEffect, useState, version, useContext } from 'react';
 import { saveSubscription } from '../../services/Notification';
 
 import './style.scss';
 import Article from '../Article';
 import Popover from 'srcRoot/pages/components/Popover';
-
 import PopoverManager from 'srcRoot/pages/components/Popover/popover-manager';
+import {getQueryStringValue,initServiceWorker,} from 'srcRoot/utils';
+import {AppContext} from 'srcRoot/appContext';
+import InitIntro from './intro';
+
+import dbManager from 'srcRoot/core/databases/indexDB';
 
 const App = () => {
-  const createSubcription = async () => {
-    const pushServerPublicKey =
-      'BIN2Jc5Vmkmy-S3AUrcMlpKxJpLeVRAfu9WBqUbJ70SJOCWGCGXKY-Xzyh7HDr6KbRDGYHjqZ06OcS3BjD7uAm8';
-
-    const serviceWorker = await navigator.serviceWorker.ready;
-    // subscribe and return the subscription
-    return await serviceWorker.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: pushServerPublicKey,
-    });
-  };
-  const getUserSubscription = () => {
-    //wait for service worker installation to be ready, and then
-    return navigator.serviceWorker.ready
-      .then(function (serviceWorker) {
-        const r = serviceWorker.pushManager.getSubscription();
-        return r;
-      })
-      .then(function (pushSubscription) {
-        return pushSubscription;
-      });
-  };
-  const [popover,setPopover] =useState({isShow: false, data:{}});
+  const [appState, dispatch] = useContext(AppContext);
+  const {popover} = appState;
 
   useEffect(() => {
-    PopoverManager.bindDispatch(setPopover);
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').then(function () {
-        Notification.requestPermission()
-          .then((consent) => {
-            if (consent != 'granted') return;
-
-            getUserSubscription()
-              .then((sub) => {
-                if (!sub) {
-                  createSubcription()
-                    .then((subscrition) => {
-                      saveSubscription(subscrition);
-                    })
-                    .catch(() => {});
-                }
-              })
-              .catch(() => {});
-          })
-          .catch(() => {});
-      });
-    }
+    PopoverManager.bindDispatch(dispatch);
+    initServiceWorker();
+    
     let deferredPrompt;
     const addBtn = document.getElementById('btn-add');
-    // addBtn.style.display = 'none';
-
+    addBtn.style.display = 'none';
+    
     window.addEventListener('beforeinstallprompt', (e) => {
       // Prevent Chrome 67 and earlier from automatically showing the prompt
       e.preventDefault();
@@ -66,8 +30,8 @@ const App = () => {
       deferredPrompt = e;
       // Update UI to notify the user they can add to home screen
       addBtn.style.display = 'block';
-
-      addBtn.addEventListener('click', (e) => {
+    
+      addBtn.addEventListener('click', () => {
         // hide our user interface that shows our A2HS button
         addBtn.style.display = 'none';
         // Show the prompt
@@ -83,36 +47,38 @@ const App = () => {
         });
       });
     });
-  }, []);
 
-  function getQueryStringValue(key) {
-    if (!window.location.href.includes(`${process.env.APP_BASE}/article?`)) {
-      return null;
+
+    dbManager.getStoreList([{name:'Article',version:1.0},{name:'Audio',version:1.0}])
+    .then((res)=>{
+      console.log('dbManager res:',res);
+    })
+    .catch((err)=>{
+      console.log('dbManager error:',res);
+
+    });
+      if (!localStorage.getItem('intro')) {
+      PopoverManager.open(<InitIntro />, { width: '118px', padding: '0px 0px' });
+      setTimeout(() => {
+        PopoverManager.close();
+      }, 18000);
+
+      localStorage.setItem('intro', true);
     }
-    return decodeURIComponent(
-      window.location.search.replace(
-        new RegExp(
-          '^(?:.*[&\\?]' +
-            encodeURIComponent(key).replace(/[\.\+\*]/g, '\\$&') +
-            '(?:\\=([^&]*))?)?.*$',
-          'i'
-        ),
-        '$1'
-      )
-    );
-  }
+  }, []);
 
 
   return (
     <>
-      {/* <button id="btn-add" className="button-home">
+      <button id="btn-add" className="button-home">
         Add To Home Screen
-      </button> */}
+      </button>
       <Article headArticle={getQueryStringValue('id')} />
-      {popover.isShow && (
-        <Popover newStyle={popover.data.style} child={popover.data.child}/>
+      {popover.isOpen && (
+        <Popover newStyle={popover.data?.style} child={popover.data?.child}/>
       )}
     </>
+
   );
 };
 

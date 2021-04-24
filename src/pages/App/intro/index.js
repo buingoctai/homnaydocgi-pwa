@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Intro from 'srcRoot/assets/intro.mp4';
 
-const Video = () => {
+const InitIntro = () => {
   // useEffect(()=>{
   //     document.getElementById('video-intro').click;
   // },[]);
@@ -16,4 +16,4 @@ const Video = () => {
   );
 };
 
-export default Video;
+export default InitIntro;

@@ -9,10 +9,17 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "@pages/*": ["pages/*"],
-      "@services/*": ["services/*"]
+      "srcRoot/*": ["src/*"],
+      "indexDB/*": ["src/core/databases/indexDB/*"]
     }
-  }
+  },
+  "include": [
+    "./src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

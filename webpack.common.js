@@ -53,13 +53,16 @@ module.exports = {
           },
         ],
       },
+      {  test: /\.(ts|tsx)$/, use: [{loader: 'ts-loader'}] },
     ],
   },
   resolve: {
     alias: {
       srcRoot: path.resolve(__dirname, './src'),
     },
+    extensions: ['.tsx', '.ts', '.js'],
   },
+ 
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),

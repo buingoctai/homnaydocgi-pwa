@@ -6,6 +6,7 @@ import SkeletonV2 from 'srcRoot/pages/components/SkeletonV2';
 import enhance from './enhance';
 import './style.scss';
 
+
 const Article = (props) => {
   const { totalRecord, heightStore, renderItem, listRef, firstArticle } = props;
 
