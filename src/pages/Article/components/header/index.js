@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import PopoverManager from 'srcRoot/pages/components/Popover/popover-manager';
-import Menu from '../menu';
+import Menu from 'srcRoot/pages/components/Menu';
 import './style.scss';
 
 const Header = ({ id, title, author, time, showPopover }) => {
@@ -22,8 +22,20 @@ const Header = ({ id, title, author, time, showPopover }) => {
     }
     PopoverManager.close();
   };
+  const items = [
+    // { title: 'Lưu bài viết', description: 'Thêm vào mục yêu thích, có thể truy cập khi offline.' },
+    // {
+    //   title: 'Ẩn bài viết',
+    //   description: 'Tạm ẩn khỏi dòng thời gian. Vào cài đặt cho phép hiển thị trở lại.',
+    // },
+    {
+      title: 'Sao Chép Liên Kết',
+      description: 'Dễ dàng chia sẻ đường dẫn bài viết.',
+      handler: onCopyUrl,
+    },
+  ];
   const onOpenMenu = () => () => {
-    PopoverManager.open(<Menu onCopyUrl={onCopyUrl} />);
+    PopoverManager.open(<Menu items ={items}/>);
   };
 
   return (

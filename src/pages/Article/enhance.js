@@ -34,8 +34,6 @@ const enhance = (Article) => ({ headArticle }) => {
         PopoverManager.close();
       });
     }
-
-  
   }, [totalRecord]);
 
   const renderItem = ({ index, style, listRef }) => {
