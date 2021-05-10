@@ -12,14 +12,20 @@ import InitIntro from './intro';
 import Menu from 'srcRoot/pages/components/Menu';
 import dbManager from 'srcRoot/core/databases/indexDB';
 
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { popoverState } from 'srcRoot/recoil/appState';
+
 const App = () => {
-  const [appState, dispatch] = useContext(AppContext);
-  const { popover } = appState;
+  // const [appState, dispatch] = useContext(AppContext);
+  // const { popover } = appState;
   const popoverRef = useRef(null);
   const deferredPrompt = useRef(null);
 
+  // const popover = useRecoilValue(popoverState);
+  const [popover,setPopover] = useRecoilState(popoverState);
+
   useEffect(() => {
-    PopoverManager.bindDispatch(dispatch);
+    PopoverManager.bindDispatch(setPopover);
     PopoverManager.saveDeferredPrompt(deferredPrompt);
     initServiceWorker();
     // Add event listener

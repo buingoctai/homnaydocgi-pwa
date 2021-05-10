@@ -16,10 +16,10 @@ class PopoverManager {
     this.deferredPrompt = value;
   }
   open(child, style) {
-    this.dispatch({ payload: { data: { child, style } }, type: 'OPEN_POPOVER' });
+    this.dispatch({ data: { child, style }, isOpen: true  });
   }
   close() {
-    this.dispatch({ payload: { data: null }, type: 'CLOSE_POPOVER' });
+    this.dispatch({ data: null , isOpen:false });
     this.deferredPrompt.current = null;
   }
 }

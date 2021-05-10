@@ -14,22 +14,39 @@
   z-index: 9999;
   box-shadow: 0 0 10px 0 rgb(0 0 0 / 18%);
   border: 1px solid #e1e4ea;
-  animation-name: animation;
-  animation-duration: 800ms;
-}
-@keyframes animation {
-  0% {
-    height: 10px;
-  }
- 
-  25% {
-    height: 20px;
-  }
+  // animation-name: animation;
+  // animation-duration: 800ms;
 
-  50% {
-    height: 30px;
-  }
+  -webkit-animation: fade-in 0.3s linear 1;
+  -moz-animation: fade-in 0.3s linear 1;
+  -ms-animation: fade-in 0.3s linear 1;
+
+}
+// @keyframes animation {
+//   0% {
+//     height: 10px;
+//   }
  
-  100% {
-  }
+//   25% {
+//     height: 20px;
+//   }
+
+//   50% {
+//     height: 30px;
+//   }
+ 
+//   100% {
+//   }
+// }
+@-webkit-keyframes fade-in {
+	from   { height: 0; }
+	to { height: 30px; }
+}
+@-moz-keyframes fade-in {
+	from   { height: 0; }
+	to { height: 30px; }
+}
+@-ms-keyframes fade-in {
+	from   { height: 0; }
+	to { height: 30px; }
 }
