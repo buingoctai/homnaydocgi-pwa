@@ -2,7 +2,7 @@ const isSupportIndexDB = (): Object => {
   return { window: window.indexedDB, self: self.indexedDB };
 };
 
-const getStore = (storeName: string, version: number) => {
+const getDatabases = (storeName: string, version: number) => {
   return new Promise<object>((resolve, reject) => {
     let db = null;
     const request = self.indexedDB.open(storeName, version);
@@ -21,4 +21,4 @@ const getStore = (storeName: string, version: number) => {
   });
 };
 
-export { isSupportIndexDB, getStore };
+export { isSupportIndexDB, getDatabases };

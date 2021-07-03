@@ -56,12 +56,17 @@ const App = () => {
 
     // Init local db
     dbManager
-      .getStoreList([
-        { name: 'Article', version: 1.0 },
-        { name: 'Audio', version: 1.0 },
+      .getDbList([
+        { name: 'HomNayDocGi', version: 1.0 }
       ])
       .then((res) => {
         console.log('dbManager res:', res);
+        const [firtDb] = res;
+        
+        const store = firtDb.createObjectStore('articles',{keyPath: 'id'});
+        // tạo ra 1 object store (giống table bên sql) lưu trữ các js object
+        // kể từ đây mọi truy xuất đều diễn ra trên 1 transaction
+
       })
       .catch((err) => {
         console.log('dbManager error:', res);

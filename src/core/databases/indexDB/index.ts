@@ -1,10 +1,10 @@
 
-import {getStore} from './utils/index';
+import {getDatabases} from './utils/index';
 
 class DbManager{
-    getStoreList(storeList: {name:string,version:number}[]) {
-       const storeHandlers = storeList.map(store => getStore(store.name,store.version));
-       return Promise.all(storeHandlers);
+    getDbList(storeList: {name:string,version:number}[]) {
+       const dbHandlers = storeList.map(store => getDatabases(store.name,store.version));
+       return Promise.all(dbHandlers);
     }
 }
 
