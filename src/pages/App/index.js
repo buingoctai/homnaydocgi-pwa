@@ -14,6 +14,7 @@ import dbManager from 'srcRoot/core/databases/indexDB';
 
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { popoverState } from 'srcRoot/recoil/appState';
+import Popover, {PopoverManager} from '../../../libs/popover'
 
 const App = () => {
   // const [appState, dispatch] = useContext(AppContext);
@@ -80,6 +81,7 @@ const App = () => {
 
       localStorage.setItem('intro', true);
     }
+    PopoverManager.openPopover({windowId: '1',name:'aaaaaa'});
   }, []);
 
   const addHomeScreen = (domNode) => {
@@ -98,7 +100,6 @@ const App = () => {
         deferredPrompt.current = null;
       });
       PopoverManager.close();
-
     });
   };
 
@@ -112,6 +113,11 @@ const App = () => {
           child={popover.data?.child}
         />
       )}
+      <Popover
+        identity = {{windowId: '1',name:'aaaaaa'}}
+        content = {<div>aaaaaaaaaaaaaaaaaa</div>}
+        style = {{width:'100px', height:'200px', top:'200px', left: '2000px'}}
+      />
     </>
   );
 };
