@@ -10,7 +10,7 @@ const initState = {
 };
 
 const reducer = (state, action) => {
-  const {type, payload} = action;
+  const { type, payload } = action;
 
   switch (type) {
     case 'OPEN_POPOVER':
@@ -18,7 +18,7 @@ const reducer = (state, action) => {
         ...state,
         popover: {
           isOpen: true,
-         ...payload,
+          ...payload,
         },
       };
     case 'CLOSE_POPOVER':
@@ -26,7 +26,7 @@ const reducer = (state, action) => {
         ...state,
         popover: {
           isOpen: false,
-         ...payload,
+          ...payload,
         },
       };
     default:

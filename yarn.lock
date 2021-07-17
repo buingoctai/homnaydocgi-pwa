@@ -4382,6 +4382,22 @@ pkg-dir@^5.0.0:
   dependencies:
     find-up "^5.0.0"
 
+popover-windows@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/popover-windows/-/popover-windows-1.0.2.tgz#7ddb9de04de74fb9e8ba34d5fd0cb12165693894"
+  integrity sha512-J37aOLwP29Ar9s72DXbiUSp2OxfaxrNjsyh7UXj7QaWjZQZS6ZdyiRvMPZWHu8RinacTK5YhPr8CZ3zaKN0BuQ==
+  dependencies:
+    "@testing-library/jest-dom" "^4.2.4"
+    "@testing-library/react" "^9.3.2"
+    "@testing-library/user-event" "^7.1.2"
+    copy-webpack-plugin "^7.0.0"
+    react "^17.0.0"
+    react-dom "^17.0.0"
+    webpack "^5.2.0"
+    webpack-cli "^3.3.12"
+    webpack-dev-server "^3.11.0"
+    webpack-merge "^5.2.0"
+
 popper.js@1.16.1-lts:
   version "1.16.1-lts"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1-lts.tgz#cf6847b807da3799d80ee3d6d2f90df8a3f50b05"

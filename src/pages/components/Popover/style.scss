@@ -20,13 +20,12 @@
   -webkit-animation: fade-in 0.3s linear 1;
   -moz-animation: fade-in 0.3s linear 1;
   -ms-animation: fade-in 0.3s linear 1;
-
 }
 // @keyframes animation {
 //   0% {
 //     height: 10px;
 //   }
- 
+
 //   25% {
 //     height: 20px;
 //   }
@@ -34,19 +33,31 @@
 //   50% {
 //     height: 30px;
 //   }
- 
+
 //   100% {
 //   }
 // }
 @-webkit-keyframes fade-in {
-	from   { height: 0; }
-	to { height: 30px; }
+  from {
+    height: 0;
+  }
+  to {
+    height: 30px;
+  }
 }
 @-moz-keyframes fade-in {
-	from   { height: 0; }
-	to { height: 30px; }
+  from {
+    height: 0;
+  }
+  to {
+    height: 30px;
+  }
 }
 @-ms-keyframes fade-in {
-	from   { height: 0; }
-	to { height: 30px; }
+  from {
+    height: 0;
+  }
+  to {
+    height: 30px;
+  }
 }

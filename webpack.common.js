@@ -53,7 +53,11 @@ module.exports = {
           },
         ],
       },
-      {  test: /\.(ts|tsx)$/, use: [{loader: 'ts-loader'}] },
+      { test: /\.(ts|tsx)$/, use: [{ loader: 'ts-loader' }] },
+      {
+        test: /@?(popover-windows).*\.(ts|js)x?$/,
+        use: ['babel-loader'],
+      },
     ],
   },
   resolve: {
@@ -62,7 +66,7 @@ module.exports = {
     },
     extensions: ['.tsx', '.ts', '.js'],
   },
- 
+
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),

@@ -1,6 +1,6 @@
 self.addEventListener('install', function (event) {
   event.waitUntil(
-    caches.open('js').then(function (cache) {
+    caches.open('assets').then(function (cache) {
       return cache.addAll([
         '/index.bundle.js',
         '/favico.png',

@@ -81,21 +81,20 @@ export const useDetailArticle = (id, onUpdateListUI) => {
   return [data, setArticleId];
 };
 
-
-export const useEventListener =(eventName, handler, root = window , capture = true)=>{
+export const useEventListener = (eventName, handler, root = window, capture = true) => {
   const savedHandler = useRef(null);
 
-  useEffect(()=>{
-    savedHandler.current=handler;
-  },[handler]);
+  useEffect(() => {
+    savedHandler.current = handler;
+  }, [handler]);
 
-  useEffect(()=>{
+  useEffect(() => {
     const isSupported = root && root.addEventListener;
-    if(!isSupported) return;
+    if (!isSupported) return;
 
     const eventListener = (event) => savedHandler.current(event);
-    root.addEventListener(eventName, eventListener,capture);
-    
-    return ()=> root.removeEventListener(eventName,eventListener,capture);
-  },[eventName,root]);
-} 
+    root.addEventListener(eventName, eventListener, capture);
+
+    return () => root.removeEventListener(eventName, eventListener, capture);
+  }, [eventName, root]);
+};

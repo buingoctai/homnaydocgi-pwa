@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import './style.scss';
 
-const Menu = ({items}) => {
-  
+const Menu = ({ items, ...restProps }) => {
+  const { onClick = () => {} } = restProps;
+
   return (
-    <div className="menu-container">
+    <div className="menu-container" onClick={onClick}>
       {items.map((item, index) => (
         <div className="menu-item" key={index} onClick={item.handler}>
           <div className="title-item">{item.title}</div>

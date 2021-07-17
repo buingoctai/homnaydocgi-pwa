@@ -2,9 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { CellMeasurerCache } from 'react-virtualized';
 
 import { useGetAllArticle } from 'srcRoot/Hooks';
-import PopoverManager from 'srcRoot/pages/components/Popover/popover-manager';
+import { PopoverManager } from 'popover-windows';
 import Header from './components/header';
 import Content from './components/content';
+import { GLOBAL_POPUP_IDENTITY } from 'srcRoot/utils/constants';
 
 var heightStore = new CellMeasurerCache({
   defaultHeight: 300,
@@ -20,7 +21,6 @@ const enhance = (Article) => ({ headArticle }) => {
   const [readedList, setReadedList] = useState({});
 
   useEffect(() => {
-
     const list = document.getElementsByClassName(
       'ReactVirtualized__Grid ReactVirtualized__List'
     )[0];
@@ -31,7 +31,7 @@ const enhance = (Article) => ({ headArticle }) => {
           const newPage = currentPage.current + 1;
           setCurrentPage(newPage);
         }
-        PopoverManager.close();
+        PopoverManager.closePopover(GLOBAL_POPUP_IDENTITY);
       });
     }
   }, [totalRecord]);
@@ -69,7 +69,6 @@ const enhance = (Article) => ({ headArticle }) => {
       listRef={listRef}
       firstArticle={data[0]}
     />
-    
   );
 };
 

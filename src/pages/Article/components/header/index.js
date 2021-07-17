@@ -1,11 +1,18 @@
 import React, { useRef } from 'react';
-import PopoverManager from 'srcRoot/pages/components/Popover/popover-manager';
-import Menu from 'srcRoot/pages/components/Menu';
+import { PopoverManager } from 'popover-windows';
+import { useRecoilState } from 'recoil';
+import { popoverState } from 'srcRoot/recoil/appState';
+import { GLOBAL_POPUP_IDENTITY } from 'srcRoot/utils/constants';
+
+import Logo50 from 'srcRoot/assets/logo50.png';
+
 import './style.scss';
 
-const Header = ({ id, title, author, time, showPopover }) => {
+const Header = ({ id, title, author, time }) => {
   const actionRef = useRef(null);
-  const onCopyUrl = () => {
+  const [, setPopover] = useRecoilState(popoverState);
+
+  const handleCopyUrl = () => {
     const url = `${process.env.APP_BASE}/article?id=${id}&${title
       .toLowerCase()
       .replaceAll(' ', '-')}`;
@@ -20,8 +27,9 @@ const Header = ({ id, title, author, time, showPopover }) => {
           console.log('Copy to clipboard failed');
         });
     }
-    PopoverManager.close();
+    PopoverManager.closePopover(GLOBAL_POPUP_IDENTITY);
   };
+
   const items = [
     // { title: 'Lưu bài viết', description: 'Thêm vào mục yêu thích, có thể truy cập khi offline.' },
     // {
@@ -31,11 +39,13 @@ const Header = ({ id, title, author, time, showPopover }) => {
     {
       title: 'Sao Chép Liên Kết',
       description: 'Dễ dàng chia sẻ đường dẫn bài viết.',
-      handler: onCopyUrl,
+      handler: handleCopyUrl,
     },
   ];
-  const onOpenMenu = () => () => {
-    PopoverManager.open(<Menu items ={items}/>);
+
+  const onCopyUrl = () => {
+    setPopover({ data: { items } });
+    PopoverManager.openPopover(GLOBAL_POPUP_IDENTITY);
   };
 
   return (
@@ -43,10 +53,10 @@ const Header = ({ id, title, author, time, showPopover }) => {
       <div className="author">
         <div>
           <img
-            src="https://image.shutterstock.com/image-vector/male-default-placeholder-avatar-profile-260nw-387516193.jpg"
+            src= {Logo50}
             alt="avatar"
-            width="50"
-            height="50"
+            width="40"
+            height="40"
             style={{
               filter: 'grayscale(100%)',
               borderRadius: '50%',
@@ -60,7 +70,7 @@ const Header = ({ id, title, author, time, showPopover }) => {
         </div>
       </div>
 
-      <div className="action" ref={actionRef} onClick={onOpenMenu()} />
+      <div className="action" ref={actionRef} onClick={onCopyUrl} />
     </div>
   );
 };
