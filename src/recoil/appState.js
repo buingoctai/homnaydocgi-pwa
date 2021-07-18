@@ -7,6 +7,7 @@ const defaultData = {
     },
     handlers: {},
   },
+  podcasts: false
 };
 
 const appState = atom({
@@ -27,3 +28,16 @@ export const popoverState = selector({
     set(appState, { ...app, popover: newValue });
   },
 });
+
+
+export const podcastsState = selector({
+  key: 'podcasts',
+  get: ({get}) => {
+    const app = get(appState);
+    return app.podcasts;
+  },
+  set: ({get,set}, newValue) => {
+    const app = get(appState);
+    set(appState, { ...app, podcasts: newValue });
+  }
+ });
