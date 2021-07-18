@@ -42,10 +42,9 @@ const App = () => {
       deferredPrompt.current = event;
       // setPopover({ data: { items: popoverItems }, handlers: { onClick: addHomeScreen } });
       // PopoverManager.openPopover(GLOBAL_POPUP_IDENTITY);
-      setPopover({ data: { items: podcastsItems }, handlers: { onClick: switchPodcasts } }); 
-      PopoverManager.openPopover(GLOBAL_POPUP_IDENTITY);
-      
     });
+    setPopover({ data: { items: podcastsItems }, handlers: { onClick: switchPodcasts } }); 
+    PopoverManager.openPopover(GLOBAL_POPUP_IDENTITY);
 
     // Init local db
     dbManager
