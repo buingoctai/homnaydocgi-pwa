@@ -9,7 +9,7 @@ module.exports = merge(common, {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
       API_BASE: 'https://homnaydocgiserver.xyz',
-      APP_BASE: 'https://homnaydocgi-pwa-2rat3.ondigitalocean.app',
+      APP_BASE: 'https://taibui.info',
     }),
   ],
 });
