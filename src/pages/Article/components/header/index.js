@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { PopoverManager } from 'popover-windows';
+import { PopoverManager } from '../../../../../ui-libs/HPopover';
 import { useRecoilState } from 'recoil';
 import { popoverState } from 'srcRoot/recoil/appState';
 import { GLOBAL_POPUP_IDENTITY } from 'srcRoot/utils/constants';

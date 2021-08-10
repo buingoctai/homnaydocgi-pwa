@@ -55,7 +55,7 @@ module.exports = {
       },
       { test: /\.(ts|tsx)$/, use: [{ loader: 'ts-loader' }] },
       {
-        test: /@?(popover-windows).*\.(ts|js)x?$/,
+        test: /@?(Hpopover).*\.(ts|js)x?$/,
         use: ['babel-loader'],
       },
     ],

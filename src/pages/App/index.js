@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import Popover, { PopoverManager } from 'popover-windows';
+import Popover, { PopoverManager } from '../../../ui-libs/HPopover';
 
 import { useRecoilState } from 'recoil';
 import { popoverState } from 'srcRoot/recoil/appState';

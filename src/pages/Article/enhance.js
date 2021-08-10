@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { CellMeasurerCache } from 'react-virtualized';
 
 import { useGetAllArticle } from 'srcRoot/Hooks';
-import { PopoverManager } from 'popover-windows';
+import { PopoverManager } from '../../../ui-libs/HPopover';
 import Header from './components/header';
 import Content from './components/content';
 import { GLOBAL_POPUP_IDENTITY } from 'srcRoot/utils/constants';
