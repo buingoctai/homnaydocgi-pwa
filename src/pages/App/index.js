@@ -7,6 +7,7 @@ import { podcastsState } from 'srcRoot/recoil/appState';
 
 import Article from '../Article';
 import Podcasts  from '../Podcasts';
+import InstallApp from '../Install-app';
 import { getQueryStringValue, initServiceWorker } from 'srcRoot/utils';
 import Menu from 'srcRoot/pages/components/Menu';
 import dbManager from 'srcRoot/core/databases/indexDB';
@@ -14,12 +15,7 @@ import { GLOBAL_POPUP_IDENTITY } from 'srcRoot/utils/constants';
 import './style.scss';
 
 
-const popoverItems = [
-  {
-    title: 'Thêm Vào Home Screen',
-    description: 'Cài đặt như một ứng dụng mobile.',
-  },
-];
+
 
 const podcastsItems = [
   {
@@ -36,30 +32,33 @@ const App = () => {
 
   useEffect(() => {
     initServiceWorker();
-    window.addEventListener('beforeinstallprompt', (event) => {
-      console.log('beforeinstallprompt');
-      event.preventDefault();
-      deferredPrompt.current = event;
-      // setPopover({ data: { items: popoverItems }, handlers: { onClick: addHomeScreen } });
-      // PopoverManager.openPopover(GLOBAL_POPUP_IDENTITY);
-    });
-    setPopover({ data: { items: podcastsItems }, handlers: { onClick: switchPodcasts } }); 
-    PopoverManager.openPopover(GLOBAL_POPUP_IDENTITY);
+    // window.addEventListener('beforeinstallprompt', (event) => {
+    //   console.log('beforeinstallprompt');
+    //   event.preventDefault();
+    //   deferredPrompt.current = event;
+    //   setPopover({ data: { items: popoverItems }, handlers: { onClick: addHomeScreen } });
+    //   PopoverManager.openPopover(GLOBAL_POPUP_IDENTITY);
+    // });
 
-    // Init local db
-    dbManager
-      .getDbList([{ name: 'HomNayDocGi', version: 1.0 }])
-      .then((res) => {
-        console.log('dbManager res:', res);
-        const [firtDb] = res;
 
-        const store = firtDb.createObjectStore('articles', { keyPath: 'id' });
-        // tạo ra 1 object store (giống table bên sql) lưu trữ các js object
-        // kể từ đây mọi truy xuất đều diễn ra trên 1 transaction
-      })
-      .catch((err) => {
-        console.log('dbManager error:', err);
-      });
+    // setPopover({ data: { items: podcastsItems }, handlers: { onClick: switchPodcasts } }); 
+    // PopoverManager.openPopover(GLOBAL_POPUP_IDENTITY);
+
+    ////////////////Init local db
+    // dbManager
+    //   .getDbList([{ name: 'HomNayDocGi', version: 1.0 }])
+    //   .then((res) => {
+    //     console.log('dbManager res:', res);
+    //     const [firtDb] = res;
+
+    //     const store = firtDb.createObjectStore('articles', { keyPath: 'id' });
+    //     // tạo ra 1 object store (giống table bên sql) lưu trữ các js object
+    //     // kể từ đây mọi truy xuất đều diễn ra trên 1 transaction
+    //   })
+    //   .catch((err) => {
+    //     console.log('dbManager error:', err);
+    //   });
+    //////////////////////////
   }, []);
 
   const addHomeScreen = () => {
@@ -89,9 +88,11 @@ const App = () => {
       {podcasts && <Podcasts/> }
       <Popover
         identity={GLOBAL_POPUP_IDENTITY}
-        style={{ width: '100%', bottom: '0px' }}
+        style={{width: '100%', bottom: '0px'}}
+        className = 'popup-anime-bottom-fade-in'
         content={<Menu items={popover.data.items} {...popover.handlers} />}
       />
+      <InstallApp/>
     </>
   );
 };

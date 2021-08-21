@@ -18,6 +18,7 @@ export const useDebounce = (value, deplay) => {
 
 export const useGetAllArticle = (headArticle) => {
   const [response, setResponse] = useState({ totalRecord: 0, data: [] });
+  const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
 
   const currentPage = useRef(1);
@@ -36,6 +37,7 @@ export const useGetAllArticle = (headArticle) => {
 
   useEffect(() => {
     setIsLoadData(true);
+    setIsLoading(true);
     getAllPost({
       pageIndex: currentPage.current,
       pageSize: 4,
@@ -51,13 +53,16 @@ export const useGetAllArticle = (headArticle) => {
         setFoundHead(result.found);
         setResponse(newResult);
         setIsLoadData(false);
+        setIsLoading(false);
+
       })
       .catch(() => {
         setIsLoadData(false);
+        setIsLoading(false);
       });
   }, [page]);
 
-  return [response.totalRecord, response.data, currentPage, setCurrentPage, isLoadData];
+  return [response.totalRecord, response.data, currentPage, setCurrentPage, isLoadData, isLoading];
 };
 
 export const useDetailArticle = (id, onUpdateListUI) => {

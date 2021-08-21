@@ -1,0 +1,31 @@
+
+.loading-wrap {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    align-items: center;
+    & > .loading-v2 {
+        width: 32px;
+        height: 32px;
+        position: relative;
+        border-radius: 50%;
+        background: transparent;
+        animation: loadingAnim 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        border: 1px solid transparent;
+        border-top: 1px solid #0068ff;
+        box-sizing: border-box;
+        rotate: -45deg;
+    }
+}
+
+
+@keyframes loadingAnim {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}

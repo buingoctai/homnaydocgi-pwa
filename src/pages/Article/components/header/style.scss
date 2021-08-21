@@ -6,18 +6,18 @@
   .author {
     display: flex;
     flex-direction: row;
-    .avatar {
+    & > .avatar {
       filter: 'grayscale(100%)';
       border-radius: '50%';
       margin-top: '5px';
     }
-    .name_time {
+    & > .name_time {
       display: flex;
       flex-direction: column;
       justify-content: center;
       margin-left: 5px;
-      .name {
-        font-weight: 700;
+      & >.name {
+        font-weight:var(--semibold);
       }
     }
   }

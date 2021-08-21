@@ -2,12 +2,12 @@ self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open('assets').then(function (cache) {
       return cache.addAll([
-        '/index.bundle.js',
-        '/favico.png',
-        '/logo192.png',
-        '/logo512.png',
-        '/thumbnail.png',
-        '/sw.js',
+        // '/index.bundle.js',
+        // '/favico.png',
+        // '/logo192.png',
+        // '/logo512.png',
+        // '/thumbnail.png',
+        // '/sw.js',
       ]);
     })
   );

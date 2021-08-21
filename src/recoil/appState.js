@@ -7,7 +7,7 @@ const defaultData = {
     },
     handlers: {},
   },
-  podcasts: false
+  podcasts: false,
 };
 
 const appState = atom({

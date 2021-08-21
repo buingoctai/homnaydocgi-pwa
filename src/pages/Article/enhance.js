@@ -15,7 +15,7 @@ var heightStore = new CellMeasurerCache({
 const enhance = (Article) => ({ headArticle }) => {
   const listRef = useRef();
 
-  const [totalRecord, data, currentPage, setCurrentPage, isLoadData] = useGetAllArticle(
+  const [totalRecord, data, currentPage, setCurrentPage, isLoadData,isLoading] = useGetAllArticle(
     headArticle
   );
   const [readedList, setReadedList] = useState({});
@@ -68,6 +68,7 @@ const enhance = (Article) => ({ headArticle }) => {
       renderItem={renderItem}
       listRef={listRef}
       firstArticle={data[0]}
+      isLoading={isLoading}
     />
   );
 };

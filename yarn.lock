@@ -1226,6 +1226,20 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
+"@types/react@^17.0.19":
+  version "17.0.19"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.19.tgz#8f2a85e8180a43b57966b237d26a29481dacc991"
+  integrity sha512-sX1HisdB1/ZESixMTGnMxH9TDe8Sk709734fEQZzCV/4lSu9kJCPbo2PbTRoZM+53Pp0P10hYVyReUueGwUi4A==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/scheduler@*":
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.2.tgz#1a62f89525723dde24ba1b01b092bf5df8ad4d39"
+  integrity sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==
+
 "@types/source-list-map@*":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@types/source-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"
@@ -4381,22 +4395,6 @@ pkg-dir@^5.0.0:
   integrity sha512-NPE8TDbzl/3YQYY7CSS228s3g2ollTFnc+Qi3tqmqJp9Vg2ovUpixcJEo2HJScN2Ez+kEaal6y70c0ehqJBJeA==
   dependencies:
     find-up "^5.0.0"
-
-popover-windows@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/popover-windows/-/popover-windows-1.0.2.tgz#7ddb9de04de74fb9e8ba34d5fd0cb12165693894"
-  integrity sha512-J37aOLwP29Ar9s72DXbiUSp2OxfaxrNjsyh7UXj7QaWjZQZS6ZdyiRvMPZWHu8RinacTK5YhPr8CZ3zaKN0BuQ==
-  dependencies:
-    "@testing-library/jest-dom" "^4.2.4"
-    "@testing-library/react" "^9.3.2"
-    "@testing-library/user-event" "^7.1.2"
-    copy-webpack-plugin "^7.0.0"
-    react "^17.0.0"
-    react-dom "^17.0.0"
-    webpack "^5.2.0"
-    webpack-cli "^3.3.12"
-    webpack-dev-server "^3.11.0"
-    webpack-merge "^5.2.0"
 
 popper.js@1.16.1-lts:
   version "1.16.1-lts"
