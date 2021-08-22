@@ -1,20 +1,31 @@
 .loading-wrap {
   display: flex;
   justify-content: center;
-  height: 40px;
+  height: 44px;
   align-items: center;
-  & > .loading-v2 {
-    width: 32px;
-    height: 32px;
-    position: relative;
+  & >.loading-background {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
-    background: transparent;
-    animation: loadingAnim 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    border: 1px solid transparent;
-    border-top: 1px solid #0068ff;
-    box-sizing: border-box;
-    rotate: -45deg;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 18%);
+    border: 1px solid #e1e4ea;
+    & > .loading-v2 {
+      width: 32px;
+      height: 32px;
+      position: relative;
+      border-radius: 50%;
+      background: transparent;
+      animation: loadingAnim 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      border: 1px solid transparent;
+      border-top: 1px solid #0068ff;
+      box-sizing: border-box;
+      rotate: -45deg;
+    }
   }
+ 
 }
 
 @keyframes loadingAnim {

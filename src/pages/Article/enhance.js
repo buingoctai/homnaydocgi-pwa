@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback} from 'react';
 import { CellMeasurerCache } from 'react-virtualized';
 
 import { useGetAllArticle } from 'srcRoot/Hooks';
@@ -11,6 +11,8 @@ var heightStore = new CellMeasurerCache({
   defaultHeight: 300,
   fixedWidth: true,
 });
+const VITRUALIZED_CLASS = 'ReactVirtualized__Grid ReactVirtualized__List';
+const BOTTOM_DISTENCE = 10;
 
 const enhance = (Article) => ({ headArticle }) => {
   const listRef = useRef();
@@ -21,17 +23,17 @@ const enhance = (Article) => ({ headArticle }) => {
   const [readedList, setReadedList] = useState({});
 
   useEffect(() => {
-    const list = document.getElementsByClassName(
-      'ReactVirtualized__Grid ReactVirtualized__List'
-    )[0];
+    const list = document.getElementsByClassName(VITRUALIZED_CLASS)[0];
+
     if (list) {
       list.addEventListener('scroll', () => {
         if (isLoadData.current) return;
-        if (list.scrollTop + window.innerHeight >= list.scrollHeight - 10) {
+        if (list.scrollTop + window.innerHeight >= list.scrollHeight - BOTTOM_DISTENCE) {
           const newPage = currentPage.current + 1;
           setCurrentPage(newPage);
         }
-        PopoverManager.closePopover(GLOBAL_POPUP_IDENTITY);
+        
+        PopoverManager.closeAllPopover();
       });
     }
   }, [totalRecord]);

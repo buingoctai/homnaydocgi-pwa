@@ -23,7 +23,7 @@ const Article = (props) => {
 
       <div
         className="article-list"
-        style={isLoading ? { height: 'calc(100% - 20px)' } : { height: '100%' }}
+        style={isLoading ? { height: 'calc(100% - 44px)' } : { height: '100%' }}
       >
         <AutoSizer>
           {({ width, height }) => {

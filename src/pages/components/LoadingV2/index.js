@@ -17,6 +17,7 @@ function Loading({
 
   return (
     <div className={'loading-wrap ' + animeClass} onAnimationEnd={onAnimationEnd}>
+      <div className='loading-background'>
       <div
         className={'loading-v2 ' + (className || '')}
         style={{
@@ -28,6 +29,8 @@ function Loading({
           ...style,
         }}
       />
+      </div>
+     
     </div>
   );
 }

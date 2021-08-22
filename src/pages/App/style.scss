@@ -11,9 +11,9 @@ $fullWidth: 100%;
 
 .popup-anime-bottom-fade-in {
   bottom: 0;
-  -webkit-animation: fade-in-bottom 1s linear 1;
-  -moz-animation: fade-in-bottom 0.3s linear 1;
-  -ms-animation: fade-in-bottom 0.3s linear 1;
+  -webkit-animation: fade-in-bottom 0.4s linear 1;
+  -moz-animation: fade-in-bottom 0.4s linear 1;
+  -ms-animation: fade-in-bottom 0.4 linear 1;
 }
 
 @-webkit-keyframes fade-in-bottom {
@@ -50,8 +50,8 @@ $fullWidth: 100%;
 .popup-anime-top-fade-in {
   top: 0;
   -webkit-animation: fade-in-top 1s linear 1;
-  -moz-animation: fade-in-top 0.3s linear 1;
-  -ms-animation: fade-in-top 0.3s linear 1;
+  -moz-animation: fade-in-top 1s linear 1;
+  -ms-animation: fade-in-top 1s linear 1;
 }
 
 @-webkit-keyframes fade-in-top {
