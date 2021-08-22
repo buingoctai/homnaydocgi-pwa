@@ -14,7 +14,7 @@
       "srcRoot/*": ["src/*"],
       "indexDB/*": ["src/core/databases/indexDB/*"]
     },
-    "moduleResolution": "node",
+    "moduleResolution": "node"
   },
   "include": ["./src"],
   "exclude": ["node_modules", "dist"]

@@ -1,39 +1,37 @@
 .install-app {
-    width: calc(100% - 40px);
-    height: 200px;
-    margin-top: 50%;
-    margin-left: 10px;
-    height: auto;
+  width: calc(100% - 40px);
+  height: 200px;
+  margin-top: 50%;
+  margin-left: 10px;
+  height: auto;
 
-    & > .container {
-       display: flex;
-       flex-direction: column;
-        & > .title-wrap{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            & > .title__intro {
-                display:inline-grid;
-                & > :first-child {
-                    font-weight: var(--semibold);
-                }
-            }
-            & > .btn__install {
-                margin: auto;
-                width: 50px;
-                text-align: center;
-                & > a {
-                    color: blue;
-                }
-            }
+  & > .container {
+    display: flex;
+    flex-direction: column;
+    & > .title-wrap {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      & > .title__intro {
+        display: inline-grid;
+        & > :first-child {
+          font-weight: var(--semibold);
         }
-        & > .sperator {
-            border-top: 3px solid #e1e4ea;
-            height: 1px;
-            width: 100%;
-            margin: 8px 0px;
+      }
+      & > .btn__install {
+        margin: auto;
+        width: 50px;
+        text-align: center;
+        & > a {
+          color: blue;
         }
+      }
     }
-    
-   
+    & > .sperator {
+      border-top: 3px solid #e1e4ea;
+      height: 1px;
+      width: 100%;
+      margin: 8px 0px;
+    }
+  }
 }

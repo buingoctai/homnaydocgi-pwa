@@ -1,4 +1,3 @@
 export type VisibleProps = {
-    show: Boolean,
-    
-}
+  show: Boolean;
+};

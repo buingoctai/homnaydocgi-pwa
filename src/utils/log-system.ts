@@ -1,35 +1,33 @@
-
 class LogSytem {
-	log(text: string){
-		console.log(text);
-	}
+  log(text: string) {
+    console.log(text);
+  }
 
-	logError(text: string){
-		console.error(text);
-	}
+  logError(text: string) {
+    console.error(text);
+  }
 
-	logWarning(text: string){
-		console.warn(text);
-	}
+  logWarning(text: string) {
+    console.warn(text);
+  }
 
-	logTrace(text: string) {
-		console.trace(text);
-	}
+  logTrace(text: string) {
+    console.trace(text);
+  }
 
-	logTable(data: object){
-		console.table(data);
-	}
+  logTable(data: object) {
+    console.table(data);
+  }
 
-	logTimeStart(){
-		console.time();
-	}
+  logTimeStart() {
+    console.time();
+  }
 
-	logTimeEnd(){
-		console.timeEnd();
-	}
+  logTimeEnd() {
+    console.timeEnd();
+  }
 }
 
 const logSystem = new LogSytem();
 
 export default logSystem;
-

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { PopoverManager } from '../../../../../ui-libs/HPopover';
+import { PopoverManager } from 'srcRoot/pages/components/HPopover';
 import { useRecoilState } from 'recoil';
 import { popoverState } from 'srcRoot/recoil/appState';
 import { GLOBAL_POPUP_IDENTITY } from 'srcRoot/utils/constants';
@@ -53,7 +53,7 @@ const Header = ({ id, title, author, time }) => {
       <div className="author">
         <div>
           <img
-            src= {Logo50}
+            src={Logo50}
             alt="avatar"
             width="40"
             height="40"

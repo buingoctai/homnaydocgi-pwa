@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { CellMeasurerCache } from 'react-virtualized';
 
 import { useGetAllArticle } from 'srcRoot/Hooks';
-import { PopoverManager } from '../../../ui-libs/HPopover';
+import { PopoverManager } from 'srcRoot/pages/components/HPopover';
 import Header from './components/header';
 import Content from './components/content';
 import { GLOBAL_POPUP_IDENTITY } from 'srcRoot/utils/constants';
@@ -15,7 +15,7 @@ var heightStore = new CellMeasurerCache({
 const enhance = (Article) => ({ headArticle }) => {
   const listRef = useRef();
 
-  const [totalRecord, data, currentPage, setCurrentPage, isLoadData,isLoading] = useGetAllArticle(
+  const [totalRecord, data, currentPage, setCurrentPage, isLoadData, isLoading] = useGetAllArticle(
     headArticle
   );
   const [readedList, setReadedList] = useState({});

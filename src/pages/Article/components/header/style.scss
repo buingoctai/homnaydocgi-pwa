@@ -16,8 +16,8 @@
       flex-direction: column;
       justify-content: center;
       margin-left: 5px;
-      & >.name {
-        font-weight:var(--semibold);
+      & > .name {
+        font-weight: var(--semibold);
       }
     }
   }

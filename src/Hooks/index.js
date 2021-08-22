@@ -54,7 +54,6 @@ export const useGetAllArticle = (headArticle) => {
         setResponse(newResult);
         setIsLoadData(false);
         setIsLoading(false);
-
       })
       .catch(() => {
         setIsLoadData(false);

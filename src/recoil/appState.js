@@ -29,15 +29,14 @@ export const popoverState = selector({
   },
 });
 
-
 export const podcastsState = selector({
   key: 'podcasts',
-  get: ({get}) => {
+  get: ({ get }) => {
     const app = get(appState);
     return app.podcasts;
   },
-  set: ({get,set}, newValue) => {
+  set: ({ get, set }, newValue) => {
     const app = get(appState);
     set(appState, { ...app, podcasts: newValue });
-  }
- });
+  },
+});

@@ -8,7 +8,7 @@ import enhance from './enhance';
 import './style.scss';
 
 const Article = (props) => {
-  const { totalRecord, heightStore, renderItem, listRef, firstArticle,isLoading } = props;
+  const { totalRecord, heightStore, renderItem, listRef, firstArticle, isLoading } = props;
 
   return totalRecord ? (
     <div className="article" id="article">
@@ -21,7 +21,10 @@ const Article = (props) => {
         </Helmet>
       )}
 
-      <div className="article-list" style = {isLoading ? {height:'calc(100% - 20px)'} : {height:'100%'}}>
+      <div
+        className="article-list"
+        style={isLoading ? { height: 'calc(100% - 20px)' } : { height: '100%' }}
+      >
         <AutoSizer>
           {({ width, height }) => {
             return (
@@ -50,24 +53,20 @@ const Article = (props) => {
             );
           }}
         </AutoSizer>
-       
-        
       </div>
-        
-        <LoadingV2
-          show = {isLoading}
-          type='LOADING_ARTICLE'
-         style={{
+
+      <LoadingV2
+        show={isLoading}
+        type="LOADING_ARTICLE"
+        style={{
           width: '20px',
           height: '20px',
           border: '2px solid #E5EFFF',
           borderTop: '2px solid #0068FF',
           borderwidth: '2px',
-          animation: 'loadingAnim 1s cubic-bezier(0, 0, 0, 0) infinite'
+          animation: 'loadingAnim 1s cubic-bezier(0, 0, 0, 0) infinite',
         }}
-        />
-
-      
+      />
     </div>
   ) : (
     [6, 5, 7].map((item, index) => <SkeletonV2 numLine={item} />)

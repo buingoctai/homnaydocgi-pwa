@@ -11,6 +11,7 @@
 - Animation framework
 
 ## Improvement:
+
 - Tính năng notification & install as mobile app đang không work
 - Live search
 - Sass reuseable
