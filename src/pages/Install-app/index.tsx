@@ -29,7 +29,7 @@ const InstallApp = () => {
       HCommon.log('[Install-App] Able to install app as mobile');
       event.preventDefault();
       deferredPrompt.current = event;
-      PopoverManager.openPopover(identity);
+      PopoverManager.openPopover({...identity, onAfterOpen: () => {}});
     });
   }, []);
   return (
