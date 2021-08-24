@@ -1,16 +1,17 @@
 import React, { useRef } from 'react';
-import { PopoverManager } from 'srcRoot/pages/components/HPopover';
+import Menu from 'srcRoot/pages/components/Menu';
+import Avatar from 'srcRoot/pages/components/Avatar';
+import Popover, { PopoverManager } from 'srcRoot/pages/components/HPopover';
 import { useRecoilState } from 'recoil';
 import { popoverState } from 'srcRoot/recoil/appState';
 import { GLOBAL_POPUP_IDENTITY } from 'srcRoot/utils/constants';
 
-import Logo50 from 'srcRoot/assets/logo50.png';
 
 import './style.scss';
 
 const Header = ({ id, title, author, time }) => {
   const actionRef = useRef(null);
-  const [, setPopover] = useRecoilState(popoverState);
+  const [popover, setPopover] = useRecoilState(popoverState);
 
   const handleCopyUrl = () => {
     const url = `${process.env.APP_BASE}/article?id=${id}&${title
@@ -31,11 +32,6 @@ const Header = ({ id, title, author, time }) => {
   };
 
   const items = [
-    // { title: 'Lưu bài viết', description: 'Thêm vào mục yêu thích, có thể truy cập khi offline.' },
-    // {
-    //   title: 'Ẩn bài viết',
-    //   description: 'Tạm ẩn khỏi dòng thời gian. Vào cài đặt cho phép hiển thị trở lại.',
-    // },
     {
       title: 'Sao Chép Liên Kết',
       description: 'Dễ dàng chia sẻ đường dẫn bài viết.',
@@ -49,21 +45,10 @@ const Header = ({ id, title, author, time }) => {
   };
 
   return (
+    <>
     <div className="header">
       <div className="author">
-        <div>
-          <img
-            src={Logo50}
-            alt="avatar"
-            width="40"
-            height="40"
-            style={{
-              filter: 'grayscale(100%)',
-              borderRadius: '50%',
-              marginTop: '5pX',
-            }}
-          />
-        </div>
+        <Avatar author = {author}/>
         <div className="name_time">
           <span className="name">{author}</span>
           <div className="time">{time.split('T')[0]}</div>
@@ -72,6 +57,13 @@ const Header = ({ id, title, author, time }) => {
 
       <div className="action" ref={actionRef} onClick={onCopyUrl} />
     </div>
+    <Popover
+        identity={GLOBAL_POPUP_IDENTITY}
+        style={{ width: '100%', bottom: '0px' }}
+        className="popup-anime-bottom-fade-in"
+        content={<Menu items={popover.data.items} {...popover.handlers} />}
+      />
+    </>
   );
 };
 

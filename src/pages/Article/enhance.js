@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback} from 'react';
 import { CellMeasurerCache } from 'react-virtualized';
 
-import { useGetAllArticle } from 'srcRoot/Hooks';
+import { useGetAllArticle } from 'srcRoot/Hooks/use-fetch-article';
 import { PopoverManager } from 'srcRoot/pages/components/HPopover';
 import Header from './components/header';
 import Content from './components/content';
@@ -62,6 +62,9 @@ const enhance = (Article) => ({ headArticle }) => {
       </div>
     );
   };
+
+  console.log('taibnlogs render enhance Article');
+
 
   return (
     <Article

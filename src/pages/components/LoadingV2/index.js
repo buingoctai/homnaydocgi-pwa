@@ -13,7 +13,6 @@ function Loading({
   onAnimationEnd,
   ...props
 }) {
-  console.log('taibnlogs', animeClass);
 
   return (
     <div className={'loading-wrap ' + animeClass} onAnimationEnd={onAnimationEnd}>

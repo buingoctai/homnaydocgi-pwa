@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useDetailArticle } from 'srcRoot/Hooks';
+import React, { useEffect } from 'react';
+import { useDetailArticle } from 'srcRoot/Hooks/use-fetch-article';
 import './style.scss';
-import { TitleRounded } from '@material-ui/icons';
 
 const Content = ({ index, post, listRef, heightStore, readedList, setReadedList }) => {
   const { Id, Content, Title, Brief } = post;
   let newReadedList = {};
 
   const onUpdateListUI = (articleId) => {
-    console.log('onUpdateListUI', index, heightStore, listRef);
 
     heightStore.clear(index);
     // listRef.current.recomputeRowHeights(index);
