@@ -956,6 +956,22 @@
   resolved "https://registry.yarnpkg.com/@sheerun/mutationobserver-shim/-/mutationobserver-shim-0.3.3.tgz#5405ee8e444ed212db44e79351f0c70a582aae25"
   integrity sha512-DetpxZw1fzPD5xUBrIAoplLChO2VB8DlL5Gg+I1IR9b2wPqYIca2WSUxL5g1vLeR4MsQq1NeWriXAVffV+U1Fw==
 
+"@taibn.dev.vn/h-popover@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@taibn.dev.vn/h-popover/-/h-popover-1.0.5.tgz#063c67b8a29a0437ccc756eb6689d824713e1dcd"
+  integrity sha512-EXRw3EieMqGMUJjeiuoc5WpgTqfhDBU8onS3qWBsFuE9osEbKQHhQ4MLa6iUW1Ch4e0s2EA9OO/qebFg3QKF3w==
+  dependencies:
+    "@testing-library/jest-dom" "^4.2.4"
+    "@testing-library/react" "^9.3.2"
+    "@testing-library/user-event" "^7.1.2"
+    copy-webpack-plugin "^7.0.0"
+    react "^17.0.0"
+    react-dom "^17.0.0"
+    webpack "^5.2.0"
+    webpack-cli "^3.3.12"
+    webpack-dev-server "^3.11.0"
+    webpack-merge "^5.2.0"
+
 "@testing-library/dom@*":
   version "7.29.0"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.29.0.tgz#60b18065bab50a5cde21fe80275a47a43024d9cc"

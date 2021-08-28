@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Menu from 'srcRoot/pages/components/Menu';
 import Avatar from 'srcRoot/pages/components/Avatar';
-import Popover, { PopoverManager } from 'srcRoot/pages/components/HPopover';
+import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { useRecoilState } from 'recoil';
 import { popoverState } from 'srcRoot/recoil/appState';
 import { GLOBAL_POPUP_IDENTITY } from 'srcRoot/utils/constants';

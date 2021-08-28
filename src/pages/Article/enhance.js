@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useCallback} from 'react';
 import { CellMeasurerCache } from 'react-virtualized';
 
 import { useGetAllArticle } from 'srcRoot/Hooks/use-fetch-article';
-import { PopoverManager } from 'srcRoot/pages/components/HPopover';
+import { PopoverManager } from '@taibn.dev.vn/h-popover';
 import Header from './components/header';
 import Content from './components/content';
 import { GLOBAL_POPUP_IDENTITY } from 'srcRoot/utils/constants';

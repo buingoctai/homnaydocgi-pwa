@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import Popover, { PopoverManager } from 'srcRoot/pages/components/HPopover';
+import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 import HCommon from 'srcRoot/utils/log-system';
 import Title from './title';
 import VideoIntro from './video-intro';
