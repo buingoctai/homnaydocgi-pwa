@@ -957,9 +957,9 @@
   integrity sha512-DetpxZw1fzPD5xUBrIAoplLChO2VB8DlL5Gg+I1IR9b2wPqYIca2WSUxL5g1vLeR4MsQq1NeWriXAVffV+U1Fw==
 
 "@taibn.dev.vn/h-popover@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@taibn.dev.vn/h-popover/-/h-popover-1.0.5.tgz#063c67b8a29a0437ccc756eb6689d824713e1dcd"
-  integrity sha512-EXRw3EieMqGMUJjeiuoc5WpgTqfhDBU8onS3qWBsFuE9osEbKQHhQ4MLa6iUW1Ch4e0s2EA9OO/qebFg3QKF3w==
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@taibn.dev.vn/h-popover/-/h-popover-1.0.6.tgz#db94ad02ca735f49bfd7b14662c2275c44efdb42"
+  integrity sha512-irlOjkX36Ys5Rjux2v4PoXHTjF+l8RF7jEbwxU9BU5GUqq7qME1wpZ60vZAnjbR5PzY8APE8OV62AsoTsfjyZw==
   dependencies:
     "@testing-library/jest-dom" "^4.2.4"
     "@testing-library/react" "^9.3.2"
