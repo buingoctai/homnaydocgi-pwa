@@ -4,10 +4,12 @@ import Avatar from 'srcRoot/pages/components/Avatar';
 import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { useRecoilState } from 'recoil';
 import { popoverState } from 'srcRoot/recoil/appState';
-import { GLOBAL_POPUP_IDENTITY } from 'srcRoot/utils/constants';
-
 
 import './style.scss';
+const POPUP_HEADER = {
+  windowId: '1',
+  name: 'COMMON_POPUP',
+};
 
 const Header = ({ id, title, author, time }) => {
   const actionRef = useRef(null);
@@ -28,7 +30,7 @@ const Header = ({ id, title, author, time }) => {
           console.log('Copy to clipboard failed');
         });
     }
-    PopoverManager.closePopover(GLOBAL_POPUP_IDENTITY);
+    PopoverManager.closePopover({...POPUP_HEADER, name: `${POPUP_HEADER.name + id}`});
   };
 
   const items = [
@@ -41,7 +43,7 @@ const Header = ({ id, title, author, time }) => {
 
   const onCopyUrl = () => {
     setPopover({ data: { items } });
-    PopoverManager.openPopover(GLOBAL_POPUP_IDENTITY);
+    PopoverManager.openPopover({...POPUP_HEADER, name: `${POPUP_HEADER.name + id}`});
   };
 
   return (
@@ -58,7 +60,7 @@ const Header = ({ id, title, author, time }) => {
       <div className="action" ref={actionRef} onClick={onCopyUrl} />
     </div>
     <Popover
-        identity={GLOBAL_POPUP_IDENTITY}
+        identity={{...POPUP_HEADER, name: `${POPUP_HEADER.name + id}`}}
         style={{ width: '100%', bottom: '0px' }}
         className="popup-anime-bottom-fade-in"
         content={<Menu items={popover.data.items} {...popover.handlers} />}

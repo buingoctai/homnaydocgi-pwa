@@ -5,7 +5,6 @@ import { useGetAllArticle } from 'srcRoot/Hooks/use-fetch-article';
 import { PopoverManager } from '@taibn.dev.vn/h-popover';
 import Header from './components/header';
 import Content from './components/content';
-import { GLOBAL_POPUP_IDENTITY } from 'srcRoot/utils/constants';
 
 var heightStore = new CellMeasurerCache({
   defaultHeight: 300,
