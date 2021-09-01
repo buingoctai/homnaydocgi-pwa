@@ -1,0 +1,85 @@
+.event-app {
+  width: calc(100% - 40px);
+  height: 200px;
+  margin-top: 50%;
+  margin-left: 10px;
+  height: auto;
+  & > .container {
+    display: flex;
+    flex-direction: column;
+  animation: mymove 5s infinite;
+
+    & > .title-wrap {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      & > .title__intro {
+        display: inline-grid;
+        & > :first-child {
+          font-weight: var(--semibold);
+        }
+
+        & > :last-child {
+            font-style: italic;
+        }
+
+        // & > .heart {
+        //     width:30px;
+        //     background:
+        //      radial-gradient(circle at 60% 65%, red 64%, transparent 65%) top left,
+        //      radial-gradient(circle at 40% 65%, red 64%, transparent 65%) top right,
+        //      linear-gradient(to bottom left, red 43%,transparent 43%) bottom left ,
+        //      linear-gradient(to bottom right,red 43%,transparent 43%) bottom right;
+        //     background-size:50% 50%;
+        //     background-repeat:no-repeat;
+        //     display:inline-block;
+        //   }
+        // & > .heart::before {
+        //     content:"";
+        //     display:block;
+        //     padding-top:100%;
+        //   }
+
+      }
+      & > .btn__install {
+        margin: auto;
+        width: 50px;
+        text-align: center;
+        & > a {
+          color: blue;
+        }
+      }
+    }
+    & > .sperator {
+      border-top: 3px solid #e1e4ea;
+      height: 1px;
+      width: 100%;
+      margin: 8px 0px;
+    }
+  }
+}
+
+
+.heart {
+    width:30px;
+    background:
+     radial-gradient(circle at 60% 65%, red 64%, transparent 65%) top left,
+     radial-gradient(circle at 40% 65%, red 64%, transparent 65%) top right,
+     linear-gradient(to bottom left, red 43%,transparent 43%) bottom left ,
+     linear-gradient(to bottom right,red 43%,transparent 43%) bottom right;
+    background-size:50% 50%;
+    background-repeat:no-repeat;
+    display:inline-block;
+  }
+.heart::before {
+    content:"";
+    display:block;
+    padding-top:100%;
+  }
+  @keyframes mymove {
+    0%   {background-color: #e5efff}
+    25% {background-color: #b2e2cb}
+    50%  {background-color: #fbd6bb}
+    75% {background-color: #d1ccf2}
+    100% {background-color:#f7d8ff}
+  }

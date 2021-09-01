@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import Article from 'srcRoot/pages/Article';
 import InstallApp from 'srcRoot/pages/Install-app';
+import Events from 'srcRoot/pages/Events';
+
 import { getQueryStringValue, initServiceWorker } from 'srcRoot/utils';
 import './style.scss';
 
@@ -15,7 +17,8 @@ const App = () => {
   return (
     <>
       <Article headArticle={getQueryStringValue('id')}/>
-      <InstallApp />
+      {/* <InstallApp /> */}
+      <Events/>
     </>
   );
 };
