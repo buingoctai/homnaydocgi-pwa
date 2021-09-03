@@ -10,7 +10,6 @@ import './style.scss';
 const Article = (props) => {
   const { totalRecord, heightStore, renderItem, listRef, firstArticle, isLoading } = props;
 
-  console.log('taibnlogs render index Article', props);
   return totalRecord ? (
     <div className="article" id="article">
       {firstArticle && (

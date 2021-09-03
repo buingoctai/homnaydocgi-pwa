@@ -30,7 +30,7 @@ const Header = ({ id, title, author, time }) => {
           console.log('Copy to clipboard failed');
         });
     }
-    PopoverManager.closePopover({...POPUP_HEADER, name: `${POPUP_HEADER.name + id}`});
+    PopoverManager.closePopover({ ...POPUP_HEADER, name: `${POPUP_HEADER.name + id}` });
   };
 
   const items = [
@@ -43,24 +43,24 @@ const Header = ({ id, title, author, time }) => {
 
   const onCopyUrl = () => {
     setPopover({ data: { items } });
-    PopoverManager.openPopover({...POPUP_HEADER, name: `${POPUP_HEADER.name + id}`});
+    PopoverManager.openPopover({ ...POPUP_HEADER, name: `${POPUP_HEADER.name + id}` });
   };
 
   return (
     <>
-    <div className="header">
-      <div className="author">
-        <Avatar author = {author}/>
-        <div className="name_time">
-          <span className="name">{author}</span>
-          <div className="time">{time.split('T')[0]}</div>
+      <div className="header">
+        <div className="author">
+          <Avatar author={author} />
+          <div className="name_time">
+            <span className="name">{author}</span>
+            <div className="time">{time.split('T')[0]}</div>
+          </div>
         </div>
-      </div>
 
-      <div className="action" ref={actionRef} onClick={onCopyUrl} />
-    </div>
-    <Popover
-        identity={{...POPUP_HEADER, name: `${POPUP_HEADER.name + id}`}}
+        <div className="action" ref={actionRef} onClick={onCopyUrl} />
+      </div>
+      <Popover
+        identity={{ ...POPUP_HEADER, name: `${POPUP_HEADER.name + id}` }}
         style={{ width: '100%', bottom: '0px' }}
         className="popup-anime-bottom-fade-in"
         content={<Menu items={popover.data.items} {...popover.handlers} />}

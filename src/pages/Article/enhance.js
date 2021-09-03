@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback} from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { CellMeasurerCache } from 'react-virtualized';
 
 import { useGetAllArticle } from 'srcRoot/Hooks/use-fetch-article';
@@ -31,7 +31,7 @@ const enhance = (Article) => ({ headArticle }) => {
           const newPage = currentPage.current + 1;
           setCurrentPage(newPage);
         }
-        
+
         PopoverManager.closeAllPopover();
       });
     }
@@ -61,9 +61,6 @@ const enhance = (Article) => ({ headArticle }) => {
       </div>
     );
   };
-
-  console.log('taibnlogs render enhance Article');
-
 
   return (
     <Article

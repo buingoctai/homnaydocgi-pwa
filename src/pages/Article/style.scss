@@ -12,7 +12,7 @@ $fullHeight: 100%;
     width: $fullWidth;
     height: $fullHeight;
     .article-item {
-      background-color: #fcfaf6;
+      background-color: var(--backgroundarticle);
       padding: 8px 2px 0px 8px;
       border-radius: 5px;
       //   -webkit-box-shadow: 0 8px 6px -6px black;
@@ -29,7 +29,7 @@ $fullHeight: 100%;
     justify-content: center;
   }
   &.skeleton {
-    background-color: #fcfaf6;
+    background-color: var(--backgroundarticle);
     margin: 30px 0px;
   }
 }

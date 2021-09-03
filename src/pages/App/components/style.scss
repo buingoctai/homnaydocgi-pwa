@@ -1,0 +1,27 @@
+.sidebar-container {
+  display: flex;
+  align-items: center;
+  & > .sidebar-wrap {
+    & > .profile {
+      position: absolute;
+      top: 30px;
+      width: 90px;
+    }
+    & > .menu-wrap {
+      & > div {
+        display: flex;
+        width: 90px;
+        & > a {
+          margin-left: 5px;
+          text-decoration: none;
+          color: blue;
+        }
+      }
+      & .sperator {
+        border-top: 2px solid #e1e4ea;
+        width: 100%;
+        margin: 8px 0px;
+      }
+    }
+  }
+}

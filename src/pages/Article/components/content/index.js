@@ -7,7 +7,6 @@ const Content = ({ index, post, listRef, heightStore, readedList, setReadedList 
   let newReadedList = {};
 
   const onUpdateListUI = (articleId) => {
-
     heightStore.clear(index);
     // listRef.current.recomputeRowHeights(index);
     // listRef.current.forceUpdateGrid();

@@ -2,7 +2,7 @@
 
 .skeleton {
   padding: 20px;
-  background-color: #fcfaf6;
+  background-color: var(--backgroundarticle);
 }
 
 .skeleton-shimmer {
@@ -24,7 +24,7 @@
   left: 0;
   position: absolute;
   right: 0;
-  background-color: #fcfaf6;
+  background-color: var(--backgroundarticle);
 }
 div._2iwr {
   height: 40px;

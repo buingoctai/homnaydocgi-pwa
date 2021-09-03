@@ -1,19 +1,28 @@
-$fullWidth: 100%;
+$FullWidth: 100%;
+$FadeInBottom: 0.4s;
+$FadeInLeft: 0.4s;
+$FadeInTop: 1s;
+$FadeInTop: 1s;
+$FadeOutLoading: 1s;
+
 .button-home {
-  width: $fullWidth;
+  width: $FullWidth;
   height: 20px;
 }
 :root {
+  // font weight
   --bold: 800;
   --semibold: 600;
   --medium: 400;
+  --backgroundarticle: #fcfaf6;
 }
 
+//////////////////////// FADE IN POP FROM BOTTOM
 .popup-anime-bottom-fade-in {
   bottom: 0;
-  -webkit-animation: fade-in-bottom 0.4s linear 1;
-  -moz-animation: fade-in-bottom 0.4s linear 1;
-  -ms-animation: fade-in-bottom 0.4 linear 1;
+  -webkit-animation: fade-in-bottom $FadeInBottom linear 1;
+  -moz-animation: fade-in-bottom $FadeInBottom linear 1;
+  -ms-animation: fade-in-bottom $FadeInBottom linear 1;
 }
 
 @-webkit-keyframes fade-in-bottom {
@@ -46,12 +55,50 @@ $fullWidth: 100%;
     opacity: 1;
   }
 }
-////////////////////////
+//////////////////////// FADE IN POP FROM LEFT
+.popup-anime-left-fade-in {
+  bottom: 0;
+  -webkit-animation: fade-in-left $FadeInLeft linear 1;
+  -moz-animation: fade-in-left $FadeInLeft linear 1;
+  -ms-animation: fade-in-left $FadeInLeft linear 1;
+}
+
+@-webkit-keyframes fade-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@-moz-keyframes fade-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@-ms-keyframes fade-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+//////////////////////// FADE IN POP FROM TOP
 .popup-anime-top-fade-in {
   top: 0;
-  -webkit-animation: fade-in-top 1s linear 1;
-  -moz-animation: fade-in-top 1s linear 1;
-  -ms-animation: fade-in-top 1s linear 1;
+  -webkit-animation: fade-in-top $FadeInTop linear 1;
+  -moz-animation: fade-in-top $FadeInTop linear 1;
+  -ms-animation: fade-in-top $FadeInTop linear 1;
 }
 
 @-webkit-keyframes fade-in-top {
@@ -85,9 +132,9 @@ $fullWidth: 100%;
   }
 }
 
-//////////////////
+//////////////////////// FADE OUT LOADING FROM BOTTOM TO TOP
 .loading-anime-fade-out {
-  animation: 1s ease-out 0s 1 FadeoutLoading;
+  animation: $FadeOutLoading ease-out 0s 1 FadeoutLoading;
 }
 
 @keyframes FadeoutLoading {
