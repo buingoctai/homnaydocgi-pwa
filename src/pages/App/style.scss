@@ -17,6 +17,14 @@ $FadeOutLoading: 1s;
   --backgroundarticle: #fcfaf6;
 }
 
+.backdrop {
+  position: fixed;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+}
+
 //////////////////////// FADE IN POP FROM BOTTOM
 .popup-anime-bottom-fade-in {
   bottom: 0;

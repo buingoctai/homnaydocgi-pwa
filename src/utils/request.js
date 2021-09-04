@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { PopupIdentities } from 'srcRoot/utils/constants';
+import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 
 const requestPost = (url, options) => {
   return axios({
@@ -16,22 +18,7 @@ const HandleStatus = (response) => {
   if (status === 200 || status === 201 || status === 201) {
     return data;
   } else {
-    // axios({
-    //   method: "post",
-    //   url: `https://graph.facebook.com/v6.0/me/messages?access_token=${FACEBOOK_DEV.PAGE_ACCESS_TOKEN}`,
-    //   data: {
-    //     recipient: { id: FACEBOOK_DEV.ADMIN_MESSENGER_ID },
-    //     message: { text: `Thông báo lỗi Nodejs Server: ${data}` },
-    //   },
-    // })
-    // .then(() => {
-    //   window.location.href = `${process.env.APP_BASE}/exception?codeMessage=${status}`;
-    //   return;
-    // })
-    // .catch(() => {
-    //   window.location.href = `${process.env.APP_BASE}/exception?codeMessage=${status}`;
-    //   return;
-    // });
+    PopoverManager.openPopover(PopupIdentities['NOTI_ERROR']);
   }
 };
 axios.interceptors.request.use((config) => {

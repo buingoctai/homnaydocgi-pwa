@@ -5,19 +5,18 @@ import Title from './title';
 import VideoIntro from './video-intro';
 import FlowerEffect from './flower-effect';
 import './style.scss';
-
-const identity = { windowId: '1', name: 'events' };
+import { PopupIdentities } from 'srcRoot/utils/constants';
 
 const InstallApp = () => {
   useEffect(() => {
-    PopoverManager.openPopover({ ...identity });
+    PopoverManager.openPopover(PopupIdentities['EVENT']);
   }, []);
 
   return (
     <>
       <FlowerEffect />
       <Popover
-        identity={identity}
+        identity={PopupIdentities['EVENT']}
         className="event-app popup-anime-top-fade-in"
         content={
           <div className="container">

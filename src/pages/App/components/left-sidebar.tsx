@@ -8,10 +8,15 @@ import IconPodcast from 'srcRoot/static/svg/icon-outline-podcast.svg';
 import IconSetting from 'srcRoot/static/svg/icon-outline-setting.svg';
 import IconEvents from 'srcRoot/static/svg/icon-outline-events.svg';
 import Me from 'srcRoot/static/image/me.jpg';
+import { PopupIdentities } from 'srcRoot/utils/constants';
+import { useRecoilState } from 'recoil';
+import { backdropState } from 'srcRoot/recoil/appState';
 
 import './style.scss';
 
 const LeftSidebar = () => {
+  const [_, setBackdrop] = useRecoilState(backdropState);
+
   let xDown = null;
   let yDown = null;
 
@@ -41,7 +46,7 @@ const LeftSidebar = () => {
         /* right swipe */
       } else {
         /* left swipe */
-        PopoverManager.openPopover({ windowId: '1', name: 'left sidebar menu' });
+        PopoverManager.openPopover(PopupIdentities['LEFT_SIDEBAR']);
       }
     } else {
       if (yDiff > 0) {
@@ -57,16 +62,30 @@ const LeftSidebar = () => {
   useEffect(() => {
     document.addEventListener('touchstart', handleTouchStart, false);
     document.addEventListener('touchmove', handleTouchMove, false);
+    PopoverManager.on('afterOpen', PopupIdentities['LEFT_SIDEBAR'], () => {
+      setBackdrop(true);
+    });
+    PopoverManager.on('beforeClose', PopupIdentities['LEFT_SIDEBAR'], () => {
+      setBackdrop(false);
+    });
 
     return () => {
       document.removeEventListener('touchstart', handleTouchStart, false);
       document.removeEventListener('touchmove', handleTouchMove, false);
+
+      PopoverManager.removeListener('afterOpen', PopupIdentities['LEFT_SIDEBAR'], () => {
+        setBackdrop(true);
+      });
+
+      PopoverManager.removeListener('beforeClose', PopupIdentities['LEFT_SIDEBAR'], () => {
+        setBackdrop(false);
+      });
     };
   }, []);
 
   return (
     <Popover
-      identity={{ windowId: '1', name: 'left sidebar menu' }}
+      identity={PopupIdentities['LEFT_SIDEBAR']}
       className="popup-anime-left-fade-in sidebar-container"
       content={
         <div className="sidebar-wrap" onClick={() => PopoverManager.closeAllPopover()}>
@@ -97,7 +116,7 @@ const LeftSidebar = () => {
             <div>
               <img src={IconPodcast} />
 
-              <Link to="/">Podcast</Link>
+              <Link to="/podcasts">Podcast</Link>
             </div>
             <div className="sperator" />
 
@@ -112,6 +131,8 @@ const LeftSidebar = () => {
         top: '0px',
         left: '0px',
         height: '100%',
+        width: '33.33%',
+        justifyContent: 'center',
         backgroundImage: 'linear-gradient(to right, #ffefab, #fff9e5)',
       }}
     />

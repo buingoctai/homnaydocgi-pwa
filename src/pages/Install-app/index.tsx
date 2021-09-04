@@ -3,9 +3,9 @@ import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 import HCommon from 'srcRoot/utils/log-system';
 import Title from './title';
 import VideoIntro from './video-intro';
-import './style.scss';
+import { PopupIdentities } from 'srcRoot/utils/constants';
 
-const identity = { windowId: '1', name: 'install-app' };
+import './style.scss';
 
 const InstallApp = () => {
   const deferredPrompt = useRef(null);
@@ -21,7 +21,7 @@ const InstallApp = () => {
       }
       deferredPrompt.current = null;
     });
-    PopoverManager.closePopover(identity);
+    PopoverManager.closePopover(PopupIdentities['INSTALL_APP']);
   };
 
   useEffect(() => {
@@ -29,12 +29,12 @@ const InstallApp = () => {
       HCommon.log('[Install-App] Able to install app as mobile');
       event.preventDefault();
       deferredPrompt.current = event;
-      PopoverManager.openPopover({ ...identity, onAfterOpen: () => {} });
+      PopoverManager.openPopover({ ...PopupIdentities['INSTALL_APP'], onAfterOpen: () => {} });
     });
   }, []);
   return (
     <Popover
-      identity={identity}
+      identity={PopupIdentities['INSTALL_APP']}
       className="install-app popup-anime-top-fade-in"
       content={
         <div className="container">

@@ -4,12 +4,10 @@ import Avatar from 'srcRoot/pages/components/Avatar';
 import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { useRecoilState } from 'recoil';
 import { popoverState } from 'srcRoot/recoil/appState';
+import { PopupIdentities } from 'srcRoot/utils/constants';
 
 import './style.scss';
-const POPUP_HEADER = {
-  windowId: '1',
-  name: 'COMMON_POPUP',
-};
+const POPUP_HEADER = PopupIdentities['COPY_URL'];
 
 const Header = ({ id, title, author, time }) => {
   const actionRef = useRef(null);
