@@ -16,7 +16,6 @@ const NotificationGlobalPopup = () => {
   const popupGlobal: PopupGlobal | {} = useRecoilValue(popupGlobalState);
   const [_, setBackdrop] = useRecoilState(backdropState);
 
-  console.log('asdasdas', popupGlobal);
 
   useEffect(() => {
     setTimeout(() => {

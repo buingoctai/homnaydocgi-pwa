@@ -44,6 +44,7 @@ const LeftSidebar = () => {
     if (Math.abs(xDiff) > Math.abs(yDiff)) {
       if (xDiff > 0) {
         /* right swipe */
+        PopoverManager.closePopover(PopupIdentities['LEFT_SIDEBAR']);
       } else {
         /* left swipe */
         PopoverManager.openPopover(PopupIdentities['LEFT_SIDEBAR']);
@@ -94,7 +95,7 @@ const LeftSidebar = () => {
           </div>
           <div className="menu-wrap">
             <div>
-              <img src={IconSearch} />
+             <img src={IconSearch} />
               <Link to="/">Tìm Kiếm</Link>
             </div>
             <div className="sperator" />

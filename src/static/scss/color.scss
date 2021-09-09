@@ -1,0 +1,186 @@
+$pwa-light-blue: (
+  '700': #e5efff,
+  '650': #c8deff,
+  '600': #abcdff,
+  '500': #72abff,
+  '400': #3989ff,
+  '300': #0068ff,
+  'base': #0068ff,
+);
+
+$pwa-dark-blue: (
+  '200': #004bb9,
+  'base': #004bb9,
+);
+
+$pwa-light-grey: (
+  '700': #fbfbfd,
+  '600': #f4f5f7,
+  '500': #eeeff2,
+  '400': #e8eaef,
+  '300': #e1e4ea,
+  'base': #e1e4ea,
+);
+
+$pwa-dark-grey: (
+  '700': #060707,
+  '600': #121415,
+  '500': #363b3e,
+  '400': #666f76,
+  '300': #96a3ad,
+  'base': #96a3ad,
+);
+
+$pwa-neutral: (
+  '700': #e5e7eb,
+  '600': #abb4bc,
+  '500': #72808e,
+  '400': #394e60,
+  '300': #001a33,
+  '200': #081020,
+  '100': #050a19,
+  'base': #001a33,
+);
+
+$pwa-light-red: (
+  '700': #fbebe9,
+  '600': #f3bcbb,
+  '500': #eb8e8b,
+  '400': #e2615d,
+  '300': #db342e,
+  'base': #db342e,
+);
+
+$pwa-light-green: (
+  '700': #e7f5ef,
+  '600': #b2e2cb,
+  '500': #7ecea7,
+  '400': #49bb82,
+  '300': #15a85f,
+  'base': #15a85f,
+);
+
+$pwa-light-orange: (
+  '700': #fdf3e9,
+  '600': #fbd6bb,
+  '500': #f9ba8c,
+  '400': #f79e5d,
+  '300': #f5832f,
+  'base': #f5832f,
+);
+
+$pwa-light-yellow: (
+  '700': #fff9e5,
+  '600': #ffefab,
+  '500': #ffe472,
+  '400': #ffda39,
+  '300': #ffd000,
+  '200': #ffd20a,
+  '100': #f5c801,
+  'base': #ffd000,
+);
+
+$pwa-light-purple: (
+  '700': #f1effb,
+  '600': #d1ccf2,
+  '500': #b3a8e9,
+  '400': #9485e0,
+  '300': #7562d8,
+  'base': #7562d8,
+);
+
+$pwa-light-pink: (
+  '700': #fdf3ff,
+  '600': #f7d8ff,
+  '500': #f2bdff,
+  '400': #efa1ff,
+  '300': #ea87ff,
+  'base': #ea87ff,
+);
+
+$pwa-teal: (
+  '700': #e5f7f9,
+  '600': #abe8e9,
+  '500': #72d8db,
+  '400': #39cace,
+  '300': #00bac0,
+  'base': #00bac0,
+);
+
+$pwa-white: (
+  '700': rgba(255, 255, 255, 0.1),
+  '600': rgba(255, 255, 255, 0.25),
+  '500': rgba(255, 255, 255, 0.5),
+  '400': rgba(255, 255, 255, 0.75),
+  '300': white,
+  'base': white,
+);
+
+$pwa-black: (
+  '700': rgba(0, 0, 0, 0.1),
+  '600': rgba(0, 0, 0, 0.25),
+  '500': rgba(0, 0, 0, 0.5),
+  '400': rgba(0, 0, 0, 0.75),
+  '300': black,
+  'base': black,
+);
+
+$colors: (
+  'blue': $pwa-light-blue,
+  'dark-blue': $pwa-dark-blue,
+  'grey': $pwa-light-grey,
+  'dark-grey': $pwa-dark-grey,
+  'red': $pwa-light-red,
+  'orange': $pwa-light-orange,
+  'neutral': $pwa-neutral,
+  'green': $pwa-light-green,
+  'yellow': $pwa-light-yellow,
+  'purple': $pwa-light-purple,
+  'pink': $pwa-light-pink,
+  'teal': $pwa-teal,
+  'white': $pwa-white,
+  'black': $pwa-black,
+) !default;
+
+@function color($color, $key) {
+  @return var(#{--#{$color}}-#{$key});
+}
+
+@function colorOrg($color, $key) {
+  $content: map-get($colors, $color);
+  @if (map-has-key($content, $key)) {
+    $result: map-get($content, $key);
+    @return $result;
+  }
+  @return '';
+}
+
+@function colorTheme($theme, $color, $key) {
+  $col: #{$theme}-#{$color};
+  $content: map-get($themeColors, $col);
+  @if (map-has-key($content, $key)) {
+    $result: map-get($content, $key);
+    @return $result;
+  }
+  @return '';
+}
+
+:root {
+  @each $color, $value in $colors {
+    @each $shade, $value in map-get($colors, $color) {
+      $jo: --#{$color};
+      #{$jo}-#{$shade}: #{colorOrg($color, $shade)};
+    }
+  }
+}
+
+@each $color, $value in $colors {
+  @each $shade, $value in map-get($colors, $color) {
+    .text-#{$color}-#{$shade} {
+      color: #{color($color, $shade)};
+    }
+    .bg-#{$color}-#{$shade} {
+      background-color: #{color($color, $shade)};
+    }
+  }
+}

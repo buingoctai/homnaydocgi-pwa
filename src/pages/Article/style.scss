@@ -12,7 +12,8 @@ $fullHeight: 100%;
     width: $fullWidth;
     height: $fullHeight;
     .article-item {
-      background-color: var(--backgroundarticle);
+      background:url("./background-article.png") repeat !important;
+      // background-color: var(--backgroundarticle);
       padding: 8px 2px 0px 8px;
       border-radius: 5px;
       //   -webkit-box-shadow: 0 8px 6px -6px black;

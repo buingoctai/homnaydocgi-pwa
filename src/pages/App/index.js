@@ -16,6 +16,8 @@ import NotificationGlobal from './components/noti-global-popup';
 
 import { getQueryStringValue, initServiceWorker } from 'srcRoot/utils';
 import './style.scss';
+import 'srcRoot/static/scss/color.scss';
+
 
 const App = () => {
   const [popupGlobal, setPopupGlobal] = useRecoilState(popupGlobalState);
