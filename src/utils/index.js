@@ -1,7 +1,7 @@
 import { saveSubscription } from '../services/Notification';
 
 function getQueryStringValue(key) {
-  if (!window.location.href.includes(`${process.env.APP_BASE}/article?`)) {
+  if (!window.location.href.includes(`${process.env.APP_BASE}/?`)) {
     return null;
   }
   return decodeURIComponent(

@@ -14,7 +14,7 @@ const Header = ({ id, title, author, time }) => {
   const [popover, setPopover] = useRecoilState(popoverState);
 
   const handleCopyUrl = () => {
-    const url = `${process.env.APP_BASE}/article?id=${id}&${title
+    const url = `${process.env.APP_BASE}/?id=${id}&${title
       .toLowerCase()
       .replaceAll(' ', '-')}`;
 

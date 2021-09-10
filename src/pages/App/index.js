@@ -48,10 +48,9 @@ const App = () => {
         <LeftSidebar />
         <InstallApp />
         <NotificationGlobal />
-        <Route exact path="/" component={Article} headArticle={getQueryStringValue('id')} />
-        <Route exact path="/article" component={Article} headArticle={getQueryStringValue('id')} />
-        <Route path="/events" component={Events} />
-        <Route path="/podcasts" component={Podcasts} />
+        <Route exact path="/" render = {(props) => <Article {...props} headArticle={getQueryStringValue('id')} />}/>
+        <Route path="/events" render = {(props) => <Events {...props} />} />
+        <Route path="/podcasts" render = {(props) => <Podcasts {...props} />} />
       </Router>
       {backdrop && <div className="backdrop"></div>}
     </Suspense>
