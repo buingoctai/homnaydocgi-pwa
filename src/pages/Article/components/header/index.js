@@ -5,9 +5,19 @@ import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { useRecoilState } from 'recoil';
 import { popoverState } from 'srcRoot/recoil/appState';
 import { PopupIdentities } from 'srcRoot/utils/constants';
+import {getDetailPost} from 'srcRoot/services/Article';
+import {text2Speech} from 'srcRoot/services/Text2Speech';
+
 
 import './style.scss';
 const POPUP_HEADER = PopupIdentities['COPY_URL'];
+
+const VALID_READER = ['banmai', 'leminh','thuminh','giahuy','ngoclam','myan','lannhi','linhsan','minhquang'];
+
+
+const getRandomValidReader = () => {
+	return VALID_READER[Math.floor(Math.random() * VALID_READER.length)];
+};
 
 const Header = ({ id, title, author, time }) => {
   const actionRef = useRef(null);
@@ -44,6 +54,20 @@ const Header = ({ id, title, author, time }) => {
     PopoverManager.openPopover({ ...POPUP_HEADER, name: `${POPUP_HEADER.name + id}` });
   };
 
+  const onText2Speech = () => {
+    getDetailPost({id})
+    .then((res)=>{
+      text2Speech({
+        fileName: title.split(" ").join("-"),
+        text: res.Content,
+        reader: getRandomValidReader(),
+      });
+    })
+    .catch(()=>{
+
+    });
+  }
+
   return (
     <>
       <div className="header">
@@ -54,7 +78,7 @@ const Header = ({ id, title, author, time }) => {
             <div className="time">{time.split('T')[0]}</div>
           </div>
         </div>
-
+        <a onClick={onText2Speech}>Text2Speech</a>
         <div className="action" ref={actionRef} onClick={onCopyUrl} />
       </div>
       <Popover
