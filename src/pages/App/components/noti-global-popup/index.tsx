@@ -10,18 +10,18 @@ type PopupGlobal = {
   footer: string | null | undefined;
   title: string;
   message: string;
+  timeout?: number;
 };
 
 const NotificationGlobalPopup = () => {
   const popupGlobal: PopupGlobal | {} = useRecoilValue(popupGlobalState);
   const [_, setBackdrop] = useRecoilState(backdropState);
 
-
   useEffect(() => {
     setTimeout(() => {
       PopoverManager.closePopover(PopupIdentities['NOTI_GLOBAL']);
       PopoverManager.closePopover(PopupIdentities['NOTI_ERROR']);
-    }, 5000);
+    }, popupGlobal['timeout'] || 5000);
 
     PopoverManager.on('afterOpen', PopupIdentities['NOTI_GLOBAL'], () => {
       setBackdrop(true);

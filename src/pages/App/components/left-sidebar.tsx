@@ -95,7 +95,7 @@ const LeftSidebar = () => {
           </div>
           <div className="menu-wrap">
             <div>
-             <img src={IconSearch} />
+              <img src={IconSearch} />
               <Link to="/">Tìm Kiếm</Link>
             </div>
             <div className="sperator" />
@@ -103,7 +103,9 @@ const LeftSidebar = () => {
             <div>
               <img src={IconHome} width={20} height={20} />
 
-              <Link to="/">Bài Viết</Link>
+              <Link to="/" style={{ marginLeft: '10px' }}>
+                Bài Viết
+              </Link>
             </div>
             <div className="sperator" />
 

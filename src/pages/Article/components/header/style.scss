@@ -16,8 +16,24 @@
       flex-direction: column;
       justify-content: center;
       margin-left: 5px;
-      & > .name {
-        font-weight: var(--semibold);
+      & > .name-wrap {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        & > .name {
+          font-weight: var(--semibold);
+        }
+        & > .audio-wrap {
+          display: flex;
+          margin-left: 16px;
+        }
+        & > .active {
+          border-radius: 10px;
+          background-color: var(--neutral-700);
+          & > .loaded {
+            animation: bell 2.2s linear 0.4s infinite;
+          }
+        }
       }
     }
   }

@@ -1,22 +1,42 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import Menu from 'srcRoot/pages/components/Menu';
 import Avatar from 'srcRoot/pages/components/Avatar';
 import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { useRecoilState } from 'recoil';
 import { popoverState } from 'srcRoot/recoil/appState';
 import { PopupIdentities } from 'srcRoot/utils/constants';
-import {getDetailPost} from 'srcRoot/services/Article';
-import {text2Speech} from 'srcRoot/services/Text2Speech';
-
+import Audio from './audio';
+import { getDetailPost } from 'srcRoot/services/Article';
+import { text2Speech } from 'srcRoot/services/Text2Speech';
 
 import './style.scss';
 const POPUP_HEADER = PopupIdentities['COPY_URL'];
 
-const VALID_READER = ['banmai', 'leminh','thuminh','giahuy','ngoclam','myan','lannhi','linhsan','minhquang'];
-
+const VALID_READER = [
+  'banmai',
+  'leminh',
+  'thuminh',
+  'giahuy',
+  'ngoclam',
+  'myan',
+  'lannhi',
+  'linhsan',
+  'minhquang',
+];
+const NAMMING_READER = {
+  banmai: 'Ban Mai',
+  leminh: 'Lê Minh',
+  thuminh: 'Thu Minh',
+  giahuy: 'Gia Huy',
+  ngoclam: 'Ngọc Lam',
+  myan: 'Mỹ An',
+  lannhi: 'Lan Nhi',
+  linhsan: 'Linh San',
+  minhquang: 'Minh Quang',
+};
 
 const getRandomValidReader = () => {
-	return VALID_READER[Math.floor(Math.random() * VALID_READER.length)];
+  return VALID_READER[Math.floor(Math.random() * VALID_READER.length)];
 };
 
 const Header = ({ id, title, author, time }) => {
@@ -24,9 +44,7 @@ const Header = ({ id, title, author, time }) => {
   const [popover, setPopover] = useRecoilState(popoverState);
 
   const handleCopyUrl = () => {
-    const url = `${process.env.APP_BASE}/?id=${id}&${title
-      .toLowerCase()
-      .replaceAll(' ', '-')}`;
+    const url = `${process.env.APP_BASE}/?id=${id}&${title.toLowerCase().replaceAll(' ', '-')}`;
 
     if (navigator.clipboard) {
       navigator.clipboard
@@ -54,19 +72,28 @@ const Header = ({ id, title, author, time }) => {
     PopoverManager.openPopover({ ...POPUP_HEADER, name: `${POPUP_HEADER.name + id}` });
   };
 
-  const onText2Speech = () => {
-    getDetailPost({id})
-    .then((res)=>{
-      text2Speech({
-        fileName: title.split(" ").join("-"),
-        text: res.Content,
-        reader: getRandomValidReader(),
-      });
-    })
-    .catch(()=>{
+  const genConvertedText = useCallback((content, reader) => {
+    const nammingReader = NAMMING_READER[reader];
+    return `${title} . Tác giả: ${author} . Người đọc: ${nammingReader}. ${content}.`;
+  });
 
+  const onText2Speech = () => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const reader = getRandomValidReader();
+        const detail = await getDetailPost({ id });
+        const audio = await text2Speech({
+          fileName: title.split(' ').join('-'),
+          text: genConvertedText(detail.Content, reader),
+          reader,
+        });
+
+        resolve(audio);
+      } catch (error) {
+        reject('Get audio errors');
+      }
     });
-  }
+  };
 
   return (
     <>
@@ -74,11 +101,15 @@ const Header = ({ id, title, author, time }) => {
         <div className="author">
           <Avatar author={author} />
           <div className="name_time">
-            <span className="name">{author}</span>
+            <div className="name-wrap">
+              <span className="name">{author}</span>
+              <Audio onText2Speech={onText2Speech} />
+            </div>
+
             <div className="time">{time.split('T')[0]}</div>
           </div>
         </div>
-        <a onClick={onText2Speech}>Text2Speech</a>
+
         <div className="action" ref={actionRef} onClick={onCopyUrl} />
       </div>
       <Popover

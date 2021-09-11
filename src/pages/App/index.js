@@ -18,7 +18,6 @@ import { getQueryStringValue, initServiceWorker } from 'srcRoot/utils';
 import './style.scss';
 import 'srcRoot/static/scss/color.scss';
 
-
 const App = () => {
   const [popupGlobal, setPopupGlobal] = useRecoilState(popupGlobalState);
   const [backdrop, _] = useRecoilState(backdropState);
@@ -27,7 +26,7 @@ const App = () => {
     initServiceWorker();
     /* App Config */
     if (Date.now() < new Date(RELEASE_MENU_SIDBAR).getTime()) {
-      setPopupGlobal({ title: 'Hướng dẫn', message: 'Vuốt từ trái qua phải để mở menu' });
+      setPopupGlobal({ title: 'Hướng dẫn', message: 'Vuốt từ trái qua phải để mở menu.' });
       PopoverManager.openPopover(PopupIdentities['NOTI_GLOBAL']);
     }
 
@@ -48,9 +47,13 @@ const App = () => {
         <LeftSidebar />
         <InstallApp />
         <NotificationGlobal />
-        <Route exact path="/" render = {(props) => <Article {...props} headArticle={getQueryStringValue('id')} />}/>
-        <Route path="/events" render = {(props) => <Events {...props} />} />
-        <Route path="/podcasts" render = {(props) => <Podcasts {...props} />} />
+        <Route
+          exact
+          path="/"
+          render={(props) => <Article {...props} headArticle={getQueryStringValue('id')} />}
+        />
+        <Route path="/events" render={(props) => <Events {...props} />} />
+        <Route path="/podcasts" render={(props) => <Podcasts {...props} />} />
       </Router>
       {backdrop && <div className="backdrop"></div>}
     </Suspense>

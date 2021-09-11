@@ -13,6 +13,7 @@ const defaultData = {
     title: '',
     message: '',
     footer: null,
+    timeout: null,
   },
   showBackdrop: false,
 };
