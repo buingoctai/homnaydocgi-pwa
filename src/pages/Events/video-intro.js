@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import IntroInstall from '../../assets/introgif.gif';
+import React from 'react';
 import MyLove from './mylove.jpg';
 
 const VideoIntro = () => {

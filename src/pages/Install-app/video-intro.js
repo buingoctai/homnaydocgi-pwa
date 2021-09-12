@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import IntroInstall from '../../assets/introgif.gif';
+import IntroInstall from 'srcRoot/static/gif/introgif.gif';
 
 const SOURCE = 'https://drive.google.com/file/d/1-iMzrCP_MTMXVjqa5YCQatUa5AtApJlK/preview';
 const VideoIntro = () => {
