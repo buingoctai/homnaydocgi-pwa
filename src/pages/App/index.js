@@ -15,11 +15,15 @@ const InstallApp = React.lazy(() => import('srcRoot/pages/Install-app'));
 import NotificationGlobal from './components/noti-global-popup';
 
 import { getQueryStringValue, initServiceWorker } from 'srcRoot/utils';
+import HCommon from 'srcRoot/utils/log-system';
+
 import './style.scss';
 import 'srcRoot/static/scss/color.scss';
 
+// import MarkdownApp from 'srcRoot/pages/components/ExampleMarkdown';
+
 const App = () => {
-  const [popupGlobal, setPopupGlobal] = useRecoilState(popupGlobalState);
+  const [, setPopupGlobal] = useRecoilState(popupGlobalState);
   const [backdrop, _] = useRecoilState(backdropState);
 
   useEffect(() => {
@@ -40,6 +44,8 @@ const App = () => {
     });
     ///////////////
   }, []);
+
+  HCommon.log('[Aplication]->[ROOT] render');
 
   return (
     <Suspense fallback={<LoadingLazyComp />}>

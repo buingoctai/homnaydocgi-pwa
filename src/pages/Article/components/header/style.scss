@@ -6,6 +6,7 @@
   .author {
     display: flex;
     flex-direction: row;
+    align-items: center;
     & > .avatar {
       filter: 'grayscale(100%)';
       border-radius: '50%';

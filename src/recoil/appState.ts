@@ -7,7 +7,6 @@ const defaultData = {
     },
     handlers: {},
   },
-  podcasts: false,
   popupGlobal: {
     type: '',
     title: '',
@@ -16,6 +15,7 @@ const defaultData = {
     timeout: null,
   },
   showBackdrop: false,
+  
 };
 
 const appState = atom({
@@ -37,17 +37,6 @@ export const popoverState = selector({
   },
 });
 
-export const podcastsState = selector({
-  key: 'podcasts',
-  get: ({ get }) => {
-    const app = get(appState);
-    return app.podcasts;
-  },
-  set: ({ get, set }, newValue) => {
-    const app = get(appState);
-    set(appState, { ...app, podcasts: newValue });
-  },
-});
 
 export const popupGlobalState = selector({
   // newListState này sẽ chứa danh sách các action có trạng thái là new.

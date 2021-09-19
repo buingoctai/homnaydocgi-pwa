@@ -5,15 +5,11 @@ import { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { PopupIdentities } from 'srcRoot/utils/constants';
 import { useRecoilState } from 'recoil';
 import { popupGlobalState } from 'srcRoot/recoil/appState';
-
+import {Audio} from 'srcRoot/enitities/Audio'
 interface Props {
   onText2Speech: () => any;
 }
-interface Audio {
-  id: string | null;
-  name: string | null;
-  url: string | null;
-}
+
 const Audio = (props: Props) => {
   const { onText2Speech } = props;
   const [isListening, setIsListening] = useState(false);

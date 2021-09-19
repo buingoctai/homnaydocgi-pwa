@@ -4,12 +4,13 @@ import { Helmet } from 'react-helmet';
 
 import SkeletonV2 from 'srcRoot/pages/components/SkeletonV2';
 import LoadingV2 from 'srcRoot/pages/components/LoadingV2';
+import HCommon from 'srcRoot/utils/log-system';
 import enhance from './enhance';
 import './style.scss';
 
 const Article = (props) => {
   const { totalRecord, heightStore, renderItem, listRef, firstArticle, isLoading } = props;
-
+  HCommon.log('[Aplication]->[Article] render');
   return totalRecord ? (
     <div className="article" id="article">
       {firstArticle && (

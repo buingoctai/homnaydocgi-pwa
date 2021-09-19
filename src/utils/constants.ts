@@ -5,6 +5,9 @@ const PopupIdentities = {
   INSTALL_APP: { windowId: '1', name: 'install-app' },
   NOTI_GLOBAL: { windowId: '1', name: 'notification-new-features' },
   NOTI_ERROR: { windowId: '1', name: 'notification-error' },
+  ADD_COLLECTION: { windowId: '1', name: 'add-collection' },
+  ADD_AUDIO: { windowId: '1', name: 'add-audio' },
+
 };
 
 const NOTI_TYPE = {

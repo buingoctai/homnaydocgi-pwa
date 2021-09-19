@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react';
 type Props = {
   api: (payload: object) => Promise<any>;
   payload: object;
-  forceFetch: any;
-  retryOptions: { retries: number; retryDelay: number } | null;
+  forceFetch?: any;
+  retryOptions?: { retries: number; retryDelay: number };
+  defaultRes?: object,
 };
 
 const STATUS = {
@@ -20,17 +21,22 @@ const delay = (ms: number) => {
     }, ms);
   });
 };
-
+/**
+ * @param  {Props} props
+ */
 const useFetchData = (props: Props) => {
-  const { api, payload, forceFetch, retryOptions = { retries: 0, retryDelay: 0 } } = props;
-  const [response, setResponse] = useState<object>({});
+  const { api, payload, forceFetch, retryOptions = { retries: 0, retryDelay: 0 }} = props;
+  const [response, setResponse] = useState(props.defaultRes);
   const [status, setStatus] = useState<string>(STATUS['DONE']);
 
   useEffect(() => {
+    
     setStatus(STATUS['LOADING']);
     const wrapper = (n: number) => {
       api(payload)
         .then((response) => {
+          console.log('taibnlogs fetch', response , api);
+          
           setResponse(response);
           setStatus(STATUS['DONE']);
         })
@@ -47,6 +53,7 @@ const useFetchData = (props: Props) => {
     wrapper(retryOptions.retries);
   }, [forceFetch]);
 
+  
   return { status, response };
 };
 
