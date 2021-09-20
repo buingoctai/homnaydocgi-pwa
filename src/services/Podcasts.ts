@@ -3,8 +3,8 @@ import { requestPost, requestGet } from 'srcRoot/utils/request';
 
 
 
-export const getAllBook = (param) => {
-    return requestPost(`${process.env.API_BASE}/google-drive/getAllAudioBook`, {
+export const getAllCollection = (param) => {
+    return requestPost(`${process.env.API_BASE}/google-drive/getAllCollection`, {
       method: 'POST',
       data: { ...param },
     });
@@ -18,8 +18,8 @@ export const createCollection = (params) => {
   };
 
 
-  export const getCurrentBook = (param) => {
-    return requestPost(`${process.env.API_BASE}/google-drive/getAudioBook`, {
+  export const getAllAudio = (param) => {
+    return requestPost(`${process.env.API_BASE}/google-drive/getAllAudio`, {
       method: 'POST',
       data: { ...param },
     });

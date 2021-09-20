@@ -18,7 +18,7 @@ const PodcastItem = (props: Props) => {
         <div className="avatar">
           <img src={thumb} loading="lazy" width="100%" height="100%" />
         </div>
-        <div className="name truncate">{data.name}</div>
+        <div className="name truncate">{data.audioName}</div>
         <div className="play__btn"></div>
       </div>
     </div>

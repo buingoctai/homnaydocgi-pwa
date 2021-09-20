@@ -1,9 +1,9 @@
 import React from 'react';
-
+import {Collection} from 'srcRoot/enitities/Audio';
 interface Props {
   keyItem: string | number;
   style: object;
-  data: any;
+  data: Collection;
   index: number;
 }
 const CollectionItem = (props: Props) => {
@@ -17,7 +17,7 @@ const CollectionItem = (props: Props) => {
         height="90%"
         loading="lazy"
       />
-      <span className="truncate">{data.name}</span>
+      <span className="truncate">{data.collectionName}</span>
     </div>
   );
 };

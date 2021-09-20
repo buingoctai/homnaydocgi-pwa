@@ -13,7 +13,7 @@ interface Props {
 const Audio = (props: Props) => {
   const { onText2Speech } = props;
   const [isListening, setIsListening] = useState(false);
-  const [audio, setAudio] = useState<Audio>({ id: null, name: null, url: null });
+  const [audio, setAudio] = useState<Audio>({ audioName: '', audioId: '', url: null });
   const [popupGlobal, setPopupGlobal] = useRecoilState(popupGlobalState);
 
   const openAudio = useCallback(async () => {

@@ -1,7 +1,7 @@
 import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { PopupIdentities, NOTI_TYPE } from 'srcRoot/utils/constants';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { getAllBook, createCollection, createMp3 } from 'srcRoot/services/Podcasts';
+import { createCollection, createMp3 } from 'srcRoot/services/Podcasts';
 import { popupGlobalState, backdropState } from 'srcRoot/recoil/appState';
 import { useRecoilState } from 'recoil';
 

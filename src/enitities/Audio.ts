@@ -1,7 +1,7 @@
 
 export type Collection = {
-    id: string;
-    name: string;
+    collectionId: string;
+    collectionName: string;
 }
 
 export type Collections = {
@@ -11,14 +11,13 @@ export type Collections = {
 
 
 export type Audio = {
-    id: string;
-    name: string;
+    audioId: string;
+    audioName: string;
     url: string;
 }
 
 export type AudioList = {
     data: Array<Audio>,
     totalRecord: number;
-    id: string;
 }
 

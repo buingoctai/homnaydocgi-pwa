@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Grid, AutoSizer } from 'react-virtualized';
 import CollectionItem from './collection-item';
 import useFetchData from 'srcRoot/Hooks/use-fetch-data';
-import { getAllBook } from 'srcRoot/services/Podcasts';
+import { getAllCollection } from 'srcRoot/services/Podcasts';
 import { Collections } from 'srcRoot/enitities/Audio';
 import Title from './collection-list-title';
 
@@ -33,7 +33,7 @@ const CollectionList = (props: Props) => {
   }, [searchTxt]);
 
   let { response, status } = useFetchData({
-    api: getAllBook,
+    api: getAllCollection,
     payload: payload,
     retryOptions: { retries: 3, retryDelay: 300 },
     defaultRes: DEFAULT,
@@ -44,7 +44,8 @@ const CollectionList = (props: Props) => {
     
     // tempory: get audio of last collection
     const total = response['totalRecord'];
-    if(total)   onReloadAudioList({folderId:  response['data'][total-1].id});
+    const collectionIds = response['data'].map(collection => collection.collectionId);
+    if(total) onReloadAudioList({folderId:  response['data'][total-1].id, collectionIds});
   }, [response]);
 
   return (

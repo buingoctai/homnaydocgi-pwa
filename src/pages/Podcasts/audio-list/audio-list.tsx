@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, AutoSizer } from 'react-virtualized';
-import PodcastItem from './podcast-item';
-import Title from './podcast-list-title';
+import PodcastItem from './audio-item';
+import Title from './audio-list-title';
 import { AudioList } from 'srcRoot/enitities/Audio';
 
 interface Props {
@@ -20,7 +20,7 @@ const PodcastList = (props: Props) => {
     <div className="podcast-list">
       <Title
         totalRecord={audioList['totalRecord']}
-        collectionId={audioList['id']}
+        collectionId={audioList['id']} // khong con field này với api mới
         onReloadAudioList={onReloadAudioList}
       />
 
@@ -40,7 +40,7 @@ const PodcastList = (props: Props) => {
                       index={index}
                       key={key}
                       style={style}
-                      thumb={thumbList[audioList['data'][index].id]}
+                      thumb={thumbList[audioList['data'][index].audioId]}
                       data={audioList['data'][index]}
                     />
                   );
