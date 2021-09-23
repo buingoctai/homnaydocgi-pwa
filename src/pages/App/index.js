@@ -56,7 +56,7 @@ const App = () => {
         <Route
           exact
           path="/"
-          render={(props) => <Article {...props} headArticle={getQueryStringValue('id')} />}
+          render={(props) => <Article {...props}  headArticle={null}/>}
         />
         <Route path="/events" render={(props) => <Events {...props} />} />
         <Route path="/podcasts" render={(props) => <Podcasts {...props} />} />
