@@ -39,7 +39,7 @@ const getRandomValidReader = () => {
   return VALID_READER[Math.floor(Math.random() * VALID_READER.length)];
 };
 
-const Header = ({ id, title, author, time }) => {
+const Header = ({ index, id, title, author, time }) => {
   const actionRef = useRef(null);
   const [popover, setPopover] = useRecoilState(popoverState);
 
@@ -103,7 +103,7 @@ const Header = ({ id, title, author, time }) => {
           <div className="name_time">
             <div className="name-wrap">
               <span className="name">{author}</span>
-              <Audio onText2Speech={onText2Speech} />
+              {index !==0 && <Audio onText2Speech={onText2Speech} />}
             </div>
 
             <div className="time">{time.split('T')[0]}</div>

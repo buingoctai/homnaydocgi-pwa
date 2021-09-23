@@ -37,3 +37,20 @@
     font-family: arial;
   }
 }
+
+.popup-check-permission{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  & > .title {
+    font-size: 14px;
+    font-weight: var(--semibold);
+    color: var(--dark-grey-400);
+  }
+  & > .loading {
+    position: absolute;
+    top: calc(50% - 22px);
+    z-index: 999999;
+    left: calc(50% - 22px);
+  }
+}

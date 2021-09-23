@@ -7,6 +7,8 @@ const PopupIdentities = {
   NOTI_ERROR: { windowId: '1', name: 'notification-error' },
   ADD_COLLECTION: { windowId: '1', name: 'add-collection' },
   ADD_AUDIO: { windowId: '1', name: 'add-audio' },
+  CHECK_PASS: { windowId: '1', name: 'check-pass' },
+
 
 };
 

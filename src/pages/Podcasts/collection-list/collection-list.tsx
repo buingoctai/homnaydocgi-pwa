@@ -45,7 +45,7 @@ const CollectionList = (props: Props) => {
     // tempory: get audio of last collection
     const total = response['totalRecord'];
     const collectionIds = response['data'].map(collection => collection.collectionId);
-    if(total) onReloadAudioList({folderId:  response['data'][total-1].id, collectionIds});
+    if(total) onReloadAudioList({folderId:  response['data'][total-1].collectionId, collectionIds});
   }, [response]);
 
   return (

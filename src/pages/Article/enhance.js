@@ -44,6 +44,7 @@ const enhance = (Article) => ({ headArticle }) => {
       <div style={{ ...style }} key={data[index].Id}>
         <div className="article-item">
           <Header
+            index={index}
             id={data[index].Id}
             title={data[index].Title}
             author={data[index].Author}
