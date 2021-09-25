@@ -6,23 +6,14 @@ import { AudioList } from 'srcRoot/enitities/Audio';
 
 interface Props {
   audioList: AudioList | object;
-  thumbList: object;
-  onReloadAudioList: (params: any) => void;
 }
 
-
 const PodcastList = (props: Props) => {
-  const { audioList, thumbList, onReloadAudioList } = props;
-
-
+  const { audioList } = props;
 
   return (
     <div className="podcast-list">
-      <Title
-        totalRecord={audioList['totalRecord']}
-        collectionId={audioList['id']} // khong con field này với api mới
-        onReloadAudioList={onReloadAudioList}
-      />
+      <Title totalRecord={audioList['totalRecord']} />
 
       <div className="list-wrap">
         <AutoSizer>
@@ -40,7 +31,6 @@ const PodcastList = (props: Props) => {
                       index={index}
                       key={key}
                       style={style}
-                      thumb={thumbList[audioList['data'][index].audioId]}
                       data={audioList['data'][index]}
                     />
                   );

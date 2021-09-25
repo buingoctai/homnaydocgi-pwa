@@ -16,6 +16,6 @@
     },
     "moduleResolution": "node"
   },
-  "include": ["./src", "src/svg.d.ts", "src/jpg.d.ts", "src/png.d.ts"],
+  "include": ["./src", "src/svg.d.ts", "src/jpg.d.ts", "src/png.d.ts", "src/gif.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

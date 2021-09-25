@@ -22,14 +22,13 @@ const CollectionList = (props: Props) => {
   const payload = useMemo(() => {
     // lỗi search txt: tìm cách skip lần render đầu để bỏ cái dk bên dưới
     // lần render đần tiên run updateForce nên getAllAudioBook run thêm lần nũa
-    if(searchTxt) {
+    if (searchTxt) {
       clearTimeout(timeoutReload.current);
       timeoutReload.current = setTimeout(() => {
         updateForce(Math.random());
       }, 400);
       return { searchTxt };
     }
-    
   }, [searchTxt]);
 
   let { response, status } = useFetchData({
@@ -41,11 +40,13 @@ const CollectionList = (props: Props) => {
   });
 
   useEffect(() => {
-    
-    // tempory: get audio of last collection
     const total = response['totalRecord'];
-    const collectionIds = response['data'].map(collection => collection.collectionId);
-    if(total) onReloadAudioList({folderId:  response['data'][total-1].collectionId, collectionIds});
+    const collectionIds = response['data'].map((collection) => collection.collectionId);
+    if (total) onReloadAudioList({ collectionIds });
+  }, [response]);
+
+  const collectionIds = useMemo(() => {
+    return response['data'].map((collection) => collection.collectionId);
   }, [response]);
 
   return (
@@ -53,6 +54,7 @@ const CollectionList = (props: Props) => {
       <Title
         totalRecord={response['totalRecord']}
         onReloadCollectionList={() => updateForce(Math.random())}
+        onReloadAudioList={() => onReloadAudioList({ collectionIds })}
       />
 
       <div className="list-wrap">

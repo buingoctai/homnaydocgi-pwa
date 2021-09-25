@@ -5,7 +5,7 @@ import { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { PopupIdentities } from 'srcRoot/utils/constants';
 import { useRecoilState } from 'recoil';
 import { popupGlobalState } from 'srcRoot/recoil/appState';
-import {Audio} from 'srcRoot/enitities/Audio'
+import { Audio } from 'srcRoot/enitities/Audio';
 interface Props {
   onText2Speech: () => any;
 }
@@ -13,7 +13,7 @@ interface Props {
 const Audio = (props: Props) => {
   const { onText2Speech } = props;
   const [isListening, setIsListening] = useState(false);
-  const [audio, setAudio] = useState<Audio>({ audioName: '', audioId: '', url: null });
+  const [audio, setAudio] = useState<Audio>({ audioName: '', audioId: '', url: null, thumb: null });
   const [popupGlobal, setPopupGlobal] = useRecoilState(popupGlobalState);
 
   const openAudio = useCallback(async () => {

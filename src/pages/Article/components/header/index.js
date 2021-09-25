@@ -103,7 +103,7 @@ const Header = ({ index, id, title, author, time }) => {
           <div className="name_time">
             <div className="name-wrap">
               <span className="name">{author}</span>
-              {index !==0 && <Audio onText2Speech={onText2Speech} />}
+              {index !== 0 && <Audio onText2Speech={onText2Speech} />}
             </div>
 
             <div className="time">{time.split('T')[0]}</div>

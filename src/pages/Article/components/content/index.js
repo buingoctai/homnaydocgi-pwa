@@ -9,7 +9,7 @@ import './style.scss';
 
 const Content = ({ index, post, listRef, heightStore, readedList, setReadedList }) => {
   const [, setPopupGlobal] = useRecoilState(popupGlobalState);
-const [__, setBackdrop] = useRecoilState(backdropState);
+  const [__, setBackdrop] = useRecoilState(backdropState);
   const { Id, Content, Title, Brief } = post;
   let newReadedList = {};
 
@@ -25,18 +25,20 @@ const [__, setBackdrop] = useRecoilState(backdropState);
   let [detailPost, setArticleId] = useDetailArticle(null, onUpdateListUI);
 
   const onCheckPermission = () => {
-    if(index === 0) {
-      setBackdrop(true);
-      PopoverManager.openPopover(PopupIdentities['CHECK_PASS']);
-    } else {
-      onReadMore();
-    }
+    // if (index === 0) {
+    //   setBackdrop(true);
+    //   PopoverManager.openPopover(PopupIdentities['CHECK_PASS']);
+    // } else {
+    //   onReadMore();
+    // }
+
+    onReadMore();
   };
 
-  const onReadMore = useCallback(()=>{
+  const onReadMore = useCallback(() => {
     setArticleId(Id);
     document.title = Title.charAt(0).toUpperCase() + Title.toLowerCase().slice(1);
-  },[Id, Title]);
+  }, [Id, Title]);
 
   const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -64,29 +66,25 @@ const [__, setBackdrop] = useRecoilState(backdropState);
     return contentHtml;
   };
 
-
-
   return (
     <>
-    <div className="full-content">
-      <h1 className="title">{capitalize(Title.toLowerCase())}</h1>
-      <p className="content">
-        {Content || (readedList[Id] && breakContent(detailPost.Content)) || Brief}
-        {!readedList[Id] && !Content && (
-          <a href="#" onClick={() => onCheckPermission()} className="button-more">
-            ...Xem thêm
-          </a>
-        )}
-      </p>
-      {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div className="full-content">
+        <h1 className="title">{capitalize(Title.toLowerCase())}</h1>
+        <p className="content">
+          {Content || (readedList[Id] && breakContent(detailPost.Content)) || Brief}
+          {!readedList[Id] && !Content && (
+            <a href="#" onClick={() => onCheckPermission()} className="button-more">
+              ...Xem thêm
+            </a>
+          )}
+        </p>
+        {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
         {readedList[post.Id] && imgDefault !== post.ImageUrl && (
           <img alt="ảnh" src={post.ImageUrl} />
         )}
       </div> */}
-    </div>
-    {index === 0 && (
-      <PermissionPop onReadMore = {onReadMore}/>
-    )}
+      </div>
+      {index === 0 && <PermissionPop onReadMore={onReadMore} />}
     </>
   );
 };

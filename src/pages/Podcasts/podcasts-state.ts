@@ -1,12 +1,12 @@
 import { atom, selector } from 'recoil';
 
 const defaultData = {
-  audioList: {
-    data: [],
-    id: '',
-    totalRecord: 0,
+  collection: {
+    selected: [],
   },
-  thumbList: {},
+  audio: {
+    selected: [],
+  },
 };
 
 const podcastsState = atom({
@@ -14,30 +14,30 @@ const podcastsState = atom({
   default: defaultData,
 });
 
-export const audioListState = selector({
-  key: 'audioList',
+export const collectionState = selector({
+  key: 'collection',
   get: ({ get }) => {
     const podcasts = get(podcastsState);
 
-    return podcasts.audioList;
+    return podcasts.collection;
   },
   set: ({ get, set }, newValue) => {
     const podcasts = get(podcastsState);
 
-    set(podcastsState, { ...podcasts, audioList: newValue });
+    set(podcastsState, { ...podcasts, collection: { selected: newValue } });
   },
 });
 
-export const thumbListState = selector({
-  key: 'thumbList',
+export const audioState = selector({
+  key: 'audio',
   get: ({ get }) => {
     const podcasts = get(podcastsState);
 
-    return podcasts.thumbList;
+    return podcasts.audio;
   },
   set: ({ get, set }, newValue) => {
     const podcasts = get(podcastsState);
 
-    set(podcastsState, { ...podcasts, thumbList: newValue });
+    set(podcastsState, { ...podcasts, audio: { selected: newValue } });
   },
 });

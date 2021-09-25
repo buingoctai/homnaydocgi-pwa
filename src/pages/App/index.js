@@ -45,8 +45,6 @@ const App = () => {
     ///////////////
   }, []);
 
-  HCommon.log('[Aplication]->[ROOT] render');
-
   return (
     <Suspense fallback={<LoadingLazyComp />}>
       <Router>
@@ -56,7 +54,7 @@ const App = () => {
         <Route
           exact
           path="/"
-          render={(props) => <Article {...props}  headArticle={null}/>}
+          render={(props) => <Article {...props} headArticle={getQueryStringValue('id')} />}
         />
         <Route path="/events" render={(props) => <Events {...props} />} />
         <Route path="/podcasts" render={(props) => <Podcasts {...props} />} />

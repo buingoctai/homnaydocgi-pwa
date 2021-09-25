@@ -15,7 +15,6 @@ const defaultData = {
     timeout: null,
   },
   showBackdrop: false,
-  
 };
 
 const appState = atom({
@@ -36,7 +35,6 @@ export const popoverState = selector({
     set(appState, { ...app, popover: newValue });
   },
 });
-
 
 export const popupGlobalState = selector({
   // newListState này sẽ chứa danh sách các action có trạng thái là new.

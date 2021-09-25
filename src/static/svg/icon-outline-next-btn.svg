@@ -1,0 +1,8 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="next">
+<g id="arrow-down">
+<path id="Triangle" fill-rule="evenodd" clip-rule="evenodd" d="M16.5708 11.1425C17.2182 11.5309 17.2182 12.4691 16.5708 12.8575L8.2645 17.8413C7.59797 18.2412 6.75 17.7611 6.75 16.9838L6.75 7.01619C6.75 6.2389 7.59797 5.75878 8.2645 6.1587L16.5708 11.1425Z" stroke="white" stroke-linejoin="round"/>
+</g>
+<path id="Path 2" d="M18 18V6" stroke="white" stroke-linecap="round"/>
+</g>
+</svg>

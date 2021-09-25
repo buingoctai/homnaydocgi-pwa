@@ -1,15 +1,14 @@
 .btn__entry__input {
-    width: 48px;
-    height: 30px;
-    font-size: 16px;
-    padding: 2px 2px;
-    margin: auto;
-    background-color: var(--blue-500);
-    color: var(--white-base);
-    border: none;
-    border-radius: 4px;
-    &.disabled {
-      opacity: 0.5;
-    }
-
+  width: 48px;
+  height: 30px;
+  font-size: 16px;
+  padding: 2px 2px;
+  margin: auto;
+  background-color: var(--blue-500);
+  color: var(--white-base);
+  border: none;
+  border-radius: 4px;
+  &.disabled {
+    opacity: 0.5;
+  }
 }

@@ -12,7 +12,7 @@ interface Props {
   onReadMore: () => void;
 }
 const PermissionPop = (props: Props) => {
-  const {onReadMore} = props;
+  const { onReadMore } = props;
   const [, setPopupGlobal] = useRecoilState(popupGlobalState);
   const [__, setBackdrop] = useRecoilState(backdropState);
 
@@ -26,15 +26,15 @@ const PermissionPop = (props: Props) => {
 
   const onCheckPass = useCallback(
     (e) => {
-      if(text === '02-05-2021') {
+      if (text === '02-05-2021') {
         PopoverManager.closePopover(PopupIdentities['CHECK_PASS']);
         setBackdrop(false);
         onReadMore();
       } else {
-            setPopupGlobal({
-            title: 'Mật khẩu không khớp',
-            message: 'Đừng nhập lại, oke?',
-          });
+        setPopupGlobal({
+          title: 'Mật khẩu không khớp',
+          message: 'Đừng nhập lại, oke?',
+        });
         PopoverManager.openPopover(PopupIdentities['NOTI_GLOBAL']);
       }
 
@@ -58,27 +58,27 @@ const PermissionPop = (props: Props) => {
 
   return (
     <>
-        <Popover
-          identity={PopupIdentities['CHECK_PASS']}
-          content={
-            <div className="popup-check-permission">
-              <span className="title">Bài Viết Hạn Chế Người Xem</span>
-              <Input
-                style={{ margin: '16px 0px', width: '95%' }}
-                text={text}
-                placeholder="Mật khẩu ví dụ: 69-69-69"
-                onChange={onInputPass}
-              />
-              <Button text="Nhập" disabled={Boolean(!text)} onClick={onCheckPass} />
-            </div>
-          }
-          style={{
-            display: 'flex',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}
-        />
+      <Popover
+        identity={PopupIdentities['CHECK_PASS']}
+        content={
+          <div className="popup-check-permission">
+            <span className="title">Bài Viết Hạn Chế Người Xem</span>
+            <Input
+              style={{ margin: '16px 0px', width: '95%' }}
+              text={text}
+              placeholder="Mật khẩu ví dụ: 69-69-69"
+              onChange={onInputPass}
+            />
+            <Button text="Nhập" disabled={Boolean(!text)} onClick={onCheckPass} />
+          </div>
+        }
+        style={{
+          display: 'flex',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+      />
     </>
   );
 };

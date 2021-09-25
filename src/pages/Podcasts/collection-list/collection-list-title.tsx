@@ -1,79 +1,86 @@
 import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
-import { PopupIdentities, NOTI_TYPE } from 'srcRoot/utils/constants';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { createCollection } from 'srcRoot/services/Podcasts';
-import { popupGlobalState, backdropState } from 'srcRoot/recoil/appState';
+import { PopupIdentities } from 'srcRoot/utils/constants';
+import React, { useCallback, useMemo, useState } from 'react';
+import { createCollection, createMp3 } from 'srcRoot/services/Podcasts';
+import { collectionState } from '../podcasts-state';
 import { useRecoilState } from 'recoil';
-
 import IconAdd from 'srcRoot/static/svg/icon-outline-add-collection.svg';
 import Button from 'srcRoot/pages/components/Button';
 import Input from 'srcRoot/pages/components/Input';
+import ERROR_CODE from 'srcRoot/utils/error-code';
+import LoadingV2 from 'srcRoot/pages/components/LoadingV2';
 
 interface Props {
   totalRecord: number;
   onReloadCollectionList: () => void;
+  onReloadAudioList: () => void;
 }
 const Title = (props: Props) => {
-  const [, setPopupGlobal] = useRecoilState(popupGlobalState);
-  const [__, setBackdrop] = useRecoilState(backdropState);
-
-  const { totalRecord, onReloadCollectionList } = props;
+  const [collection, setCollection] = useRecoilState<{ selected: [] } | {}>(collectionState);
+  const { totalRecord, onReloadCollectionList, onReloadAudioList } = props;
   const [text, setText] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const onOpenFormInput = useCallback(() => {
-    setBackdrop(true);
     PopoverManager.openPopover(PopupIdentities['ADD_COLLECTION']);
   }, []);
 
-  const onInputCollection = useCallback((e) => {
-    const txt = e.target.value;
-    if (txt.length > 20) return;
-    setText(txt);
-  }, []);
+  const handler = useMemo(() => {
+    if (collection['selected']?.length > 0) {
+      return {
+        title: `Thêm Vào Bộ Sưu Tập "${collection['selected'][0]?.collectionName}"`,
+        service: createMp3,
+        placeholder: 'https://youtu.be/...',
+        payload: { collectionId: collection['selected'][0]?.collectionId, url: text },
+
+        validator: (text: string) => {
+          return text.includes('https://youtu.be');
+        },
+        onAfterDone: onReloadAudioList,
+      };
+    }
+    return {
+      title: 'Thêm Bộ Sưu Tập Mới',
+      service: createCollection,
+      placeholder: 'Công Nghệ',
+      payload: { collectionName: text },
+      validator: (text: string) => {
+        return text.length < 20;
+      },
+      onAfterDone: onReloadCollectionList,
+    };
+  }, [collection, text]);
+
+  const onInputCollection = useCallback(
+    (e) => {
+      setError('');
+      const txt = e.target.value;
+      if (handler.validator(txt)) setText(txt);
+    },
+    [handler]
+  );
 
   const onAddCollection = useCallback(
     (e) => {
-      createCollection({ name: text })
+      setIsLoading(true);
+      handler
+        .service(handler.payload)
         .then((res) => {
           setText('');
+          setIsLoading(false);
+          setCollection([]);
+          handler.onAfterDone();
+
           PopoverManager.closePopover(PopupIdentities['ADD_COLLECTION']);
-          onReloadCollectionList();
         })
         .catch((err) => {
-          setText('');
-          PopoverManager.closePopover(PopupIdentities['ADD_COLLECTION']);
-          PopoverManager.openPopover(PopupIdentities['NOTI_ERROR']);
+          setIsLoading(false);
+
+          setError(ERROR_CODE[err.error_code]);
         });
     },
-    [text]
+    [text, handler]
   );
-
-  useEffect(() => {
-    PopoverManager.on('afterOpen', PopupIdentities['NOTI_ERROR'], () => {
-      setPopupGlobal({
-        type: NOTI_TYPE['ERROR_REQUEST'],
-        title: 'Lỗi tạo bộ sưu tập',
-        message: 'Tên bộ sưu tập đã tồn tại.',
-      });
-    });
-
-    PopoverManager.on('beforeClose', PopupIdentities['ADD_COLLECTION'], () => {
-      setBackdrop(false);
-    });
-
-    return () => {
-      PopoverManager.removeListener('afterOpen', PopupIdentities['NOTI_ERROR'], () => {
-        setPopupGlobal({
-          type: NOTI_TYPE['ERROR_REQUEST'],
-          title: 'Lỗi tạo bộ sưu tập',
-          message: 'Tên bộ sưu tập đã tồn tại.',
-        });
-      });
-
-      PopoverManager.on('beforeClose', PopupIdentities['ADD_COLLECTION'], () => {
-        setBackdrop(false);
-      });
-    };
-  }, []);
 
   return (
     <>
@@ -84,14 +91,36 @@ const Title = (props: Props) => {
           identity={PopupIdentities['ADD_COLLECTION']}
           content={
             <div className="popup-add-collection">
-              <span className="title">Nhập Tên Bộ Sưu Tập</span>
+              <span className="title">{handler.title}</span>
               <Input
                 style={{ margin: '16px 0px', width: '95%' }}
                 text={text}
-                placeholder="Công nghệ"
+                placeholder={handler.placeholder}
                 onChange={onInputCollection}
               />
-              <Button text="Tạo" disabled={Boolean(!text)} onClick={onAddCollection} />
+              {error && <span className="error">{`${error}!`}</span>}
+              <Button
+                text="Thêm"
+                disabled={Boolean(!text) || Boolean(error)}
+                onClick={onAddCollection}
+              />
+
+              {isLoading && (
+                <div className="loading">
+                  <LoadingV2
+                    show={isLoading}
+                    type="LOADING_ARTICLE"
+                    style={{
+                      width: '20px',
+                      height: '20px',
+                      border: '2px solid #E5EFFF',
+                      borderTop: '2px solid #0068FF',
+                      borderwidth: '2px',
+                      animation: 'loadingAnim 1s cubic-bezier(0, 0, 0, 0) infinite',
+                    }}
+                  />
+                </div>
+              )}
             </div>
           }
           style={{

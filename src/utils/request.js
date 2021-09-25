@@ -18,7 +18,7 @@ const HandleStatus = (response) => {
   if (status === 200 || status === 201 || status === 201) {
     return data;
   } else {
-    PopoverManager.openPopover(PopupIdentities['NOTI_ERROR']);
+    throw JSON.parse(data);
   }
 };
 axios.interceptors.request.use((config) => {
