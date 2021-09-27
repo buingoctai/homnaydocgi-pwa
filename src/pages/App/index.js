@@ -30,7 +30,7 @@ const App = () => {
     initServiceWorker();
     /* App Config */
     if (Date.now() < new Date(RELEASE_MENU_SIDBAR).getTime()) {
-      setPopupGlobal({ title: 'Hướng dẫn', message: 'Vuốt từ trái qua phải để mở menu.' });
+      setPopupGlobal({ title: 'Hướng dẫn', message: 'Nghe podcasts thú vị miễn phí. Vuốt từ trái -> phải để trải nghiệm.' });
       PopoverManager.openPopover(PopupIdentities['NOTI_GLOBAL']);
     }
 

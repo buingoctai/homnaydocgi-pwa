@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import CollectionComp from './collection-list/collection-list';
 import Search from './collection-search';
 import AudioComp from './audio-list/audio-list';
@@ -31,6 +31,7 @@ const Podcasts = () => {
     updateForce(Math.random());
   }, []);
 
+
   return (
     <>
       <div className="podcast-container ">
@@ -38,7 +39,7 @@ const Podcasts = () => {
         <CollectionComp searchTxt={searchTxt} onReloadAudioList={onReloadAudioList} />
         <AudioComp audioList={audioList || DEFAULT_AUDIO} />
       </div>
-      <MediaPlayer />
+      <MediaPlayer audioList = {audioList || DEFAULT_AUDIO}/>
     </>
   );
 };

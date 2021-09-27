@@ -3,12 +3,12 @@ import { Grid, AutoSizer } from 'react-virtualized';
 import CollectionItem from './collection-item';
 import useFetchData from 'srcRoot/Hooks/use-fetch-data';
 import { getAllCollection } from 'srcRoot/services/Podcasts';
-import { Collections } from 'srcRoot/enitities/Audio';
+import { Collections , Collection} from 'srcRoot/enitities/Audio';
 import Title from './collection-list-title';
 
 const DEFAULT: Collections = { data: [], totalRecord: 0 };
 const COLUMN_COUNT = 2;
-
+const DEBOUNCE_TIME = 400;
 interface Props {
   searchTxt: string;
   onReloadAudioList: (params: any) => void;
@@ -16,22 +16,22 @@ interface Props {
 const CollectionList = (props: Props) => {
   const { searchTxt, onReloadAudioList } = props;
   const [force, updateForce] = useState(0);
-
-  const timeoutReload = useRef(null);
+  const reloadRef = useRef(null);
 
   const payload = useMemo(() => {
-    // lỗi search txt: tìm cách skip lần render đầu để bỏ cái dk bên dưới
-    // lần render đần tiên run updateForce nên getAllAudioBook run thêm lần nũa
-    if (searchTxt) {
-      clearTimeout(timeoutReload.current);
-      timeoutReload.current = setTimeout(() => {
-        updateForce(Math.random());
-      }, 400);
-      return { searchTxt };
-    }
+    /** Force call api getAllCollection when search txt change
+     *  Skip first force because same with this calling when mounted
+     */
+    if(force === 0 && !searchTxt) return;
+
+    clearTimeout(reloadRef.current);
+    reloadRef.current = setTimeout(() => {
+      updateForce(Math.random());
+    }, DEBOUNCE_TIME);
+    return { searchTxt };
   }, [searchTxt]);
 
-  let { response, status } = useFetchData({
+  const { response:collections } = useFetchData({
     api: getAllCollection,
     payload: payload,
     retryOptions: { retries: 3, retryDelay: 300 },
@@ -39,43 +39,46 @@ const CollectionList = (props: Props) => {
     forceFetch: force,
   });
 
-  useEffect(() => {
-    const total = response['totalRecord'];
-    const collectionIds = response['data'].map((collection) => collection.collectionId);
-    if (total) onReloadAudioList({ collectionIds });
-  }, [response]);
-
+  /**
+   * Cached collectionIds when collections (call getAllCollection has changed collections)
+   */
   const collectionIds = useMemo(() => {
-    return response['data'].map((collection) => collection.collectionId);
-  }, [response]);
+    return collections['data'].map((collection: Collection) => collection.collectionId);
+  }, [collections]);
+
+  useEffect(() => {
+    const total = collections['totalRecord'];
+    const collectionIds = collections['data'].map((collection: Collection) => collection.collectionId);
+
+    if (total) onReloadAudioList({ collectionIds });
+  }, [collections]);
+
 
   return (
     <div className="collection-list">
       <Title
-        totalRecord={response['totalRecord']}
+        totalRecord={collections['totalRecord']}
         onReloadCollectionList={() => updateForce(Math.random())}
         onReloadAudioList={() => onReloadAudioList({ collectionIds })}
       />
-
       <div className="list-wrap">
         <AutoSizer>
           {({ width, height }) => {
             return (
               <Grid
-                cellRenderer={(params) => {
+                cellRenderer={(params: any) => {
                   const { columnIndex, key, rowIndex, style } = params;
 
                   return (
                     <CollectionItem
-                      keyItem={key}
+                      key={key}
                       style={style}
-                      data={response['data'][rowIndex * 2 + columnIndex]}
-                      index={rowIndex * 2 + columnIndex}
+                      data={collections['data'][rowIndex * 2 + columnIndex]}
                     />
                   );
                 }}
                 columnCount={COLUMN_COUNT}
-                rowCount={Math.ceil(response['totalRecord'] / COLUMN_COUNT)}
+                rowCount={Math.ceil(collections['totalRecord'] / COLUMN_COUNT)}
                 columnWidth={160}
                 rowHeight={80}
                 width={width}

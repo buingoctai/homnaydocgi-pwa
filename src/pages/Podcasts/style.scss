@@ -90,6 +90,13 @@
             & > img {
               border-radius: 10%;
             }
+            & > .play__btn {
+              position: absolute;
+              width: 30px;
+              height: 30px;
+              top: 15px;
+              left: 30px;
+            }
           }
           & > .name {
             font-size: 14px;

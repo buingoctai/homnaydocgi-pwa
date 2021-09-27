@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './style.scss';
 import { useRecoilState } from 'recoil';
-import { audioState } from '../podcasts-state';
+import { currentAudioState } from '../podcasts-state';
 import IconPlay from 'srcRoot/static/svg/icon-outline-play-btn.svg';
 import IconNext from 'srcRoot/static/svg/icon-outline-next-btn.svg';
 import IconPrevious from 'srcRoot/static/svg/icon-outline-previous-btn.svg';
 import IconPlaying from 'srcRoot/static/gif/icon-playing-gif.gif';
 import IconPause from 'srcRoot/static/svg/icon-outline-pause-btn.svg';
+import { AudioList } from 'srcRoot/enitities/Audio';
 
 const STATUS = {
   LOAED: 'LOADED',
@@ -15,9 +16,14 @@ const STATUS = {
   PLAYED: 'PLAYED',
   ERROR: 'ERROR',
 };
-const MediaPlayer = () => {
-  const [audio, setAudio] = useRecoilState(audioState);
-  const [selected] = audio['selected'] || [];
+interface Props {
+  audioList: AudioList | object;
+}
+const MediaPlayer = (props: Props) => {
+  const {audioList} = props;
+  const [currentAudio, setCurrentAudio] = useRecoilState(currentAudioState);
+  const [audio] = currentAudio['data'] || [];
+  const idx= currentAudio['idx'];
 
   const [status, setStatus] = useState('');
   const [time, setTime] = useState({ current: 0, duration: 1 });
@@ -25,7 +31,6 @@ const MediaPlayer = () => {
   const progressRef = useRef(null);
 
   const onCanPlayAudio = useCallback(() => {
-    console.log('can play');
     setTime({
       current: Math.ceil(playerRef.current.currentTime),
       duration: Math.ceil(playerRef.current.duration),
@@ -69,23 +74,25 @@ const MediaPlayer = () => {
   }, []);
 
   const onEndAudio = useCallback(() => {
-    setAudio([]);
-  }, []);
+    setCurrentAudio({data: [audioList['data'][idx + 1]], idx: idx + 1});
+  }, [idx]);
 
-  console.log('time change', time);
+  const onBackAudio = useCallback(()=>{
+    setCurrentAudio({data: [audioList['data'][idx - 1]], idx: idx - 1});
+  },[idx]);
 
-  return selected ? (
+  return audio ? (
     <div className="media-player-container">
       <div className="level-left">
         <img src={IconPlaying} />
       </div>
       <div className="level-center">
         <div className="media-action">
-          <img src={IconNext} className="action__btn" />
+          <img src={IconPrevious} className="action__btn" onClick ={onBackAudio}/>
           <div className="action__btn btn-wrapper">
             <img src={status === STATUS['PLAYING'] ? IconPause : IconPlay} onClick={onPlayAudio} />
           </div>
-          <img src={IconPrevious} className="action__btn" />
+          <img src={IconNext} className="action__btn" onClick ={onEndAudio}/>
         </div>
         <div className="media-progress">
           <span className="time">{secondsToHms(time.current)}</span>
@@ -104,14 +111,14 @@ const MediaPlayer = () => {
         </div>
       </div>
       <div className="level-right">
-        <img src={selected?.thumb} />
+        <img src={audio?.thumb} />
       </div>
       <audio
         id="media-player"
         ref={playerRef}
-        data-html5-video
+        audio-html5-video
         preload="auto"
-        src={selected?.url}
+        src={audio?.url}
         onCanPlay={onCanPlayAudio}
         onTimeUpdate={onTimeUpdateAudio}
         onEnded={onEndAudio}

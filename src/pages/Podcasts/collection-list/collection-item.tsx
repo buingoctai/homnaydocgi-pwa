@@ -3,15 +3,14 @@ import { Collection } from 'srcRoot/enitities/Audio';
 import { collectionState } from '../podcasts-state';
 import { useRecoilState } from 'recoil';
 
+const TOUCH_KEEP_TIME = 1500;
 interface Props {
-  keyItem: string | number;
+  key: string | number;
   style: object;
   data: Collection;
-  index: number;
 }
-
 const CollectionItem = (props: Props) => {
-  const { keyItem, style, data, index } = props;
+  const {style, data } = props;
   if (!data) return null;
 
   const [collection, setCollection] = useRecoilState(collectionState);
@@ -25,17 +24,23 @@ const CollectionItem = (props: Props) => {
     setCollection([]);
     timeoutRef.current = setTimeout(() => {
       setCollection([data]);
-    }, 1000);
+    }, TOUCH_KEEP_TIME);
   }, [data]);
 
   const handleEnd = useCallback(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
   }, []);
 
+  /**
+   * Prevent open context menu event on touch
+   */
+  useEffect(()=>{
+    document.body.addEventListener("contextmenu", function(evt){evt.preventDefault();return false;}); 
+  },[]);
+
   return (
     <div
       className="collection-item"
-      key={keyItem}
       style={style}
       ref={collectionRef}
       onTouchStart={handleStart}
