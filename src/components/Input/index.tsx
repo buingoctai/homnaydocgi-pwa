@@ -7,7 +7,9 @@ interface Props {
   className?: string;
   style?: object;
   autoFocus?: boolean;
+  disabled?: boolean;
   onChange?: (params: any) => any;
+  onBlur?: () => any;
 }
 
 const Input = (props: Props) => {
@@ -17,7 +19,9 @@ const Input = (props: Props) => {
     className = '',
     style = {},
     autoFocus = true,
+    disabled,
     onChange = () => {},
+    onBlur = () => {},
   } = props;
   return (
     <input
@@ -28,8 +32,10 @@ const Input = (props: Props) => {
       id="lname"
       name="lname"
       value={text}
+      disabled={disabled}
       autoFocus={autoFocus}
       onChange={onChange}
+      onBlur={onBlur}
     />
   );
 };

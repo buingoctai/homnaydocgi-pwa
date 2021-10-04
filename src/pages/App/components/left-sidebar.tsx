@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
-import Profile from 'srcRoot/pages/components/Profile';
+import Profile from 'srcRoot/components/Profile';
 import IconSearch from 'srcRoot/static/svg/icon-outline-search.svg';
+import IconFilter from 'srcRoot/static/svg/icon-outline-filter.svg';
 import IconHome from 'srcRoot/static/svg/icon-outline-home.svg';
 import IconPodcast from 'srcRoot/static/svg/icon-outline-podcast.svg';
 import IconSetting from 'srcRoot/static/svg/icon-outline-setting.svg';
@@ -89,21 +90,33 @@ const LeftSidebar = () => {
       identity={PopupIdentities['LEFT_SIDEBAR']}
       className="popup-anime-left-fade-in sidebar-container"
       content={
-        <div className="sidebar-wrap" onClick={() => PopoverManager.closeAllPopover()}>
+        <div className="sidebar-wrap">
           <div className="profile">
             <Profile avatarUrl={Me} email="taibn.dev@gmail.com" job="Working At Zalo" />
           </div>
           <div className="menu-wrap">
             <div>
-              <img src={IconSearch} />
-              <Link to="/">Tìm Kiếm</Link>
+              <img src={IconFilter} />
+              <Link
+                to="/"
+                onClick={() => {
+                  PopoverManager.closeAllPopover();
+                  PopoverManager.openPopover(PopupIdentities['FILTER_ARTICLE']);
+                }}
+              >
+                Lọc Bài Viết
+              </Link>
             </div>
             <div className="sperator" />
 
             <div>
               <img src={IconHome} width={20} height={20} />
 
-              <Link to="/" style={{ marginLeft: '10px' }}>
+              <Link
+                to="/"
+                style={{ marginLeft: '10px' }}
+                onClick={() => PopoverManager.closeAllPopover()}
+              >
                 Bài Viết
               </Link>
             </div>
@@ -112,14 +125,18 @@ const LeftSidebar = () => {
             <div>
               <img src={IconEvents} />
 
-              <Link to="/events">Sự Kiện</Link>
+              <Link to="/events" onClick={() => PopoverManager.closeAllPopover()}>
+                Sự Kiện
+              </Link>
             </div>
             <div className="sperator" />
 
             <div>
               <img src={IconPodcast} />
 
-              <Link to="/podcasts">Podcast</Link>
+              <Link to="/podcasts" onClick={() => PopoverManager.closeAllPopover()}>
+                Podcast
+              </Link>
             </div>
             <div className="sperator" />
 

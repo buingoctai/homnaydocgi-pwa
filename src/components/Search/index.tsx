@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from 'srcRoot/pages/components/Input';
+import Input from 'srcRoot/components/Input';
 import IconSearch from 'srcRoot/static/svg/icon-outline-search-v2.svg';
 
 import './style.scss';

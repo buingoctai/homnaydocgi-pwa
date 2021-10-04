@@ -1,8 +1,8 @@
 import { requestPost, requestGet } from 'srcRoot/utils/request';
 
 export const getAllPost = (param) => {
-  return requestGet(`${process.env.API_BASE}/blog/allPost`, {
-    method: 'GET',
+  return requestPost(`${process.env.API_BASE}/blog/allPost`, {
+    method: 'POST',
     data: { ...param },
   });
 };

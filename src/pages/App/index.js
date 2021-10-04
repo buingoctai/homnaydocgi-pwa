@@ -20,7 +20,7 @@ import HCommon from 'srcRoot/utils/log-system';
 import './style.scss';
 import 'srcRoot/static/scss/color.scss';
 
-// import MarkdownApp from 'srcRoot/pages/components/ExampleMarkdown';
+// import MarkdownApp from 'srcRoot/components/ExampleMarkdown';
 
 const App = () => {
   const [, setPopupGlobal] = useRecoilState(popupGlobalState);
@@ -30,7 +30,10 @@ const App = () => {
     initServiceWorker();
     /* App Config */
     if (Date.now() < new Date(RELEASE_MENU_SIDBAR).getTime()) {
-      setPopupGlobal({ title: 'Hướng dẫn', message: 'Nghe podcasts thú vị miễn phí. Vuốt từ trái -> phải để trải nghiệm.' });
+      setPopupGlobal({
+        title: 'Hướng dẫn',
+        message: 'Nghe podcasts thú vị miễn phí. Vuốt từ trái -> phải để trải nghiệm.',
+      });
       PopoverManager.openPopover(PopupIdentities['NOTI_GLOBAL']);
     }
 
@@ -44,6 +47,8 @@ const App = () => {
     });
     ///////////////
   }, []);
+
+  console.log('taibnlogs re-render root');
 
   return (
     <Suspense fallback={<LoadingLazyComp />}>

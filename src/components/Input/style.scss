@@ -1,0 +1,11 @@
+.txt__entry__input {
+  width: calc(100% - 22px);
+  height: 25px;
+  // margin:16px 0px ;
+  border: 1px solid var(--grey-base);
+  padding: 4px 11px !important;
+}
+
+*:focus {
+  outline: none;
+}

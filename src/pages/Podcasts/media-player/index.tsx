@@ -20,10 +20,10 @@ interface Props {
   audioList: AudioList | object;
 }
 const MediaPlayer = (props: Props) => {
-  const {audioList} = props;
+  const { audioList } = props;
   const [currentAudio, setCurrentAudio] = useRecoilState(currentAudioState);
   const [audio] = currentAudio['data'] || [];
-  const idx= currentAudio['idx'];
+  const idx = currentAudio['idx'];
 
   const [status, setStatus] = useState('');
   const [time, setTime] = useState({ current: 0, duration: 1 });
@@ -74,12 +74,12 @@ const MediaPlayer = (props: Props) => {
   }, []);
 
   const onEndAudio = useCallback(() => {
-    setCurrentAudio({data: [audioList['data'][idx + 1]], idx: idx + 1});
+    setCurrentAudio({ data: [audioList['data'][idx + 1]], idx: idx + 1 });
   }, [idx]);
 
-  const onBackAudio = useCallback(()=>{
-    setCurrentAudio({data: [audioList['data'][idx - 1]], idx: idx - 1});
-  },[idx]);
+  const onBackAudio = useCallback(() => {
+    setCurrentAudio({ data: [audioList['data'][idx - 1]], idx: idx - 1 });
+  }, [idx]);
 
   return audio ? (
     <div className="media-player-container">
@@ -88,11 +88,11 @@ const MediaPlayer = (props: Props) => {
       </div>
       <div className="level-center">
         <div className="media-action">
-          <img src={IconPrevious} className="action__btn" onClick ={onBackAudio}/>
+          <img src={IconPrevious} className="action__btn" onClick={onBackAudio} />
           <div className="action__btn btn-wrapper">
             <img src={status === STATUS['PLAYING'] ? IconPause : IconPlay} onClick={onPlayAudio} />
           </div>
-          <img src={IconNext} className="action__btn" onClick ={onEndAudio}/>
+          <img src={IconNext} className="action__btn" onClick={onEndAudio} />
         </div>
         <div className="media-progress">
           <span className="time">{secondsToHms(time.current)}</span>

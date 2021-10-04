@@ -1,0 +1,43 @@
+.tag {
+    box-sizing: border-box;
+    margin: 0 8px 0 0;
+    color: #000000d9;
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    font-feature-settings: "tnum";
+    display: inline-block;
+    height: auto;
+    padding: 0 7px;
+    font-size: 12px;
+    line-height: 20px;
+    white-space: nowrap;
+    background: #fafafa;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    opacity: 1;
+    transition: all .3s;
+    width: auto;
+    max-width: 80px;
+    &.magenta {
+        color: #c41d7f;
+        background: #fff0f6;
+        border-color: #ffadd2;
+    }
+    &.red {
+        color: #cf1322;
+    background: #fff1f0;
+    border-color: #ffa39e;
+    }
+    &.volcano {
+        color: #d4380d;
+    background: #fff2e8;
+    border-color: #ffbb96;
+    }
+    &.blue {
+        color: #096dd9;
+    background: #e6f7ff;
+    border-color: #91d5ff;
+    }
+}

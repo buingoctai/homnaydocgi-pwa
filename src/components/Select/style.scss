@@ -1,0 +1,54 @@
+.select-wrap {
+  width: 200px;
+  & > .input-wrap {
+    position: relative;
+    user-select: none;
+    & > img {
+      position: absolute;
+      top: 4px;
+      right: 6px;
+      height: 26px;
+      width: 26px;
+      transition: transform 400ms;
+    }
+    // & > .anime-icon {
+    //     transform: rotate(180deg);
+    // }
+
+    // &.focusing {
+    //     & > input {
+    //         border-color: #40a9ff;
+    //         box-shadow: 0 0 0 2px rgba(24, 144, 255, .2);
+    //         outline: 0;
+    //     }
+    // }
+  }
+  // &.focusing {
+  //     & > .input-wrap {
+  //         & > input {
+  //             border-color: #40a9ff;
+  //             box-shadow: 0 0 0 2px rgba(24, 144, 255, .2);
+  //             outline: 0;
+  //         }
+
+  //     }
+  // }
+}
+
+.select-wrap__pop {
+    height: 100%;
+    & >.select-wrap__option {
+        height: 100%;
+        overflow: auto;
+        & > .option__item {
+          display: inherit;
+          font-size: 14px;
+          color: var(--neutral-500);
+          line-height: 26px;
+          &.selected {
+            opacity: 0.5;
+          }
+        }
+      } 
+}
+

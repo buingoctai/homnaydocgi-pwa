@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingV2 from 'srcRoot/pages/components/LoadingV2';
+import LoadingV2 from 'srcRoot/components/LoadingV2';
 
 const LoadingLazyComp = () => (
   <div

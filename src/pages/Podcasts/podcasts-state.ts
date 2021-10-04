@@ -8,7 +8,7 @@ const defaultData = {
     currentAudio: {
       data: [],
       idx: null,
-    }
+    },
   },
 };
 
@@ -30,7 +30,6 @@ export const collectionState = selector({
   },
 });
 
-
 export const audioState = selector({
   key: 'audio',
   get: ({ get }) => {
@@ -45,7 +44,6 @@ export const audioState = selector({
   },
 });
 
-
 export const currentAudioState = selector({
   key: 'currentAudio',
   get: ({ get }) => {
@@ -56,9 +54,6 @@ export const currentAudioState = selector({
   set: ({ get, set }, newValue) => {
     const podcasts = get(podcastsState);
 
-    set(podcastsState, { ...podcasts, audio: {currentAudio : newValue} });
+    set(podcastsState, { ...podcasts, audio: { currentAudio: newValue } });
   },
 });
-
-
-

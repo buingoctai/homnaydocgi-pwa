@@ -1,5 +1,5 @@
 import React from 'react';
-import EnhancerVisible from '../../../animations/enhancer-visible';
+import EnhancerVisible from '../../animations/enhancer-visible';
 import './style.scss';
 
 function Loading({

@@ -5,8 +5,8 @@ import { popupGlobalState, backdropState } from 'srcRoot/recoil/appState';
 import { useRecoilState } from 'recoil';
 
 import IconAdd from 'srcRoot/static/svg/icon-outline-add-collection.svg';
-import Button from 'srcRoot/pages/components/Button';
-import Input from 'srcRoot/pages/components/Input';
+import Button from 'srcRoot/components/Button';
+import Input from 'srcRoot/components/Input';
 
 interface Props {
   onReadMore: () => void;

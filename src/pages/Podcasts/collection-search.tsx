@@ -1,5 +1,5 @@
 import React from 'react';
-import Search from 'srcRoot/pages/components/Search';
+import Search from 'srcRoot/components/Search';
 
 interface Props {
   searchTxt: string;

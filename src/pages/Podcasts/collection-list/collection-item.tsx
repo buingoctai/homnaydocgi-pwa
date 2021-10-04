@@ -10,7 +10,7 @@ interface Props {
   data: Collection;
 }
 const CollectionItem = (props: Props) => {
-  const {style, data } = props;
+  const { style, data } = props;
   if (!data) return null;
 
   const [collection, setCollection] = useRecoilState(collectionState);
@@ -34,9 +34,12 @@ const CollectionItem = (props: Props) => {
   /**
    * Prevent open context menu event on touch
    */
-  useEffect(()=>{
-    document.body.addEventListener("contextmenu", function(evt){evt.preventDefault();return false;}); 
-  },[]);
+  useEffect(() => {
+    document.body.addEventListener('contextmenu', function (evt) {
+      evt.preventDefault();
+      return false;
+    });
+  }, []);
 
   return (
     <div

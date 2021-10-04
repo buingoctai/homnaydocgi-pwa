@@ -8,6 +8,9 @@ const PopupIdentities = {
   ADD_COLLECTION: { windowId: '1', name: 'add-collection' },
   ADD_AUDIO: { windowId: '1', name: 'add-audio' },
   CHECK_PASS: { windowId: '1', name: 'check-pass' },
+  FILTER_ARTICLE: { windowId: '1', name: 'filter-article' },
+  DROPDOWN_AUTHOR: { windowId: '1', name: 'dropdown-author' },
+  DROPDOWN_TOPIC: { windowId: '1', name: 'dropdown-topic' },
 };
 
 const NOTI_TYPE = {

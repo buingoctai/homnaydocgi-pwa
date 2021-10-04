@@ -2,7 +2,7 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import CollectionComp from './collection-list/collection-list';
 import Search from './collection-search';
 import AudioComp from './audio-list/audio-list';
-import useFetchData from 'srcRoot/Hooks/use-fetch-data';
+import useFetchData from 'srcRoot/hooks/use-fetch-data';
 import { getAllAudio } from 'srcRoot/services/Podcasts';
 import { AudioList } from 'srcRoot/enitities/Audio';
 import MediaPlayer from './media-player';
@@ -31,7 +31,6 @@ const Podcasts = () => {
     updateForce(Math.random());
   }, []);
 
-
   return (
     <>
       <div className="podcast-container ">
@@ -39,7 +38,7 @@ const Podcasts = () => {
         <CollectionComp searchTxt={searchTxt} onReloadAudioList={onReloadAudioList} />
         <AudioComp audioList={audioList || DEFAULT_AUDIO} />
       </div>
-      <MediaPlayer audioList = {audioList || DEFAULT_AUDIO}/>
+      <MediaPlayer audioList={audioList || DEFAULT_AUDIO} />
     </>
   );
 };

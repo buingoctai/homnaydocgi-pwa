@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { useDetailArticle } from 'srcRoot/Hooks/use-fetch-article';
+import { useDetailArticle } from 'srcRoot/hooks/use-fetch-article';
 import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { PopupIdentities, NOTI_TYPE } from 'srcRoot/utils/constants';
 import { popupGlobalState, backdropState } from 'srcRoot/recoil/appState';

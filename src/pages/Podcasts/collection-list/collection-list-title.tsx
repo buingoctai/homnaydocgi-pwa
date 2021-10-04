@@ -5,10 +5,10 @@ import { createCollection, createMp3 } from 'srcRoot/services/Podcasts';
 import { collectionState } from '../podcasts-state';
 import { useRecoilState } from 'recoil';
 import IconAdd from 'srcRoot/static/svg/icon-outline-add-collection.svg';
-import Button from 'srcRoot/pages/components/Button';
-import Input from 'srcRoot/pages/components/Input';
+import Button from 'srcRoot/components/Button';
+import Input from 'srcRoot/components/Input';
 import ERROR_CODE from 'srcRoot/utils/error-code';
-import LoadingV2 from 'srcRoot/pages/components/LoadingV2';
+import LoadingV2 from 'srcRoot/components/LoadingV2';
 
 interface Props {
   totalRecord: number;
@@ -93,7 +93,12 @@ const Title = (props: Props) => {
             <div className="popup-add-collection">
               <span className="title">{handler.title}</span>
               <Input
-                style={{ margin: '16px 0px', width: '95%' }}
+                style={{
+                  margin: '16px 0px',
+                  borderTop: 'none',
+                  borderLeft: 'none',
+                  borderRight: 'none',
+                }}
                 text={text}
                 placeholder={handler.placeholder}
                 onChange={onInputCollection}
