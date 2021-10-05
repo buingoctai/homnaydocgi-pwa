@@ -8,6 +8,8 @@ import IconHome from 'srcRoot/static/svg/icon-outline-home.svg';
 import IconPodcast from 'srcRoot/static/svg/icon-outline-podcast.svg';
 import IconSetting from 'srcRoot/static/svg/icon-outline-setting.svg';
 import IconEvents from 'srcRoot/static/svg/icon-outline-events.svg';
+import IconChat from 'srcRoot/static/svg/icon-outline-chat.svg';
+
 import Me from 'srcRoot/static/image/me.jpg';
 import { PopupIdentities } from 'srcRoot/utils/constants';
 import { useRecoilState } from 'recoil';
@@ -139,7 +141,11 @@ const LeftSidebar = () => {
               </Link>
             </div>
             <div className="sperator" />
-
+            <div>
+              <img src={IconChat} />
+              <Link to="/chat" onClick={() => PopoverManager.closeAllPopover()}>Chat</Link>
+            </div>
+            <div className="sperator" />
             <div>
               <img src={IconSetting} />
               <Link to="/">Cài Đặt</Link>

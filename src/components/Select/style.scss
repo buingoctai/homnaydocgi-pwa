@@ -36,19 +36,18 @@
 }
 
 .select-wrap__pop {
+  height: 100%;
+  & > .select-wrap__option {
     height: 100%;
-    & >.select-wrap__option {
-        height: 100%;
-        overflow: auto;
-        & > .option__item {
-          display: inherit;
-          font-size: 14px;
-          color: var(--neutral-500);
-          line-height: 26px;
-          &.selected {
-            opacity: 0.5;
-          }
-        }
-      } 
+    overflow: auto;
+    & > .option__item {
+      display: inherit;
+      font-size: 14px;
+      color: var(--neutral-500);
+      line-height: 26px;
+      &.selected {
+        opacity: 0.5;
+      }
+    }
+  }
 }
-

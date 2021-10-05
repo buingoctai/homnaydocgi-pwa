@@ -8,6 +8,7 @@ import LoadingLazyComp from './components/loading-lazy-comp';
 const Article = React.lazy(() => import('srcRoot/pages/Article'));
 const Podcasts = React.lazy(() => import('srcRoot/pages/Podcasts'));
 const Events = React.lazy(() => import('srcRoot/pages/Events'));
+const Chat = React.lazy(() => import('srcRoot/pages/Chat'));
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 const LeftSidebar = React.lazy(() => import('./components/left-sidebar'));
@@ -63,6 +64,7 @@ const App = () => {
         />
         <Route path="/events" render={(props) => <Events {...props} />} />
         <Route path="/podcasts" render={(props) => <Podcasts {...props} />} />
+        <Route path="/chat" render={(props) => <Chat {...props} />} />
       </Router>
       {backdrop && <div className="backdrop"></div>}
     </Suspense>

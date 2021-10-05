@@ -47,16 +47,14 @@ $fullHeight: 100%;
   justify-content: center;
   flex-direction: column;
   & > .selected-area {
-    
     & > .title {
       color: var(--dark-grey-400);
       font-size: 16px;
       font-weight: var(--semibold);
       margin-right: 8px;
     }
-   
-    & > .selected {
 
+    & > .selected {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -74,7 +72,7 @@ $fullHeight: 100%;
       font-size: 16px;
       font-weight: var(--semibold);
     }
-   
+
     & > .options {
       display: flex;
       flex-direction: column;

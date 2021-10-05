@@ -10,7 +10,7 @@ const Title = (props: Props) => {
     <div className="title-wrap">
       <div className="title__intro">
         <span>Thêm Vào Home Screen</span>
-        <span>Sử dụng như một ứng dụng mobile.</span>
+        <span>Nhắn tin, gửi ảnh gọn nhẹ.</span>
       </div>
       <div className="btn__install">
         <a onClick={onInstall}>Cài đặt ngay</a>

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { PopupIdentities } from 'srcRoot/utils/constants';
 import Input from 'srcRoot/components/Input';
-import Options, {Option} from './options';
+import Options, { Option } from './options';
 import { buildClassName } from 'srcRoot/utils/index-v2';
 import IconDropdown from 'srcRoot/static/svg/icon-outline-dropdown.svg';
 
@@ -13,12 +13,18 @@ const WIDTH_DROPDOWN = 120;
 interface Props {
   identity: { windowId: string; name: string };
   options?: Array<Option>;
-  selectedIdxs?:Array<number>;
+  selectedIdxs?: Array<number>;
   placeholder?: Option;
   onSelectOption?: (selection: any) => any;
 }
 const Select = (props: Props) => {
-  const { identity, options, selectedIdxs: _selectedIdxs,placeholder = { key: 'all', idx:  null, name: 'Tất cả' } ,onSelectOption } = props;
+  const {
+    identity,
+    options,
+    selectedIdxs: _selectedIdxs,
+    placeholder = { key: 'all', idx: null, name: 'Tất cả' },
+    onSelectOption,
+  } = props;
   const inputRef = useRef(null);
   const [selectedIdxs, setSelectedIdxs] = useState<Array<number>>(_selectedIdxs);
   const [focusing, setFocusing] = useState(false);
@@ -53,36 +59,52 @@ const Select = (props: Props) => {
     return buildClassName(focusing && 'anime-icon');
   }, [focusing]);
 
-  const _onSelectOption = useCallback((newIdx: number) => {
-    setSelectedIdxs([...selectedIdxs,newIdx]);
-    onSelectOption([...selectedIdxs,newIdx]);
-  }, [selectedIdxs]);
+  const _onSelectOption = useCallback(
+    (newIdx: number) => {
+      setSelectedIdxs([...selectedIdxs, newIdx]);
+      onSelectOption([...selectedIdxs, newIdx]);
+    },
+    [selectedIdxs]
+  );
 
-  const onUnSelectOption = useCallback((newIdxs: Array<number>) => {
-    setSelectedIdxs([...newIdxs]);
-    onSelectOption([...newIdxs]);
-  }, [selectedIdxs]);
+  const onUnSelectOption = useCallback(
+    (newIdxs: Array<number>) => {
+      setSelectedIdxs([...newIdxs]);
+      onSelectOption([...newIdxs]);
+    },
+    [selectedIdxs]
+  );
 
-  const genPlaceholder = useCallback(():string=> {
-    if(selectedIdxs.length === 0) return placeholder.name;
-    
-    const last = options[selectedIdxs[selectedIdxs.length-1]];
-    if(selectedIdxs.length === 1) return `${last.name}`;
-    return `${last.name} +${selectedIdxs.length-1} khác`;
-  },[selectedIdxs]);
+  const genPlaceholder = useCallback((): string => {
+    if (selectedIdxs.length === 0) return placeholder.name;
+
+    const last = options[selectedIdxs[selectedIdxs.length - 1]];
+    if (selectedIdxs.length === 1) return `${last.name}`;
+    return `${last.name} +${selectedIdxs.length - 1} khác`;
+  }, [selectedIdxs]);
 
   return (
     <div className="select-wrap">
       <div ref={inputRef} className={inputWrapClassName} onClick={handleOptions}>
-        <Input text={genPlaceholder()} disabled={true} className = 'truncate' onBlur={() => setFocusing(false)} />
+        <Input
+          text={genPlaceholder()}
+          disabled={true}
+          className="truncate"
+          onBlur={() => setFocusing(false)}
+        />
         <img src={IconDropdown} className={iconClassName} />
       </div>
       <div>
         <Popover
           identity={identity}
           content={
-            <div className = 'select-wrap__pop'>
-              <Options options={options} selectedIdxs={selectedIdxs} onSelect={_onSelectOption} onUnSelect= {onUnSelectOption}/>
+            <div className="select-wrap__pop">
+              <Options
+                options={options}
+                selectedIdxs={selectedIdxs}
+                onSelect={_onSelectOption}
+                onUnSelect={onUnSelectOption}
+              />
             </div>
           }
           anchorEl={inputRef.current}
@@ -95,4 +117,4 @@ const Select = (props: Props) => {
 
 export default Select;
 
-export {Option};
+export { Option };

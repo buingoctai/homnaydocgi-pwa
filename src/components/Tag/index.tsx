@@ -4,15 +4,13 @@ import { buildClassName } from 'srcRoot/utils/index-v2';
 import './style.scss';
 
 interface Props {
-    color?: string | 'magenta' | 'red' | 'volcano' | 'blue',
-    text: string,
+  color?: string | 'magenta' | 'red' | 'volcano' | 'blue';
+  text: string;
 }
-const Tag = (props:Props) => {
-    const {text = '',color = 'magenta'} = props;
+const Tag = (props: Props) => {
+  const { text = '', color = 'magenta' } = props;
 
-    return (<span className = {buildClassName('tag','truncate',color)}>
-        {text}
-    </span>);
-}
+  return <span className={buildClassName('tag', 'truncate', color)}>{text}</span>;
+};
 
 export default Tag;

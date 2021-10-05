@@ -11,6 +11,7 @@ const PopupIdentities = {
   FILTER_ARTICLE: { windowId: '1', name: 'filter-article' },
   DROPDOWN_AUTHOR: { windowId: '1', name: 'dropdown-author' },
   DROPDOWN_TOPIC: { windowId: '1', name: 'dropdown-topic' },
+  CHAT_SETTING: { windowId: '1', name: 'chat-setting' },
 };
 
 const NOTI_TYPE = {
