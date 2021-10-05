@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Grid, AutoSizer } from 'react-virtualized';
 import CollectionItem from './collection-item';
-import useFetchData from 'srcRoot/hooks/use-fetch-data';
+import useFetchData from 'srcRoot/Hooks/use-fetch-data';
 import { getAllCollection } from 'srcRoot/services/Podcasts';
 import { Collections, Collection } from 'srcRoot/enitities/Audio';
 import Title from './collection-list-title';

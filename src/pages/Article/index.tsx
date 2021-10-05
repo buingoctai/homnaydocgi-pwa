@@ -6,7 +6,7 @@ import Content from './components/content';
 import Filter from './components/filter';
 import SkeletonV2 from 'srcRoot/components/SkeletonV2';
 import LoadingV2 from 'srcRoot/components/LoadingV2';
-import useFetchData from 'srcRoot/hooks/use-fetch-data';
+import useFetchData from 'srcRoot/Hooks/use-fetch-data';
 import { getAllPost } from 'srcRoot/services/Article';
 import './style.scss';
 
