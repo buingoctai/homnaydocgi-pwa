@@ -13,3 +13,18 @@ export const getDetailPost = (param) => {
     data: { ...param },
   });
 };
+
+
+export const getAllTopic = (param) => {
+  return requestGet(`${process.env.API_BASE}/blog/getAllTopic`, {
+    method: 'GET',
+    data: { ...param },
+  });
+};
+
+export const getAllAuthor = (param) => {
+  return requestGet(`${process.env.API_BASE}/blog/getAllAuthor`, {
+    method: 'GET',
+    data: { ...param },
+  });
+};

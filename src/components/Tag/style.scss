@@ -19,7 +19,15 @@
   opacity: 1;
   transition: all 0.3s;
   width: auto;
-  max-width: 80px;
+  &.s {
+    max-width: 80px;
+  }
+  &.m {
+    max-width: 120px;
+  }
+  &.l {
+    max-width: 160px;
+  }
   &.magenta {
     color: #c41d7f;
     background: #fff0f6;

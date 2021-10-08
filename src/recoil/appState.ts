@@ -15,6 +15,7 @@ const defaultData = {
     timeout: null,
   },
   showBackdrop: false,
+  filterArticle: null
 };
 
 const appState = atom({
@@ -63,3 +64,19 @@ export const backdropState = selector({
     set(appState, { ...app, showBackdrop: newValue });
   },
 });
+
+
+export const filterArticleState = selector({
+  // newListState này sẽ chứa danh sách các action có trạng thái là new.
+  key: 'filterArticle',
+  get: ({ get }) => {
+    const app = get(appState); // đây là cách để lấy cả list todo đã tạo với atom ở bước trên.
+    return app.filterArticle; // chọn và trả về những thằng có status là new.
+  },
+  set: ({ get, set }, newValue) => {
+    const app = get(appState);
+
+    set(appState, { ...app, filterArticle: newValue });
+  },
+});
+

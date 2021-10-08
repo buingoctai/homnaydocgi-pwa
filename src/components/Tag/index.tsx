@@ -6,11 +6,12 @@ import './style.scss';
 interface Props {
   color?: string | 'magenta' | 'red' | 'volcano' | 'blue';
   text: string;
+  size?: 's' | 'm' | 'l';
 }
 const Tag = (props: Props) => {
-  const { text = '', color = 'magenta' } = props;
+  const { text = '', color = 'magenta',size = 'm' } = props;
 
-  return <span className={buildClassName('tag', 'truncate', color)}>{text}</span>;
+  return <span className={buildClassName('tag', 'truncate', color, size)}>{text}</span>;
 };
 
 export default Tag;

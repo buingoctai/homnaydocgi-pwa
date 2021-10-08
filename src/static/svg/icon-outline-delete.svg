@@ -1,0 +1,9 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="delete">
+<path id="Rectangle 2" d="M19 18.5H9.82843C9.4306 18.5 9.04907 18.342 8.76777 18.0607L2.70711 12L8.76777 5.93934C9.04907 5.65804 9.4306 5.5 9.82843 5.5H19C20.3807 5.5 21.5 6.61929 21.5 8V16C21.5 17.3807 20.3807 18.5 19 18.5Z" stroke="#666F76" stroke-linejoin="bevel"/>
+<g id="bell">
+<path id="Path 2" d="M15.8856 13.8856L12.1144 10.1144" stroke="#666F76" stroke-linecap="round"/>
+<path id="Path 2_2" d="M15.8856 10.1144L12.1144 13.8856" stroke="#666F76" stroke-linecap="round"/>
+</g>
+</g>
+</svg>

@@ -46,12 +46,18 @@ $fullHeight: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  width: 300px;
   & > .selected-area {
     & > .title {
       color: var(--dark-grey-400);
       font-size: 16px;
       font-weight: var(--semibold);
       margin-right: 8px;
+    }
+    & > .empty {
+      font-size: 14px;
+      font-style: italic;
+      font-weight: var(--medium);
     }
 
     & > .selected {
@@ -67,11 +73,17 @@ $fullHeight: 100%;
     display: flex;
     flex-direction: column;
 
-    & > .title {
-      color: var(--dark-grey-400);
-      font-size: 16px;
-      font-weight: var(--semibold);
+    & > .title-wrap {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      & > .title {
+        color: var(--dark-grey-400);
+        font-size: 16px;
+        font-weight: var(--semibold);
+      }
     }
+   
 
     & > .options {
       display: flex;
@@ -81,6 +93,12 @@ $fullHeight: 100%;
       & > :nth-child(2) {
         margin: 6px 0px;
       }
+      & > .btn__filter {
+        width: 51px;
+        height: 32px;
+        font-size: 16px;
+        margin-top: 10px;
+      } 
     }
   }
 }
