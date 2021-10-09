@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { List, AutoSizer, CellMeasurer, CellMeasurerCache } from 'react-virtualized';
-import { useLocation } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { filterArticleState } from 'srcRoot/recoil/appState';
 import Header from './components/header';
 import Content from './components/content';
 import Filter from './components/filter';
@@ -17,18 +18,20 @@ var heightStore = new CellMeasurerCache({
 
 const Article = ({ headArticle }) => {
   const [readedList, setReadedList] = useState({});
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState({ number: 1 });
+  const filter = useRecoilValue(filterArticleState);
   const cached = useRef({ data: [], totalRecord: 0 });
   const listRef = useRef(null);
 
   const payload = useMemo(() => {
     return {
-      paging: { pageIndex: page, pageSize: 6 },
+      paging: { pageIndex: page.number, pageSize: 6 },
       orderList: { orderBy: 'SubmitDate', orderType: 'DESC' },
       headArticle: headArticle,
       found: false,
+      filter,
     };
-  }, [page]);
+  }, [page, filter]);
 
   const { response, status } = useFetchData({
     api: getAllPost,
@@ -36,6 +39,19 @@ const Article = ({ headArticle }) => {
     retryOptions: { retries: 3, retryDelay: 300 },
     forceFetch: page,
   });
+
+  // cached.current = useMemo(() => {
+  //   console.log('taibnlog xóa cached on change filter');
+
+  //   return { data: [], totalRecord: 0 };
+  // },[filter]);
+
+  useEffect(() => {
+    if (filter) {
+      cached.current = { data: [], totalRecord: 0 };
+      setPage({ number: 1 });
+    }
+  }, [filter]);
 
   const { data, totalRecord } = useMemo(() => {
     if (response)
@@ -59,7 +75,7 @@ const Article = ({ headArticle }) => {
       if (!event) return;
       const isScrollBottom = event.scrollTop + window.innerHeight >= event.scrollHeight - 10;
 
-      if (isScrollBottom && !isLoading) setPage(page + 1);
+      if (isScrollBottom && !isLoading) setPage({ number: page.number + 1 });
     },
     [page, isLoading]
   );

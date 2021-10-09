@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useRef } from 'react';
-import './style.scss';
 import { buildClassName } from 'srcRoot/utils/index-v2';
+import './style.scss';
 
 interface Option {
   key: string;

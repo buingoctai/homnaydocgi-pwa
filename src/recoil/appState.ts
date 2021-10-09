@@ -15,7 +15,7 @@ const defaultData = {
     timeout: null,
   },
   showBackdrop: false,
-  filterArticle: null
+  filterArticle: null,
 };
 
 const appState = atom({
@@ -65,7 +65,6 @@ export const backdropState = selector({
   },
 });
 
-
 export const filterArticleState = selector({
   // newListState này sẽ chứa danh sách các action có trạng thái là new.
   key: 'filterArticle',
@@ -79,4 +78,3 @@ export const filterArticleState = selector({
     set(appState, { ...app, filterArticle: newValue });
   },
 });
-

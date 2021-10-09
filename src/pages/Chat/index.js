@@ -29,13 +29,13 @@ const Chat = () => {
           return ReactDOM.createPortal(
             <div className="pop-setting">
               <div className="chat-setting-container">
-                <span className='title-status-pop'>User Status</span>
+                <span className="title-status-pop">User Status</span>
                 {userStatus.map((item) => (
                   <div className="user">
                     <div className="avatar">
-                      <img src={item.avatar} loading='lazy'/>
+                      <img src={item.avatar} loading="lazy" />
                     </div>
-                   {item.is_online && ( <span className="status"></span>)}
+                    {item.is_online && <span className="status"></span>}
                     <span className="name">{`${item.first_name} ${item.last_name}`}</span>
                   </div>
                 ))}

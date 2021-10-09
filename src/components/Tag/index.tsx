@@ -9,7 +9,7 @@ interface Props {
   size?: 's' | 'm' | 'l';
 }
 const Tag = (props: Props) => {
-  const { text = '', color = 'magenta',size = 'm' } = props;
+  const { text = '', color = 'magenta', size = 'm' } = props;
 
   return <span className={buildClassName('tag', 'truncate', color, size)}>{text}</span>;
 };

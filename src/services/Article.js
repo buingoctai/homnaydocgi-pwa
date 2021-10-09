@@ -14,7 +14,6 @@ export const getDetailPost = (param) => {
   });
 };
 
-
 export const getAllTopic = (param) => {
   return requestGet(`${process.env.API_BASE}/blog/getAllTopic`, {
     method: 'GET',

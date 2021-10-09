@@ -104,28 +104,27 @@
   transform: translate(-50%, -50%);
   position: absolute;
 
-
   margin: 0;
-    color: rgba(0, 0, 0, 0.85);
-    font-size: 14px;
-    font-variant: tabular-nums;
-    line-height: 1.5715;
-    list-style: none;
-    position: absolute;
-    font-weight: 400;
-    white-space: normal;
-    text-align: left;
-    cursor: auto;
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-    background: #ffff;
-    padding: 8px;
-    border-radius: 4px;
-    z-index: 9999;
-    box-shadow: 0 0 10px 0 rgb(0 0 0 / 18%);
-    border: 1px solid #e1e4ea;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  position: absolute;
+  font-weight: 400;
+  white-space: normal;
+  text-align: left;
+  cursor: auto;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  background: #ffff;
+  padding: 8px;
+  border-radius: 4px;
+  z-index: 9999;
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / 18%);
+  border: 1px solid #e1e4ea;
 
   & > .chat-setting-container {
     display: flex;
@@ -149,9 +148,8 @@
           height: 40px;
           border-radius: 50%;
         }
-        
       }
-      & >.status {
+      & > .status {
         width: 10px;
         height: 10px;
         border-radius: 50%;

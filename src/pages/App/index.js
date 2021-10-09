@@ -32,8 +32,8 @@ const App = () => {
     /* App Config */
     if (Date.now() < new Date(RELEASE_MENU_SIDBAR).getTime()) {
       setPopupGlobal({
-        title: 'Hướng dẫn',
-        message: 'Nghe podcasts thú vị miễn phí. Vuốt từ trái -> phải để trải nghiệm.',
+        title: 'Hỗ Trợ',
+        message: 'Chọc lọc bài viết yêu thích.',
       });
       PopoverManager.openPopover(PopupIdentities['NOTI_GLOBAL']);
     }
@@ -48,8 +48,6 @@ const App = () => {
     });
     ///////////////
   }, []);
-
-  console.log('taibnlogs re-render root');
 
   return (
     <Suspense fallback={<LoadingLazyComp />}>

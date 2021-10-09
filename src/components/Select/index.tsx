@@ -83,6 +83,10 @@ const Select = (props: Props) => {
     return `${last.name} +${selectedIdxs.length - 1} khác`;
   }, [selectedIdxs]);
 
+  useEffect(() => {
+    setSelectedIdxs(_selectedIdxs);
+  }, [_selectedIdxs]);
+
   return (
     <div className="select-wrap">
       <div ref={inputRef} className={inputWrapClassName} onClick={handleOptions}>

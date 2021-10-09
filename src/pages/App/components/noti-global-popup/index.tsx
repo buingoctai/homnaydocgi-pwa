@@ -29,6 +29,7 @@ const NotificationGlobalPopup = () => {
 
     PopoverManager.on('beforeClose', PopupIdentities['NOTI_GLOBAL'], () => {
       setBackdrop(false);
+      PopoverManager.openPopover(PopupIdentities['LEFT_SIDEBAR']);
     });
 
     return () => {
@@ -37,6 +38,7 @@ const NotificationGlobalPopup = () => {
       });
       PopoverManager.removeListener('beforeClose', PopupIdentities['NOTI_GLOBAL'], () => {
         setBackdrop(false);
+        PopoverManager.openPopover(PopupIdentities['LEFT_SIDEBAR']);
       });
     };
   }, []);

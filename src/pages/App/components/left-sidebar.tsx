@@ -143,7 +143,9 @@ const LeftSidebar = () => {
             <div className="sperator" />
             <div>
               <img src={IconChat} />
-              <Link to="/chat" onClick={() => PopoverManager.closeAllPopover()}>Chat</Link>
+              <Link to="/chat" onClick={() => PopoverManager.closeAllPopover()}>
+                Chat
+              </Link>
             </div>
             <div className="sperator" />
             <div>
