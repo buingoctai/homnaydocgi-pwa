@@ -124,14 +124,14 @@ const LeftSidebar = () => {
             </div>
             <div className="sperator" />
 
-            <div>
+            {/* <div>
               <img src={IconEvents} />
 
               <Link to="/events" onClick={() => PopoverManager.closeAllPopover()}>
                 Sự Kiện
               </Link>
             </div>
-            <div className="sperator" />
+            <div className="sperator" /> */}
 
             <div>
               <img src={IconPodcast} />
