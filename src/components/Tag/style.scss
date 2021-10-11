@@ -21,12 +21,15 @@
   width: auto;
   &.s {
     max-width: 80px;
+    font-size: 12px;
   }
   &.m {
     max-width: 120px;
+    font-size: 14px;
   }
   &.l {
     max-width: 160px;
+    font-size: 16px;
   }
   &.magenta {
     color: #c41d7f;

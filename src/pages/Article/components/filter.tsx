@@ -96,10 +96,10 @@ const Filter = () => {
               <span className="empty"> Trống </span>
             )}
             {topicIdxs.map((op) => (
-              <Tag text={topics[op].name} key={topics[op].idx} color={getColorTag()} />
+              <Tag text={topics[op].name} key={topics[op].idx} color={getColorTag()} size='l'/>
             ))}
             {authorIdxs.map((op) => (
-              <Tag text={authors[op].name} key={authors[op].idx} color={getColorTag()} />
+              <Tag text={authors[op].name} key={authors[op].idx} color={getColorTag()} size='l'/>
             ))}
           </div>
           <div className="option-area">
@@ -135,6 +135,7 @@ const Filter = () => {
                 className="btn__filter"
                 onClick={() => {
                   setFilter({ author: getNameAuthors(), topic: getNameTopics() });
+                  PopoverManager.closePopover(PopupIdentities['FILTER_ARTICLE']);
                 }}
                 disabled={authorIdxs.length === 0 && topicIdxs.length === 0}
               />

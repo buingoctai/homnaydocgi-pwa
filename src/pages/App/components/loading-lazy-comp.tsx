@@ -1,5 +1,6 @@
 import React from 'react';
 import LoadingV2 from 'srcRoot/components/LoadingV2';
+import IconWave from 'srcRoot/static/image/thumb-wave-blue.png';
 
 const LoadingLazyComp = () => (
   <div
@@ -10,7 +11,7 @@ const LoadingLazyComp = () => (
       alignItems: 'center',
     }}
   >
-    <LoadingV2
+    {/* <LoadingV2
       show={true}
       type="LOADING_ARTICLE"
       style={{
@@ -21,7 +22,8 @@ const LoadingLazyComp = () => (
         borderwidth: '2px',
         animation: 'loadingAnim 1s cubic-bezier(0, 0, 0, 0) infinite',
       }}
-    />
+    /> */}
+    <img src ={IconWave} width={'150px'} height={'150px'} style = {{animation:' wave 2.2s linear 0.4s 3'}}/>
   </div>
 );
 

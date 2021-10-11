@@ -95,6 +95,7 @@ const Select = (props: Props) => {
           disabled={true}
           className="truncate"
           onBlur={() => setFocusing(false)}
+          style={{fontSize:'16px'}}
         />
         <img src={IconDropdown} className={iconClassName} />
       </div>

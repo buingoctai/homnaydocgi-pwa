@@ -9,6 +9,10 @@ import SkeletonV2 from 'srcRoot/components/SkeletonV2';
 import LoadingV2 from 'srcRoot/components/LoadingV2';
 import useFetchData from 'srcRoot/Hooks/use-fetch-data';
 import { getAllPost } from 'srcRoot/services/Article';
+import IconEmpty from 'srcRoot/static/image/icon-empty-search.png';
+import { PopoverManager } from '@taibn.dev.vn/h-popover';
+import { PopupIdentities } from 'srcRoot/utils/constants';
+
 import './style.scss';
 
 var heightStore = new CellMeasurerCache({
@@ -20,7 +24,7 @@ const Article = ({ headArticle }) => {
   const [readedList, setReadedList] = useState({});
   const [page, setPage] = useState({ number: 1 });
   const filter = useRecoilValue(filterArticleState);
-  const cached = useRef({ data: [], totalRecord: 0 });
+  const cached = useRef({ data: [], totalRecord: undefined });
   const listRef = useRef(null);
 
   const payload = useMemo(() => {
@@ -106,7 +110,18 @@ const Article = ({ headArticle }) => {
     );
   };
 
-  return totalRecord ? (
+  useEffect(() => {
+    if(totalRecord === 0) {
+      setTimeout(() => {
+        PopoverManager.openPopover(PopupIdentities['FILTER_ARTICLE']);
+      }, 4000);
+     
+    }
+  },[totalRecord]);
+
+  return <> 
+  <Filter />
+  {totalRecord ? (
     <div className="article" id="article">
       <div
         className="article-list"
@@ -155,11 +170,13 @@ const Article = ({ headArticle }) => {
           animation: 'loadingAnim 1s cubic-bezier(0, 0, 0, 0) infinite',
         }}
       />
-      <Filter />
     </div>
-  ) : (
+  ) : totalRecord === 0 ? <div className='article-empty'> 
+        <img src={IconEmpty}/> 
+        <span>Tìm thấy bài viết rỗng! Thử lại</span>
+    </div>:  (
     [6, 5, 7].map((item, index) => <SkeletonV2 numLine={item} theme="light" />)
-  );
+  ) } </>
 };
 
 export default Article;
