@@ -61,20 +61,20 @@ const MediaPlayer = (props: Props) => {
   }, []);
 
   const onNextAudio = useCallback(() => {
-    setStatus({
-      server: STATUS['NON_LOAD'],
-      user: STATUS['PLAYING'],
-    });
+    // setStatus({
+    //   server: STATUS['NON_LOAD'],
+    //   user: STATUS['PLAYING'],
+    // });
     setCurrentAudio({ data: [audioList['data'][idx + 1]], idx: idx + 1 });
-  }, [idx]);
+  }, [idx, audioList]);
 
   const onBackAudio = useCallback(() => {
-    setStatus({
-      server: STATUS['NON_LOAD'],
-      user: STATUS['PLAYING'],
-    });
+    // setStatus({
+    //   server: STATUS['NON_LOAD'],
+    //   user: STATUS['PLAYING'],
+    // });
     setCurrentAudio({ data: [audioList['data'][idx - 1]], idx: idx - 1 });
-  }, [idx]);
+  }, [idx,audioList]);
 
   ///////////
   const onPlayAudio = useCallback(() => {
@@ -107,6 +107,35 @@ const MediaPlayer = (props: Props) => {
     });
   }, [status]);
 
+
+
+
+  const onError = useCallback(() => {
+    setStatus({
+      ...status,
+      server: STATUS['ERROR'],
+    });
+  }, [status]);
+
+  const onAbort = useCallback(() => {
+    setStatus({
+      ...status,
+      server: STATUS['ERROR'],
+    });
+  }, [status]);
+
+  console.log(audio);
+
+  useEffect(() => {
+    const [audio] = currentAudio['data'] || [];
+    if(audio) {
+      setStatus({
+        server: STATUS['NON_LOAD'],
+        user: STATUS['PLAYING'],
+      });
+    }
+  }, [currentAudio]);
+
   useEffect(() => {
     if (!playerRef.current) return;
     if (status.user === STATUS['PLAYING'] && status.server === STATUS['LOADED']) {
@@ -118,26 +147,6 @@ const MediaPlayer = (props: Props) => {
       return;
     }
   }, [status]);
-
-  useEffect(() => {
-    setStatus({ ...status, user: STATUS['PLAYING'] });
-  }, []);
-
-  const onError = useCallback(() => {
-    setStatus({
-      user: STATUS['PAUSE'],
-      server: STATUS['ERROR'],
-    });
-  }, []);
-
-  const onAbort = useCallback(() => {
-    setStatus({
-      user: STATUS['PAUSE'],
-      server: STATUS['ERROR'],
-    });
-  }, []);
-
-  console.log(audio);
 
   /////////
   return audio ? (

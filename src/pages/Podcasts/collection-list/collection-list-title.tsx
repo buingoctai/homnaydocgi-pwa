@@ -34,7 +34,8 @@ const Title = (props: Props) => {
         payload: { collectionId: collection['selected'][0]?.collectionId, url: text },
 
         validator: (text: string) => {
-          return text.includes('https://youtu.be');
+          // return text.includes('https://youtu.be');
+          return true;
         },
         onAfterDone: onReloadAudioList,
       };
