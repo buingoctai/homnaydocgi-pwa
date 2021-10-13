@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
+// import Popover, { PopoverManager } from '../../../../ui-libs/HPopover';
+
 import Profile from 'srcRoot/components/Profile';
 import IconSearch from 'srcRoot/static/svg/icon-outline-search.svg';
 import IconFilter from 'srcRoot/static/svg/icon-outline-filter.svg';
@@ -12,14 +14,10 @@ import IconChat from 'srcRoot/static/svg/icon-outline-chat.svg';
 
 import Me from 'srcRoot/static/image/me.jpg';
 import { PopupIdentities } from 'srcRoot/utils/constants';
-import { useRecoilState } from 'recoil';
-import { backdropState } from 'srcRoot/recoil/appState';
 
 import './style.scss';
 
 const LeftSidebar = () => {
-  const [_, setBackdrop] = useRecoilState(backdropState);
-
   let xDown = null;
   let yDown = null;
 
@@ -50,7 +48,7 @@ const LeftSidebar = () => {
         PopoverManager.closePopover(PopupIdentities['LEFT_SIDEBAR']);
       } else {
         /* left swipe */
-        PopoverManager.openPopover(PopupIdentities['LEFT_SIDEBAR']);
+        PopoverManager.openPopover({ ...PopupIdentities['LEFT_SIDEBAR'], onAfterOpen: () => {} });
       }
     } else {
       if (yDiff > 0) {
@@ -66,24 +64,10 @@ const LeftSidebar = () => {
   useEffect(() => {
     document.addEventListener('touchstart', handleTouchStart, false);
     document.addEventListener('touchmove', handleTouchMove, false);
-    PopoverManager.on('afterOpen', PopupIdentities['LEFT_SIDEBAR'], () => {
-      setBackdrop(true);
-    });
-    PopoverManager.on('beforeClose', PopupIdentities['LEFT_SIDEBAR'], () => {
-      setBackdrop(false);
-    });
 
     return () => {
       document.removeEventListener('touchstart', handleTouchStart, false);
       document.removeEventListener('touchmove', handleTouchMove, false);
-
-      PopoverManager.removeListener('afterOpen', PopupIdentities['LEFT_SIDEBAR'], () => {
-        setBackdrop(true);
-      });
-
-      PopoverManager.removeListener('beforeClose', PopupIdentities['LEFT_SIDEBAR'], () => {
-        setBackdrop(false);
-      });
     };
   }, []);
 
@@ -103,7 +87,10 @@ const LeftSidebar = () => {
                 to="/"
                 onClick={() => {
                   PopoverManager.closeAllPopover();
-                  PopoverManager.openPopover(PopupIdentities['FILTER_ARTICLE']);
+                  PopoverManager.openPopover({
+                    ...PopupIdentities['FILTER_ARTICLE'],
+                    onAfterOpen: () => {},
+                  });
                 }}
               >
                 Lọc Bài Viết

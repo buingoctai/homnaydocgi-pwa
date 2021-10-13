@@ -1,5 +1,7 @@
 import React, { useCallback, useMemo, useRef } from 'react';
 import { buildClassName } from 'srcRoot/utils/index-v2';
+import useScrollDirection from 'srcRoot/Hooks/use-scroll-direction';
+
 import './style.scss';
 
 interface Option {
@@ -18,6 +20,9 @@ interface Props {
 const Option = (props: Props) => {
   const { options = [], selectedIdxs = [], onSelect = () => {}, onUnSelect = () => {} } = props;
 
+  const [isScrolling] = useScrollDirection();
+  console.log(isScrolling);
+
   const getItemClass = useCallback((isSelected: boolean) => {
     return buildClassName('option__item truncate', isSelected && 'selected');
   }, []);
@@ -27,7 +32,8 @@ const Option = (props: Props) => {
       {options.map((item) => (
         <span
           className={getItemClass(selectedIdxs.includes(item.idx))}
-          onTouchStart={() => {
+          onTouchEnd={() => {
+            if (isScrolling) return;
             if (selectedIdxs.includes(item.idx)) {
               onUnSelect(selectedIdxs.filter((idx) => idx !== item.idx));
             } else {

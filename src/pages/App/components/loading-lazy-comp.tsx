@@ -23,7 +23,12 @@ const LoadingLazyComp = () => (
         animation: 'loadingAnim 1s cubic-bezier(0, 0, 0, 0) infinite',
       }}
     /> */}
-    <img src ={IconWave} width={'150px'} height={'150px'} style = {{animation:' wave 2.2s linear 0.4s 3'}}/>
+    <img
+      src={IconWave}
+      width={'150px'}
+      height={'150px'}
+      style={{ animation: ' wave 2.2s linear 0.4s 3' }}
+    />
   </div>
 );
 

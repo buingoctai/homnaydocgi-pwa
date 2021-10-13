@@ -104,18 +104,18 @@ $fullHeight: 100%;
 
 .article-empty {
   height: 100%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    background: url('./background-article.png') repeat !important;
-    animation: empty 1s linear 0.4s 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  background: url('./background-article.png') repeat !important;
+  animation: empty 1s linear 0.4s 1;
 
-    & > span {
-      color: var(--neutral-500);
-      font-size: 20px;
-      margin-top: 8px;
-    }
+  & > span {
+    color: var(--neutral-500);
+    font-size: 20px;
+    margin-top: 8px;
+  }
 }
 
 @keyframes empty {

@@ -18,8 +18,6 @@ const PodcastList = (props: Props) => {
       <div className="list-wrap">
         <AutoSizer>
           {({ width, height }) => {
-            console.log(width, height);
-
             return (
               <List
                 width={width}

@@ -1076,14 +1076,11 @@
   resolved "https://registry.yarnpkg.com/@sheerun/mutationobserver-shim/-/mutationobserver-shim-0.3.3.tgz#5405ee8e444ed212db44e79351f0c70a582aae25"
   integrity sha512-DetpxZw1fzPD5xUBrIAoplLChO2VB8DlL5Gg+I1IR9b2wPqYIca2WSUxL5g1vLeR4MsQq1NeWriXAVffV+U1Fw==
 
-"@taibn.dev.vn/h-popover@^1.0.5":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@taibn.dev.vn/h-popover/-/h-popover-1.0.8.tgz#88c4272219ee66f1207fee9ae04c4812ff279260"
-  integrity sha512-koLOt3VMdE277qqwc0k+/tmG3ZJAzK944odVd5Kq9KL6hv5dM03P0PYghJe4LK0+tdCiIGdh1awYvix8yIBF+Q==
+"@taibn.dev.vn/h-popover@1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@taibn.dev.vn/h-popover/-/h-popover-1.0.9.tgz#969ce830f94fbe82f9de61868409998bf94dab96"
+  integrity sha512-zJ4/Gncu+8hW1LhbBVD/RGNgmbZyFLjUawAZhQZcToULhqT5wDLWLEvX6d/HKZ9faTHVXbmKHrPSS+rNOcX/6g==
   dependencies:
-    "@testing-library/jest-dom" "^4.2.4"
-    "@testing-library/react" "^9.3.2"
-    "@testing-library/user-event" "^7.1.2"
     copy-webpack-plugin "^7.0.0"
     react "^17.0.0"
     react-dom "^17.0.0"

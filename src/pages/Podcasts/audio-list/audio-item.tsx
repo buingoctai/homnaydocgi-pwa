@@ -16,10 +16,10 @@ const PodcastItem = (props: Props) => {
 
   const handlePlayAudio = useCallback(() => {
     setCurrentAudio({ data: [data], idx: index });
-  }, []);
+  }, [data]);
 
   return (
-    <div key={key} style={style} className="audio-item-wrap" onClick={handlePlayAudio}>
+    <div key={key} style={style} className="audio-item-wrap" onTouchEnd={handlePlayAudio}>
       <div className="audio-item">
         <div className="avatar">
           <img src={data.thumb} loading="lazy" width="100%" height="100%" />

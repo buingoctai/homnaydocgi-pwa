@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { PopupIdentities } from 'srcRoot/utils/constants';
 import PopupBody from './popup-body';
-import { useRecoilValue, useRecoilState } from 'recoil';
-import { popupGlobalState, backdropState } from 'srcRoot/recoil/appState';
+import { useRecoilValue } from 'recoil';
+import { popupGlobalState } from 'srcRoot/recoil/appState';
 
 type PopupGlobal = {
   type: string;
@@ -15,32 +15,12 @@ type PopupGlobal = {
 
 const NotificationGlobalPopup = () => {
   const popupGlobal: PopupGlobal | {} = useRecoilValue(popupGlobalState);
-  const [_, setBackdrop] = useRecoilState(backdropState);
 
   useEffect(() => {
     setTimeout(() => {
       PopoverManager.closePopover(PopupIdentities['NOTI_GLOBAL']);
       PopoverManager.closePopover(PopupIdentities['NOTI_ERROR']);
     }, popupGlobal['timeout'] || 5000);
-
-    PopoverManager.on('afterOpen', PopupIdentities['NOTI_GLOBAL'], () => {
-      setBackdrop(true);
-    });
-
-    PopoverManager.on('beforeClose', PopupIdentities['NOTI_GLOBAL'], () => {
-      setBackdrop(false);
-      PopoverManager.openPopover(PopupIdentities['LEFT_SIDEBAR']);
-    });
-
-    return () => {
-      PopoverManager.removeListener('afterOpen', PopupIdentities['NOTI_GLOBAL'], () => {
-        setBackdrop(true);
-      });
-      PopoverManager.removeListener('beforeClose', PopupIdentities['NOTI_GLOBAL'], () => {
-        setBackdrop(false);
-        PopoverManager.openPopover(PopupIdentities['LEFT_SIDEBAR']);
-      });
-    };
   }, []);
 
   return (

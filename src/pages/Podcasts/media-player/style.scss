@@ -80,6 +80,12 @@
         //   #96a3ad 100%
         // );
       }
+      & > .name {
+        font-size: 14px;
+        color: var(--dark-grey-400);
+        width: 200px;
+        font-weight: var(--semibold);
+      }
     }
   }
   & > .level-right {

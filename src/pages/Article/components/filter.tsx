@@ -9,6 +9,7 @@ import Button from 'srcRoot/components/Button';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { filterArticleState } from 'srcRoot/recoil/appState';
 import { translateTopicKeys } from 'srcRoot/utils/index-v2';
+
 // const topics = [
 //   { key: 'Topic', name: 'Tâm lý', idx: 0 },
 //   { key: 'Topic', name: 'Kinh tế', idx: 1 },
@@ -96,10 +97,10 @@ const Filter = () => {
               <span className="empty"> Trống </span>
             )}
             {topicIdxs.map((op) => (
-              <Tag text={topics[op].name} key={topics[op].idx} color={getColorTag()} size='l'/>
+              <Tag text={topics[op].name} key={topics[op].idx} color={getColorTag()} size="l" />
             ))}
             {authorIdxs.map((op) => (
-              <Tag text={authors[op].name} key={authors[op].idx} color={getColorTag()} size='l'/>
+              <Tag text={authors[op].name} key={authors[op].idx} color={getColorTag()} size="l" />
             ))}
           </div>
           <div className="option-area">

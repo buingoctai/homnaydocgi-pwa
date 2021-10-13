@@ -1,32 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 const useScrollDirection = () => {
-  const [direction, setDirection] = useState<string | null>(null);
+  const [isScrolling, setIsScrolling] = useState<boolean>(false);
+  const scrollTimeoutRef = useRef(null);
 
   useEffect(() => {
-    let isScrolling = false;
-    let start = window.pageYOffset;
-
-    const calculate = () => {
-      const end = window.pageYOffset;
-
-      setDirection(start > end ? 'up' : 'down');
-      start = end > 0 ? end : 0;
-      isScrolling = false;
-    };
-
     const handleScroll = () => {
-      if (!isScrolling) {
-        window.requestAnimationFrame(calculate);
-        isScrolling = true;
-      }
+      // Clear our timeout throughout the scroll
+      setIsScrolling(true);
+      clearTimeout(scrollTimeoutRef.current);
+
+      // Set a timeout to run after scrolling ends
+      scrollTimeoutRef.current = setTimeout(function () {
+        // Run the callback
+        setIsScrolling(false);
+      }, 500);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, true);
+    return () => window.removeEventListener('scroll', handleScroll, true);
   }, []);
 
-  return [direction];
+  return [isScrolling];
 };
 
 export default useScrollDirection;

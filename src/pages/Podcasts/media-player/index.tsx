@@ -10,11 +10,13 @@ import IconPause from 'srcRoot/static/svg/icon-outline-pause-btn.svg';
 import { AudioList } from 'srcRoot/enitities/Audio';
 
 const STATUS = {
-  LOAED: 'LOADED',
+  /* server status */
+  NON_LOAD: 'NON_LOAD',
+  LOADED: 'LOADED',
+  ERROR: 'ERROR',
+  /* user status */
   PLAYING: 'PLAYING',
   PAUSE: 'PAUSE',
-  PLAYED: 'PLAYED',
-  ERROR: 'ERROR',
 };
 interface Props {
   audioList: AudioList | object;
@@ -25,34 +27,19 @@ const MediaPlayer = (props: Props) => {
   const [audio] = currentAudio['data'] || [];
   const idx = currentAudio['idx'];
 
-  const [status, setStatus] = useState('');
+  // const [status, setStatus] = useState('');
+
+  const [status, setStatus] = useState<{
+    user: string;
+    server: string;
+  }>({
+    user: STATUS['PAUSE'],
+    server: STATUS['NON_LOAD'],
+  });
+
   const [time, setTime] = useState({ current: 0, duration: 1 });
   const playerRef = useRef(null);
   const progressRef = useRef(null);
-
-  const onCanPlayAudio = useCallback(() => {
-    setTime({
-      current: Math.ceil(playerRef.current.currentTime),
-      duration: Math.ceil(playerRef.current.duration),
-    });
-    setStatus(STATUS['PLAYING']);
-    playerRef.current.play();
-  }, [status]);
-
-  const onPlayAudio = useCallback(() => {
-    switch (status) {
-      case STATUS['PAUSE']:
-        setStatus(STATUS['PLAYING']);
-        playerRef.current.play();
-        break;
-      case STATUS['PLAYING']:
-        setStatus(STATUS['PAUSE']);
-        playerRef.current.pause();
-        break;
-      default:
-        break;
-    }
-  }, [status]);
 
   const onTimeUpdateAudio = useCallback(() => {
     setTime({
@@ -73,14 +60,86 @@ const MediaPlayer = (props: Props) => {
     return `${hDisplay}${mDisplay}${sDisplay}`;
   }, []);
 
-  const onEndAudio = useCallback(() => {
+  const onNextAudio = useCallback(() => {
+    setStatus({
+      server: STATUS['NON_LOAD'],
+      user: STATUS['PLAYING'],
+    });
     setCurrentAudio({ data: [audioList['data'][idx + 1]], idx: idx + 1 });
   }, [idx]);
 
   const onBackAudio = useCallback(() => {
+    setStatus({
+      server: STATUS['NON_LOAD'],
+      user: STATUS['PLAYING'],
+    });
     setCurrentAudio({ data: [audioList['data'][idx - 1]], idx: idx - 1 });
   }, [idx]);
 
+  ///////////
+  const onPlayAudio = useCallback(() => {
+    switch (status.user) {
+      case STATUS['PAUSE']:
+        setStatus({
+          ...status,
+          user: STATUS['PLAYING'],
+        });
+        break;
+      case STATUS['PLAYING']:
+        setStatus({
+          ...status,
+          user: STATUS['PAUSE'],
+        });
+        break;
+      default:
+        break;
+    }
+  }, [status]);
+
+  const onCanPlayAudio = useCallback(() => {
+    setTime({
+      current: Math.ceil(playerRef.current.currentTime),
+      duration: Math.ceil(playerRef.current.duration),
+    });
+    setStatus({
+      ...status,
+      server: STATUS['LOADED'],
+    });
+  }, [status]);
+
+  useEffect(() => {
+    if (!playerRef.current) return;
+    if (status.user === STATUS['PLAYING'] && status.server === STATUS['LOADED']) {
+      playerRef.current.play();
+      return;
+    }
+    if (status.user === STATUS['PAUSE']) {
+      playerRef.current.pause();
+      return;
+    }
+  }, [status]);
+
+  useEffect(() => {
+    setStatus({ ...status, user: STATUS['PLAYING'] });
+  }, []);
+
+  const onError = useCallback(() => {
+    setStatus({
+      user: STATUS['PAUSE'],
+      server: STATUS['ERROR'],
+    });
+  }, []);
+
+  const onAbort = useCallback(() => {
+    setStatus({
+      user: STATUS['PAUSE'],
+      server: STATUS['ERROR'],
+    });
+  }, []);
+
+  console.log(audio);
+
+  /////////
   return audio ? (
     <div className="media-player-container">
       <div className="level-left">
@@ -88,27 +147,36 @@ const MediaPlayer = (props: Props) => {
       </div>
       <div className="level-center">
         <div className="media-action">
-          <img src={IconPrevious} className="action__btn" onClick={onBackAudio} />
+          <img src={IconPrevious} className="action__btn" onTouchEnd={onBackAudio} />
           <div className="action__btn btn-wrapper">
-            <img src={status === STATUS['PLAYING'] ? IconPause : IconPlay} onClick={onPlayAudio} />
+            <img
+              src={status.user === STATUS['PLAYING'] ? IconPause : IconPlay}
+              onTouchEnd={onPlayAudio}
+            />
           </div>
-          <img src={IconNext} className="action__btn" onClick={onEndAudio} />
+          <img src={IconNext} className="action__btn" onTouchEnd={onNextAudio} />
         </div>
-        <div className="media-progress">
-          <span className="time">{secondsToHms(time.current)}</span>
-          <div
-            className="progress"
-            ref={progressRef}
-            style={{
-              backgroundImage: `linear-gradient(to right,rgb(255, 255, 255) 0%,rgb(255, 255, 255) ${
-                (time.current / time.duration) * 100
-              }%,rgb(155, 163, 173) ${
-                (time.current / time.duration) * 100
-              }%,rgb(150, 163, 173) 100%)`,
-            }}
-          ></div>
-          <span className="time">{secondsToHms(time.duration)}</span>
-        </div>
+        {status.server === STATUS['NON_LOAD'] || status.server === STATUS['ERROR'] ? (
+          <div className="media-progress">
+            <span className="truncate name">{audio.audioName}</span>
+          </div>
+        ) : (
+          <div className="media-progress">
+            <span className="time">{secondsToHms(time.current)}</span>
+            <div
+              className="progress"
+              ref={progressRef}
+              style={{
+                backgroundImage: `linear-gradient(to right,rgb(255, 255, 255) 0%,rgb(255, 255, 255) ${
+                  (time.current / time.duration) * 100
+                }%,rgb(155, 163, 173) ${
+                  (time.current / time.duration) * 100
+                }%,rgb(150, 163, 173) 100%)`,
+              }}
+            ></div>
+            <span className="time">{secondsToHms(time.duration)}</span>
+          </div>
+        )}
       </div>
       <div className="level-right">
         <img src={audio?.thumb} />
@@ -121,7 +189,9 @@ const MediaPlayer = (props: Props) => {
         src={audio?.url}
         onCanPlay={onCanPlayAudio}
         onTimeUpdate={onTimeUpdateAudio}
-        onEnded={onEndAudio}
+        onEnded={onNextAudio}
+        onError={onError}
+        onAbort={onAbort}
       />
     </div>
   ) : null;

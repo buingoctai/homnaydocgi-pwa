@@ -14,7 +14,6 @@ const defaultData = {
     footer: null,
     timeout: null,
   },
-  showBackdrop: false,
   filterArticle: null,
 };
 
@@ -48,20 +47,6 @@ export const popupGlobalState = selector({
     const app = get(appState);
 
     set(appState, { ...app, popupGlobal: newValue });
-  },
-});
-
-export const backdropState = selector({
-  // newListState này sẽ chứa danh sách các action có trạng thái là new.
-  key: 'backdrop',
-  get: ({ get }) => {
-    const app = get(appState); // đây là cách để lấy cả list todo đã tạo với atom ở bước trên.
-    return app.showBackdrop; // chọn và trả về những thằng có status là new.
-  },
-  set: ({ get, set }, newValue) => {
-    const app = get(appState);
-
-    set(appState, { ...app, showBackdrop: newValue });
   },
 });
 

@@ -3,7 +3,7 @@ import { RELEASE_MENU_SIDBAR } from 'srcRoot/app-config';
 import { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { NOTI_TYPE, PopupIdentities } from 'srcRoot/utils/constants';
 import { useRecoilState } from 'recoil';
-import { popupGlobalState, backdropState } from 'srcRoot/recoil/appState';
+import { popupGlobalState } from 'srcRoot/recoil/appState';
 import LoadingLazyComp from './components/loading-lazy-comp';
 const Article = React.lazy(() => import('srcRoot/pages/Article'));
 const Podcasts = React.lazy(() => import('srcRoot/pages/Podcasts'));
@@ -16,7 +16,6 @@ const InstallApp = React.lazy(() => import('srcRoot/pages/Install-app'));
 import NotificationGlobal from './components/noti-global-popup';
 
 import { getQueryStringValue, initServiceWorker } from 'srcRoot/utils';
-import HCommon from 'srcRoot/utils/log-system';
 
 import './style.scss';
 import 'srcRoot/static/scss/color.scss';
@@ -25,7 +24,6 @@ import 'srcRoot/static/scss/color.scss';
 
 const App = () => {
   const [, setPopupGlobal] = useRecoilState(popupGlobalState);
-  const [backdrop, _] = useRecoilState(backdropState);
 
   useEffect(() => {
     initServiceWorker();
@@ -64,7 +62,6 @@ const App = () => {
         <Route path="/podcasts" render={(props) => <Podcasts {...props} />} />
         <Route path="/chat" render={(props) => <Chat {...props} />} />
       </Router>
-      {backdrop && <div className="backdrop"></div>}
     </Suspense>
   );
 };

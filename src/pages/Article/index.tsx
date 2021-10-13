@@ -111,72 +111,76 @@ const Article = ({ headArticle }) => {
   };
 
   useEffect(() => {
-    if(totalRecord === 0) {
+    if (totalRecord === 0) {
       setTimeout(() => {
         PopoverManager.openPopover(PopupIdentities['FILTER_ARTICLE']);
       }, 4000);
-     
     }
-  },[totalRecord]);
+  }, [totalRecord]);
 
-  return <> 
-  <Filter />
-  {totalRecord ? (
-    <div className="article" id="article">
-      <div
-        className="article-list"
-        style={isLoading ? { height: 'calc(100% - 44px)' } : { height: '100%' }}
-      >
-        <AutoSizer>
-          {({ width, height, isScrolling }) => {
-            return (
-              <List
-                width={width}
-                height={height}
-                rowHeight={heightStore.rowHeight}
-                rowRenderer={({ index, key, style, parent, isScrolling }) => (
-                  <CellMeasurer
-                    cache={heightStore}
-                    key={key}
-                    parent={parent}
-                    rowIndex={index}
-                    columnIndex={0}
-                  >
-                    {renderItem({
-                      index,
-                      style,
-                      listRef: listRef,
-                      isScrolling,
-                    })}
-                  </CellMeasurer>
-                )}
-                rowCount={totalRecord}
-                onScroll={handleScrollList}
-                ref={listRef}
-              />
-            );
-          }}
-        </AutoSizer>
-      </div>
-      <LoadingV2
-        show={isLoading}
-        type="LOADING_ARTICLE"
-        style={{
-          width: '20px',
-          height: '20px',
-          border: '2px solid #E5EFFF',
-          borderTop: '2px solid #0068FF',
-          borderwidth: '2px',
-          animation: 'loadingAnim 1s cubic-bezier(0, 0, 0, 0) infinite',
-        }}
-      />
-    </div>
-  ) : totalRecord === 0 ? <div className='article-empty'> 
-        <img src={IconEmpty}/> 
-        <span>Tìm thấy bài viết rỗng! Thử lại</span>
-    </div>:  (
-    [6, 5, 7].map((item, index) => <SkeletonV2 numLine={item} theme="light" />)
-  ) } </>
+  return (
+    <>
+      <Filter />
+      {totalRecord ? (
+        <div className="article" id="article">
+          <div
+            className="article-list"
+            style={isLoading ? { height: 'calc(100% - 44px)' } : { height: '100%' }}
+          >
+            <AutoSizer>
+              {({ width, height, isScrolling }) => {
+                return (
+                  <List
+                    width={width}
+                    height={height}
+                    rowHeight={heightStore.rowHeight}
+                    rowRenderer={({ index, key, style, parent, isScrolling }) => (
+                      <CellMeasurer
+                        cache={heightStore}
+                        key={key}
+                        parent={parent}
+                        rowIndex={index}
+                        columnIndex={0}
+                      >
+                        {renderItem({
+                          index,
+                          style,
+                          listRef: listRef,
+                          isScrolling,
+                        })}
+                      </CellMeasurer>
+                    )}
+                    rowCount={totalRecord}
+                    onScroll={handleScrollList}
+                    ref={listRef}
+                  />
+                );
+              }}
+            </AutoSizer>
+          </div>
+          <LoadingV2
+            show={isLoading}
+            type="LOADING_ARTICLE"
+            style={{
+              width: '20px',
+              height: '20px',
+              border: '2px solid #E5EFFF',
+              borderTop: '2px solid #0068FF',
+              borderwidth: '2px',
+              animation: 'loadingAnim 1s cubic-bezier(0, 0, 0, 0) infinite',
+            }}
+          />
+        </div>
+      ) : totalRecord === 0 ? (
+        <div className="article-empty">
+          <img src={IconEmpty} />
+          <span>Tìm thấy bài viết rỗng! Thử lại</span>
+        </div>
+      ) : (
+        [6, 5, 7].map((item, index) => <SkeletonV2 numLine={item} theme="light" />)
+      )}{' '}
+    </>
+  );
 };
 
 export default Article;
