@@ -8,6 +8,7 @@ import IconPrevious from 'srcRoot/static/svg/icon-outline-previous-btn.svg';
 import IconPlaying from 'srcRoot/static/gif/icon-playing-gif.gif';
 import IconPause from 'srcRoot/static/svg/icon-outline-pause-btn.svg';
 import { AudioList } from 'srcRoot/enitities/Audio';
+import { capitalizeFirstLetter } from 'srcRoot/utils/index-v2';
 
 const STATUS = {
   /* server status */
@@ -26,8 +27,6 @@ const MediaPlayer = (props: Props) => {
   const [currentAudio, setCurrentAudio] = useRecoilState(currentAudioState);
   const [audio] = currentAudio['data'] || [];
   const idx = currentAudio['idx'];
-
-  // const [status, setStatus] = useState('');
 
   const [status, setStatus] = useState<{
     user: string;
@@ -61,20 +60,12 @@ const MediaPlayer = (props: Props) => {
   }, []);
 
   const onNextAudio = useCallback(() => {
-    // setStatus({
-    //   server: STATUS['NON_LOAD'],
-    //   user: STATUS['PLAYING'],
-    // });
     setCurrentAudio({ data: [audioList['data'][idx + 1]], idx: idx + 1 });
   }, [idx, audioList]);
 
   const onBackAudio = useCallback(() => {
-    // setStatus({
-    //   server: STATUS['NON_LOAD'],
-    //   user: STATUS['PLAYING'],
-    // });
     setCurrentAudio({ data: [audioList['data'][idx - 1]], idx: idx - 1 });
-  }, [idx,audioList]);
+  }, [idx, audioList]);
 
   ///////////
   const onPlayAudio = useCallback(() => {
@@ -107,9 +98,6 @@ const MediaPlayer = (props: Props) => {
     });
   }, [status]);
 
-
-
-
   const onError = useCallback(() => {
     setStatus({
       ...status,
@@ -124,11 +112,9 @@ const MediaPlayer = (props: Props) => {
     });
   }, [status]);
 
-  console.log(audio);
-
   useEffect(() => {
     const [audio] = currentAudio['data'] || [];
-    if(audio) {
+    if (audio) {
       setStatus({
         server: STATUS['NON_LOAD'],
         user: STATUS['PLAYING'],
@@ -167,7 +153,7 @@ const MediaPlayer = (props: Props) => {
         </div>
         {status.server === STATUS['NON_LOAD'] || status.server === STATUS['ERROR'] ? (
           <div className="media-progress">
-            <span className="truncate name">{audio.audioName}</span>
+            <span className="truncate name">{capitalizeFirstLetter(audio.audioName)}</span>
           </div>
         ) : (
           <div className="media-progress">

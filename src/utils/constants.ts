@@ -12,6 +12,7 @@ const PopupIdentities = {
   DROPDOWN_AUTHOR: { windowId: '1', name: 'dropdown-author' },
   DROPDOWN_TOPIC: { windowId: '1', name: 'dropdown-topic' },
   CHAT_SETTING: { windowId: '1', name: 'chat-setting' },
+  RECOMMEND_AUDIOS: { windowId: '1', name: 'recommend-audio' },
 };
 
 const NOTI_TYPE = {

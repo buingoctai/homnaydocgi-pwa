@@ -1,14 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import IconDelete from 'srcRoot/static/svg/icon-outline-delete.svg';
 import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { PopupIdentities } from 'srcRoot/utils/constants';
 import { getAllTopic, getAllAuthor } from 'srcRoot/services/Article';
-import Select, { Option } from 'srcRoot/components/Select';
+import Select from 'srcRoot/components/Select';
 import Tag from 'srcRoot/components/Tag';
 import Button from 'srcRoot/components/Button';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { filterArticleState } from 'srcRoot/recoil/appState';
 import { translateTopicKeys } from 'srcRoot/utils/index-v2';
+import useFlightAnime from 'srcRoot/animations/use-flight-anime';
 
 // const topics = [
 //   { key: 'Topic', name: 'Tâm lý', idx: 0 },
@@ -34,7 +35,7 @@ const getColorTag = () => {
 const Filter = () => {
   const [topics, setTopics] = useState<Array<any>>([]);
   const [authors, setAuthor] = useState<Array<any>>([]);
-  const [filter, setFilter] = useRecoilState(filterArticleState);
+  const [, setFilter] = useRecoilState(filterArticleState);
 
   const [authorIdxs, setAuthorIdxs] = useState<Array<number>>([]);
   const [topicIdxs, setTopicIdxs] = useState<Array<number>>([]);
@@ -134,7 +135,7 @@ const Filter = () => {
               <Button
                 text="Lọc"
                 className="btn__filter"
-                onClick={() => {
+                onClick={(e) => {
                   setFilter({ author: getNameAuthors(), topic: getNameTopics() });
                   PopoverManager.closePopover(PopupIdentities['FILTER_ARTICLE']);
                 }}

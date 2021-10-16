@@ -34,3 +34,10 @@ export const createMp3 = (params) => {
     data: { ...params },
   });
 };
+
+export const getRecommendAudio = (params) => {
+  return requestPost(`${process.env.API_BASE}/google-drive/getRecommendAudio`, {
+    method: 'POST',
+    data: { ...params },
+  });
+};

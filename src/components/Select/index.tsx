@@ -8,7 +8,7 @@ import IconDropdown from 'srcRoot/static/svg/icon-outline-dropdown.svg';
 
 import './style.scss';
 
-const WIDTH_DROPDOWN = 120;
+const WIDTH_DROPDOWN = 200;
 
 interface Props {
   identity: { windowId: string; name: string };
@@ -46,7 +46,7 @@ const Select = (props: Props) => {
     }
     return {
       marginTop: '5px',
-      width: '186px',
+      width: '200px',
       height: `${WIDTH_DROPDOWN}px`,
     };
   }, []);

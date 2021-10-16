@@ -62,14 +62,14 @@
     margin-top: 16px;
     & > .title-wrap {
       @extend .title-common;
+      margin-bottom: 16px;
     }
     & > .list-wrap {
       height: calc(100% - 40px);
-      margin-top: 16px;
+      transition: transform 0.4s ease;
       .audio-item-wrap {
         width: 100%;
         border-radius: 20px;
-
         & > .audio-item {
           background-image: linear-gradient(
             to right,
@@ -83,6 +83,8 @@
           display: flex;
           align-items: center;
           box-shadow: 0 0 2px 0 rgb(0 0 0 / 18%);
+          color: var(--drak-grey-base);
+          transition: background-image 0.5s ease;
           & > .avatar {
             margin: 16px;
             height: 40px;
@@ -100,8 +102,16 @@
           }
           & > .name {
             font-size: 14px;
-            width: 64%;
-            color: var(--drak-grey-300);
+            width: 56%;
+          }
+          &:focus {
+            background-image: linear-gradient(
+              to right,
+              var(--blue-400),
+              var(--blue-300),
+              var(--blue-base)
+            );
+            color: var(--grey-base);
           }
         }
       }
@@ -138,5 +148,49 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+///////// recommend audios
+.recommend-container {
+  background: url('./background-recommend.png');
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  & > .title {
+    font-size: 14px;
+    font-weight: var(--semibold);
+    text-align: center;
+    margin-top: 20px;
+    padding: 0px 8px;
+  }
+  & > .list {
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+    margin-top: 30px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    & > .recommend-item {
+      display: flex;
+      flex-direction: row;
+      font-size: 12px;
+      margin: 8px 0px;
+      padding: 6px 6px;
+      align-items: center;
+      & > span {
+        margin: 0px 6px;
+      }
+      & > .title {
+        width: 180px;
+        color: var(--blue-400);
+      }
+      & > .length {
+        color: var(--dark-grey-500);
+      }
+    }
   }
 }

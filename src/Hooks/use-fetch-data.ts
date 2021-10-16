@@ -50,7 +50,7 @@ const useFetchData = (props: Props) => {
     wrapper(retryOptions.retries);
   }, [forceFetch]);
 
-  return { status, response };
+  return { status, response, setResponse };
 };
 
 export default useFetchData;

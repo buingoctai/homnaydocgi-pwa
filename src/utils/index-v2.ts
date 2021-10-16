@@ -19,3 +19,19 @@ export const translateTopicKeys = {
   Finance: 'Tài Chính',
   Data: 'Dữ Liệu',
 };
+
+export const secondsToHms = (d: number) => {
+  d = Number(d);
+  var h = Math.floor(d / 3600);
+  var m = Math.floor((d % 3600) / 60);
+  var s = Math.floor((d % 3600) % 60);
+
+  var hDisplay = h > 0 ? h + (h == 1 ? ' h, ' : ' h, ') : '';
+  var mDisplay = m > 0 ? m + (m == 1 ? ' p, ' : ' p, ') : '';
+  var sDisplay = s > 0 ? s + (s == 1 ? ' giây' : ' giây') : '';
+  return hDisplay + mDisplay + sDisplay;
+};
+
+export const capitalizeFirstLetter = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.toLowerCase().slice(1);
+};

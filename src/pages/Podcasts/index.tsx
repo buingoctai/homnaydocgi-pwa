@@ -15,7 +15,7 @@ const Podcasts = () => {
   const [searchTxt, setSearchTxt] = useState('');
   const [force, updateForce] = useState(0);
   const audioParams = useRef({ collectionIds: [] });
-  const { response: audioList } = useFetchData({
+  const { response: audioList, status, setResponse: setAudioList } = useFetchData({
     api: getAllAudio,
     payload: { collectionIds: audioParams.current.collectionIds },
     retryOptions: { retries: 3, retryDelay: 300 },
@@ -26,10 +26,24 @@ const Podcasts = () => {
     setSearchTxt(e.target.value);
   }, []);
 
-  const onReloadAudioList = useCallback((params) => {
-    audioParams.current = { ...audioParams.current, collectionIds: params.collectionIds };
-    updateForce(Math.random());
-  }, []);
+  const onReloadAudioList = useCallback(
+    (params, isMockRes) => {
+      if (isMockRes) {
+        const appendMock = {
+          data: [{ isMock: true }, ...audioList['data']],
+          totalRecord: audioList['totalRecord'] + 1,
+        };
+        setAudioList(appendMock);
+
+        return;
+      }
+      if (params) {
+        audioParams.current = { ...audioParams.current, collectionIds: params.collectionIds };
+      }
+      updateForce(Math.random());
+    },
+    [audioList]
+  );
 
   return (
     <>

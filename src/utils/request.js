@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { PopupIdentities } from 'srcRoot/utils/constants';
-import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 
 const requestPost = (url, options) => {
   return axios({

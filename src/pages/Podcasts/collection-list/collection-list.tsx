@@ -11,7 +11,7 @@ const COLUMN_COUNT = 2;
 const DEBOUNCE_TIME = 400;
 interface Props {
   searchTxt: string;
-  onReloadAudioList: (params: any) => void;
+  onReloadAudioList: (params: any, isMock?: boolean) => void;
 }
 const CollectionList = (props: Props) => {
   const { searchTxt, onReloadAudioList } = props;
@@ -60,7 +60,7 @@ const CollectionList = (props: Props) => {
       <Title
         totalRecord={collections['totalRecord']}
         onReloadCollectionList={() => updateForce(Math.random())}
-        onReloadAudioList={() => onReloadAudioList({ collectionIds })}
+        onReloadAudioList={(isMock) => onReloadAudioList({ collectionIds }, isMock)}
       />
       <div className="list-wrap">
         <AutoSizer>

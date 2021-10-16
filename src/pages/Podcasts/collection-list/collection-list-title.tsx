@@ -1,5 +1,3 @@
-import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
-import { PopupIdentities } from 'srcRoot/utils/constants';
 import React, { useCallback, useMemo, useState } from 'react';
 import { createCollection, createMp3 } from 'srcRoot/services/Podcasts';
 import { collectionState } from '../podcasts-state';
@@ -7,20 +5,22 @@ import { useRecoilState } from 'recoil';
 import IconAdd from 'srcRoot/static/svg/icon-outline-add-collection.svg';
 import Button from 'srcRoot/components/Button';
 import Input from 'srcRoot/components/Input';
-import ERROR_CODE from 'srcRoot/utils/error-code';
-import LoadingV2 from 'srcRoot/components/LoadingV2';
-
+import { popupGlobalState } from 'srcRoot/recoil/appState';
+import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
+import { PopupIdentities } from 'srcRoot/utils/constants';
+import ErrorCode from 'srcRoot/utils/error-code';
 interface Props {
   totalRecord: number;
   onReloadCollectionList: () => void;
-  onReloadAudioList: () => void;
+  onReloadAudioList: (isMock?: boolean) => void;
 }
 const Title = (props: Props) => {
-  const [collection, setCollection] = useRecoilState<{ selected: [] } | {}>(collectionState);
+  const [, setPopupGlobal] = useRecoilState(popupGlobalState);
+  const [collection, setCollection] = useRecoilState<{ selected: Array<string> } | {}>(
+    collectionState
+  );
   const { totalRecord, onReloadCollectionList, onReloadAudioList } = props;
   const [text, setText] = useState('');
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const onOpenFormInput = useCallback(() => {
     PopoverManager.openPopover(PopupIdentities['ADD_COLLECTION']);
   }, []);
@@ -28,6 +28,7 @@ const Title = (props: Props) => {
   const handler = useMemo(() => {
     if (collection['selected']?.length > 0) {
       return {
+        isMock: true,
         title: `Thêm Vào Bộ Sưu Tập "${collection['selected'][0]?.collectionName}"`,
         service: createMp3,
         placeholder: 'https://youtu.be/...',
@@ -41,7 +42,8 @@ const Title = (props: Props) => {
       };
     }
     return {
-      title: 'Thêm Bộ Sưu Tập Mới',
+      isMock: false,
+      title: 'Tạo Bộ Sưu Tập Mới',
       service: createCollection,
       placeholder: 'Công Nghệ',
       payload: { collectionName: text },
@@ -54,30 +56,38 @@ const Title = (props: Props) => {
 
   const onInputCollection = useCallback(
     (e) => {
-      setError('');
       const txt = e.target.value;
       if (handler.validator(txt)) setText(txt);
     },
     [handler]
   );
 
-  const onAddCollection = useCallback(
+  const onAddItem = useCallback(
     (e) => {
-      setIsLoading(true);
+      /* Add mock data to loading skeleton*/
+      if (handler.isMock) {
+        const audioListRef = document.getElementById('audio-list');
+        audioListRef.style.transform = 'translateY(72px)';
+        setTimeout(() => {
+          audioListRef.style.transform = 'translateY(0px)';
+          handler.onAfterDone(true);
+        }, 400);
+      }
+      /* Remove text input data*/
+      setText('');
+      setCollection([]);
+      PopoverManager.closePopover(PopupIdentities['ADD_COLLECTION']);
+      /* Call external services */
       handler
         .service(handler.payload)
-        .then((res) => {
-          setText('');
-          setIsLoading(false);
-          setCollection([]);
-          handler.onAfterDone();
-
-          PopoverManager.closePopover(PopupIdentities['ADD_COLLECTION']);
-        })
+        .then(() => handler.onAfterDone())
         .catch((err) => {
-          setIsLoading(false);
-
-          setError(ERROR_CODE[err.error_code]);
+          setPopupGlobal({
+            title: 'Xảy ra lỗi',
+            message: ErrorCode[err['error_code']],
+          });
+          PopoverManager.openPopover(PopupIdentities['NOTI_GLOBAL']);
+          handler.onAfterDone();
         });
     },
     [text, handler]
@@ -104,29 +114,7 @@ const Title = (props: Props) => {
                 placeholder={handler.placeholder}
                 onChange={onInputCollection}
               />
-              {error && <span className="error">{`${error}!`}</span>}
-              <Button
-                text="Thêm"
-                disabled={Boolean(!text) || Boolean(error)}
-                onClick={onAddCollection}
-              />
-
-              {isLoading && (
-                <div className="loading">
-                  <LoadingV2
-                    show={isLoading}
-                    type="LOADING_ARTICLE"
-                    style={{
-                      width: '20px',
-                      height: '20px',
-                      border: '2px solid #E5EFFF',
-                      borderTop: '2px solid #0068FF',
-                      borderwidth: '2px',
-                      animation: 'loadingAnim 1s cubic-bezier(0, 0, 0, 0) infinite',
-                    }}
-                  />
-                </div>
-              )}
+              <Button text="Thêm" disabled={Boolean(!text)} onClick={onAddItem} />
             </div>
           }
           style={{

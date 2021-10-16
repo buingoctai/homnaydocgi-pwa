@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef, useCallback } from 'react';
 import './style.scss';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
   onClick?: (params: any) => any;
 }
 
-const Button = (props: Props) => {
+const Button = (props: Props, ref) => {
   const {
     text = 'Button',
     disabled = false,
@@ -17,16 +17,35 @@ const Button = (props: Props) => {
     style = {},
     onClick = () => {},
   } = props;
+
+  const handleClick = useCallback(
+    (e) => {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      onClick(e);
+
+      setTimeout(() => {
+        if (e) {
+          e.target.blur();
+        }
+      }, 200);
+    },
+    [onClick]
+  );
+
   return (
     <input
+      ref={ref}
       style={style}
       className={`btn__entry__input ${disabled ? ' disabled' : ''} ${className}`}
       type="submit"
       value={text}
       disabled={disabled}
-      onClick={onClick}
+      onClick={(e) => handleClick(e)}
     />
   );
 };
 
-export default Button;
+export default forwardRef(Button);

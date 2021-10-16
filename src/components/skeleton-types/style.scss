@@ -1,0 +1,33 @@
+.h-skeleton {
+  z-index: 200;
+  background-color: rgba(0, 0, 0, 0.11);
+  -webkit-animation: rectShimmer 1.5s ease-in-out 0.5s infinite;
+  animation: rectShimmer 1.5s ease-in-out 0.5s infinite;
+
+  &.text {
+    height: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    transform-origin: 0 55%;
+    -webkit-transform: scale(1, 0.6);
+    -moz-transform: scale(1, 0.6);
+    -ms-transform: scale(1, 0.6);
+    transform: scale(1, 0.6);
+    border-radius: 4px/6.7px;
+  }
+  &.circular {
+    border-radius: 50%;
+  }
+}
+
+@keyframes rectShimmer {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}

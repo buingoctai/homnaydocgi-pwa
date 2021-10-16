@@ -12,3 +12,7 @@
     opacity: 0.5;
   }
 }
+
+.btn__entry__input:focus {
+  background-color: var(--blue-400);
+}

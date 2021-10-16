@@ -21,7 +21,6 @@ const Option = (props: Props) => {
   const { options = [], selectedIdxs = [], onSelect = () => {}, onUnSelect = () => {} } = props;
 
   const [isScrolling] = useScrollDirection();
-  console.log(isScrolling);
 
   const getItemClass = useCallback((isSelected: boolean) => {
     return buildClassName('option__item truncate', isSelected && 'selected');

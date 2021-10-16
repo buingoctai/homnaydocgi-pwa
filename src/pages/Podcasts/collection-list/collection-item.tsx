@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { Collection } from 'srcRoot/enitities/Audio';
 import { collectionState } from '../podcasts-state';
 import { useRecoilState } from 'recoil';
+import { capitalizeFirstLetter } from 'srcRoot/utils/index-v2';
 
 const TOUCH_KEEP_TIME = 1500;
 interface Props {
@@ -56,7 +57,7 @@ const CollectionItem = (props: Props) => {
         loading="lazy"
         className={selected ? 'selected' : ''}
       />
-      <span className="truncate">{data.collectionName}</span>
+      <span className="truncate">{capitalizeFirstLetter(data.collectionName)}</span>
     </div>
   );
 };

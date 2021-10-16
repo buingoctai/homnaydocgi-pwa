@@ -9,6 +9,7 @@ const LoadingLazyComp = () => (
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      backgroundColor: 'rgb(12,17,23)',
     }}
   >
     {/* <LoadingV2
@@ -25,8 +26,8 @@ const LoadingLazyComp = () => (
     /> */}
     <img
       src={IconWave}
-      width={'150px'}
-      height={'150px'}
+      width={'200px'}
+      height={'200px'}
       style={{ animation: ' wave 2.2s linear 0.4s 3' }}
     />
   </div>
