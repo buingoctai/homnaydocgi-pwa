@@ -2,7 +2,7 @@ import React from 'react';
 import Search from 'srcRoot/components/Search';
 
 interface Props {
-  searchTxt: string;
+  searchTxt: {text:string};
   onChangeSearchTxt: (params: any) => any;
 }
 const SearchEntry = (props: Props) => {
@@ -10,7 +10,7 @@ const SearchEntry = (props: Props) => {
   return (
     <div className="search">
       <Search
-        text={searchTxt}
+        text={searchTxt.text}
         placeholder="Tìm kiếm..."
         autoFocus={false}
         onChange={onChangeSearchTxt}

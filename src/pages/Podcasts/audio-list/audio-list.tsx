@@ -6,14 +6,15 @@ import { AudioList } from 'srcRoot/enitities/Audio';
 import SkeletonItem from './skeleton-audio-item';
 interface Props {
   audioList: AudioList | object;
+  onReloadAudioList: (params: any, isMock?: boolean) => void;
 }
 
 const PodcastList = (props: Props) => {
-  const { audioList } = props;
+  const { audioList, onReloadAudioList } = props;
 
   return (
     <div className="podcast-list">
-      <Title totalRecord={audioList['totalRecord']} />
+      <Title totalRecord={audioList['totalRecord']} onReloadAudioList={onReloadAudioList}/>
       {/* {isLoading && <SkeletonItem />} */}
 
       <div className="list-wrap" id="audio-list">
