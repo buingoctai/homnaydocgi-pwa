@@ -20,13 +20,13 @@
     & > span {
       display: flex;
       font-size: 14px;
+      color: var(--neutral-500);
     }
     & > .job {
       font-weight: var(--semibold);
     }
     & > .email {
       font-size: 13px;
-      color: var(--teal-500);
     }
   }
 

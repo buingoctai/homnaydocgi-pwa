@@ -5,8 +5,24 @@ import { NOTI_TYPE, PopupIdentities } from 'srcRoot/utils/constants';
 import { useRecoilState } from 'recoil';
 import { popupGlobalState } from 'srcRoot/recoil/appState';
 import LoadingLazyComp from './components/loading-lazy-comp';
-const Article = React.lazy(() => import('srcRoot/pages/Article'));
-const Podcasts = React.lazy(() => import('srcRoot/pages/Podcasts'));
+
+// const Article = React.lazy(() => import('srcRoot/pages/Article'));
+const Article = React.lazy(() => {
+  return Promise.all([
+    import("srcRoot/pages/Article"),
+    new Promise(resolve => setTimeout(resolve, 2000))
+  ])
+  .then(([moduleExports]) => moduleExports);
+});
+// const Podcasts = React.lazy(() => import('srcRoot/pages/Podcasts'));
+const Podcasts = React.lazy(() => {
+  return Promise.all([
+    import("srcRoot/pages/Podcasts"),
+    new Promise(resolve => setTimeout(resolve, 1000))
+  ])
+  .then(([moduleExports]) => moduleExports);
+});
+
 const Events = React.lazy(() => import('srcRoot/pages/Events'));
 const Chat = React.lazy(() => import('srcRoot/pages/Chat'));
 
@@ -30,8 +46,8 @@ const App = () => {
     /* App Config */
     if (Date.now() < new Date(RELEASE_MENU_SIDBAR).getTime()) {
       setPopupGlobal({
-        title: 'Hỗ Trợ',
-        message: 'Chọc lọc bài viết yêu thích.',
+        title: 'Hướng Dẫn',
+        message: 'Vuốt sang trái để mở menu.',
       });
       PopoverManager.openPopover(PopupIdentities['NOTI_GLOBAL']);
     }

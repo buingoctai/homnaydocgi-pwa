@@ -78,7 +78,7 @@ const LeftSidebar = () => {
       content={
         <div className="sidebar-wrap">
           <div className="profile">
-            <Profile avatarUrl={Me} email="taibn.dev@gmail.com" job="Working At Zalo" />
+            <Profile avatarUrl={Me} email="taibn.dev@gmail.com" job="Developer" />
           </div>
           <div className="menu-wrap">
             <div>
@@ -148,7 +148,9 @@ const LeftSidebar = () => {
         height: '100%',
         width: '33.33%',
         justifyContent: 'center',
-        backgroundImage: 'linear-gradient(to right, #ffefab, #fff9e5)',
+        // backgroundImage: 'linear-gradient(to right, #7562d8, #9485e0)',
+        backgroundColor:'#2E343F',
+        border:'none'
       }}
     />
   );

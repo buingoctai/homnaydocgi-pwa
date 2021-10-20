@@ -15,11 +15,11 @@
         & > a {
           margin-left: 5px;
           text-decoration: none;
-          color: var(--blue-base);
+          color:var(--neutral-500);
         }
       }
       & .sperator {
-        border-top: 2px solid #e1e4ea;
+        border-top: 1px solid var(--neutral-400);
         width: 100%;
         margin: 8px 0px;
       }

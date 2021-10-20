@@ -1,3 +1,3 @@
-const RELEASE_MENU_SIDBAR = 'October 12, 2021 00:00:00';
+const RELEASE_MENU_SIDBAR = 'October 25, 2021 00:00:00';
 
 export { RELEASE_MENU_SIDBAR };
