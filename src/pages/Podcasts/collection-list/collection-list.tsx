@@ -10,7 +10,7 @@ const DEFAULT: Collections = { data: [], totalRecord: 0 };
 const COLUMN_COUNT = 2;
 const DEBOUNCE_TIME = 400;
 interface Props {
-  searchTxt: {text:string};
+  searchTxt: { text: string };
   onReloadAudioList: (params: any, isMock?: boolean) => void;
 }
 const CollectionList = (props: Props) => {
@@ -28,7 +28,7 @@ const CollectionList = (props: Props) => {
     reloadRef.current = setTimeout(() => {
       updateForce(Math.random());
     }, DEBOUNCE_TIME);
-    return { searchTxt:searchTxt.text };
+    return { searchTxt: searchTxt.text };
   }, [searchTxt]);
 
   const { response: collections } = useFetchData({

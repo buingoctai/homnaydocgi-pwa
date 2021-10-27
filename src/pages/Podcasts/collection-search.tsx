@@ -2,7 +2,7 @@ import React from 'react';
 import Search from 'srcRoot/components/Search';
 
 interface Props {
-  searchTxt: {text:string};
+  searchTxt: { text: string };
   onChangeSearchTxt: (params: any) => any;
 }
 const SearchEntry = (props: Props) => {

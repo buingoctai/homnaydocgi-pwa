@@ -82,6 +82,19 @@ const LeftSidebar = () => {
           </div>
           <div className="menu-wrap">
             <div>
+              <img src={IconHome} width={20} height={20} />
+
+              <Link
+                to="/"
+                style={{ marginLeft: '10px' }}
+                onClick={() => PopoverManager.closeAllPopover()}
+              >
+                Bài Viết
+              </Link>
+            </div>
+            <div className="sperator" />
+
+            <div>
               <img src={IconFilter} />
               <Link
                 to="/"
@@ -94,19 +107,6 @@ const LeftSidebar = () => {
                 }}
               >
                 Lọc Bài Viết
-              </Link>
-            </div>
-            <div className="sperator" />
-
-            <div>
-              <img src={IconHome} width={20} height={20} />
-
-              <Link
-                to="/"
-                style={{ marginLeft: '10px' }}
-                onClick={() => PopoverManager.closeAllPopover()}
-              >
-                Bài Viết
               </Link>
             </div>
             <div className="sperator" />
@@ -127,7 +127,7 @@ const LeftSidebar = () => {
                 Podcast
               </Link>
             </div>
-            <div className="sperator" />
+            {/* <div className="sperator" />
             <div>
               <img src={IconChat} />
               <Link to="/chat" onClick={() => PopoverManager.closeAllPopover()}>
@@ -138,7 +138,7 @@ const LeftSidebar = () => {
             <div>
               <img src={IconSetting} />
               <Link to="/">Cài Đặt</Link>
-            </div>
+            </div> */}
           </div>
         </div>
       }
@@ -149,8 +149,8 @@ const LeftSidebar = () => {
         width: '33.33%',
         justifyContent: 'center',
         // backgroundImage: 'linear-gradient(to right, #7562d8, #9485e0)',
-        backgroundColor:'#2E343F',
-        border:'none'
+        backgroundColor: '#2E343F',
+        border: 'none',
       }}
     />
   );

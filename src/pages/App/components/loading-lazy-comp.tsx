@@ -9,7 +9,7 @@ const LoadingLazyComp = () => (
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'rgb(12,17,23)',
+      backgroundColor: '#41bc3f',
     }}
   >
     {/* <LoadingV2

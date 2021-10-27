@@ -12,7 +12,7 @@ const Title = (props: Props) => {
     <>
       <div className="title-wrap">
         <span>{`Tất Cả: ${totalRecord}`}</span>
-        <img src={IconRefesh} width={24} height={24} onClick={onReloadAudioList}/>
+        <img src={IconRefesh} width={24} height={24} onClick={onReloadAudioList} />
       </div>
     </>
   );

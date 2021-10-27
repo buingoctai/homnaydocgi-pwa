@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useRef } from 'react';
 import { buildClassName } from 'srcRoot/utils/index-v2';
-import useScrollDirection from 'srcRoot/Hooks/use-scroll-direction';
+import useScrollDirection from 'srcRoot/Hooks/use-scroll';
 
 import './style.scss';
 

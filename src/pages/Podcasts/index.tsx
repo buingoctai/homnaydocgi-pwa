@@ -12,7 +12,7 @@ import './style.scss';
 const DEFAULT_AUDIO: AudioList = { data: [], totalRecord: 0 };
 
 const Podcasts = () => {
-  const [searchTxt, setSearchTxt] = useState({text:''});
+  const [searchTxt, setSearchTxt] = useState({ text: '' });
   const [force, updateForce] = useState(0);
   const audioParams = useRef({ collectionIds: [] });
   const { response: audioList, setResponse: setAudioList } = useFetchData({
@@ -23,7 +23,7 @@ const Podcasts = () => {
   });
 
   const onChangeSearchTxt = useCallback((e) => {
-    setSearchTxt({text:e?.target?.value || ''});
+    setSearchTxt({ text: e?.target?.value || '' });
   }, []);
 
   const onReloadAudioList = useCallback(
@@ -50,7 +50,7 @@ const Podcasts = () => {
       <div className="podcast-container ">
         <Search searchTxt={searchTxt} onChangeSearchTxt={onChangeSearchTxt} />
         <CollectionComp searchTxt={searchTxt} onReloadAudioList={onReloadAudioList} />
-        <AudioComp audioList={audioList || DEFAULT_AUDIO} onReloadAudioList={onChangeSearchTxt}/>
+        <AudioComp audioList={audioList || DEFAULT_AUDIO} onReloadAudioList={onChangeSearchTxt} />
       </div>
       <MediaPlayer audioList={audioList || DEFAULT_AUDIO} />
     </>

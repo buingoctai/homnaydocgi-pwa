@@ -14,7 +14,7 @@ const PodcastList = (props: Props) => {
 
   return (
     <div className="podcast-list">
-      <Title totalRecord={audioList['totalRecord']} onReloadAudioList={onReloadAudioList}/>
+      <Title totalRecord={audioList['totalRecord']} onReloadAudioList={onReloadAudioList} />
       {/* {isLoading && <SkeletonItem />} */}
 
       <div className="list-wrap" id="audio-list">
