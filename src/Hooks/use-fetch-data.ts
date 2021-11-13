@@ -6,6 +6,7 @@ type Props = {
   forceFetch?: any;
   retryOptions?: { retries: number; retryDelay: number };
   defaultRes?: object;
+  delayRes?:number;
 };
 
 const STATUS = {
@@ -25,7 +26,7 @@ const delay = (ms: number) => {
  * @param  {Props} props
  */
 const useFetchData = (props: Props) => {
-  const { api, payload, forceFetch, retryOptions = { retries: 0, retryDelay: 0 } } = props;
+  const { api, payload, forceFetch, delayRes,retryOptions = { retries: 0, retryDelay: 0 } } = props;
   const [response, setResponse] = useState(props.defaultRes);
   const [status, setStatus] = useState<string>(STATUS['DONE']);
 
@@ -33,7 +34,8 @@ const useFetchData = (props: Props) => {
     setStatus(STATUS['LOADING']);
     const wrapper = (n: number) => {
       api(payload)
-        .then((response) => {
+        .then(async (response) => {
+          await delay(delayRes);
           setResponse(response);
           setStatus(STATUS['DONE']);
         })

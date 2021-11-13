@@ -6,8 +6,8 @@ import { getAllTopic, getAllAuthor } from 'srcRoot/services/Article';
 import Select from 'srcRoot/components/Select';
 import Tag from 'srcRoot/components/Tag';
 import Button from 'srcRoot/components/Button';
-import { useRecoilState } from 'recoil';
-import { filterArticleState } from 'srcRoot/recoil/appState';
+import { useSetRecoilState } from 'recoil';
+import { filterState } from 'srcRoot/recoil/appState';
 import { translateTopicKeys } from 'srcRoot/utils/index-v2';
 import useFlightAnime from 'srcRoot/animations/use-flight-anime';
 
@@ -35,41 +35,45 @@ const getColorTag = () => {
 const Filter = () => {
   const [topics, setTopics] = useState<Array<any>>([]);
   const [authors, setAuthor] = useState<Array<any>>([]);
-  const [, setFilter] = useRecoilState(filterArticleState);
+  const setFilter = useSetRecoilState(filterState);
 
   const [authorIdxs, setAuthorIdxs] = useState<Array<number>>([]);
   const [topicIdxs, setTopicIdxs] = useState<Array<number>>([]);
 
   useEffect(() => {
-    getAllTopic()
-      .then((res: any) => {
-        setTopics(
-          res.map((item: string, idx: number) => {
-            return {
-              key: 'Topic',
-              name: translateTopicKeys[item],
-              value: item,
-              idx,
-            };
-          })
-        );
-      })
-      .catch();
+    PopoverManager.on('afterOpen', PopupIdentities['LEFT_SIDEBAR'], () => {
+      getAllTopic()
+        .then((res: any) => {
+          setTopics(
+            res.map((item: string, idx: number) => {
+              return {
+                key: 'Topic',
+                name: translateTopicKeys[item],
+                value: item,
+                idx,
+              };
+            })
+          );
+        })
+        .catch();
 
-    getAllAuthor()
-      .then((res: any) => {
-        setAuthor(
-          res.map((item: string, idx: number) => {
-            return {
-              key: 'Author',
-              name: item,
-              value: item,
-              idx,
-            };
-          })
-        );
-      })
-      .catch();
+      getAllAuthor()
+        .then((res: any) => {
+          setAuthor(
+            res.map((item: string, idx: number) => {
+              return {
+                key: 'Author',
+                name: item,
+                value: item,
+                idx,
+              };
+            })
+          );
+        })
+        .catch();
+
+      PopoverManager.removeListener('afterOpen', PopupIdentities['LEFT_SIDEBAR'], () => {});
+    });
   }, []);
 
   const getNameAuthors = useCallback((): Array<string> => {

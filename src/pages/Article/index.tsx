@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { List, AutoSizer, CellMeasurer, CellMeasurerCache } from 'react-virtualized';
 import { useRecoilValue } from 'recoil';
-import { filterArticleState } from 'srcRoot/recoil/appState';
+import { filterState } from 'srcRoot/recoil/appState';
 import Header from './components/header';
 import Content from './components/content';
 import Filter from './components/filter';
@@ -23,7 +23,7 @@ var heightStore = new CellMeasurerCache({
 const Article = ({ headArticle }) => {
   const [readedList, setReadedList] = useState({});
   const [page, setPage] = useState({ number: 1 });
-  const filter = useRecoilValue(filterArticleState);
+  const filter = useRecoilValue(filterState);
   const cached = useRef({ data: [], totalRecord: undefined });
   const listRef = useRef(null);
 
@@ -42,6 +42,7 @@ const Article = ({ headArticle }) => {
     payload,
     retryOptions: { retries: 3, retryDelay: 300 },
     forceFetch: page,
+    delayRes: 600,
   });
 
   // cached.current = useMemo(() => {
@@ -117,6 +118,9 @@ const Article = ({ headArticle }) => {
       }, 4000);
     }
   }, [totalRecord]);
+
+ 
+
 
   return (
     <>

@@ -3,15 +3,9 @@ import { NOTI_TYPE } from 'srcRoot/utils/constants';
 import IconNoti from 'srcRoot/static/svg/icon-outline-noti.svg';
 import IconNetwork from 'srcRoot/static/svg/icon-outline-network.svg';
 import './style.scss';
+import { NotiBody } from 'srcRoot/recoil/data-types';
 
-interface Props {
-  type: string | null | undefined;
-  title: string;
-  message: string;
-  footer: string | null | undefined;
-}
-
-const PopupBody = (props: Props) => {
+const PopupBody = (props: NotiBody) => {
   const { type, title, message, footer } = props;
 
   const getClassTitle = useCallback((): string => {

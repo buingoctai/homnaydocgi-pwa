@@ -11,15 +11,19 @@ import IconPodcast from 'srcRoot/static/svg/icon-outline-podcast.svg';
 import IconSetting from 'srcRoot/static/svg/icon-outline-setting.svg';
 import IconEvents from 'srcRoot/static/svg/icon-outline-events.svg';
 import IconChat from 'srcRoot/static/svg/icon-outline-chat.svg';
+import IconFeatures from 'srcRoot/static/svg/icon-welcome-features.svg';
 
 import Me from 'srcRoot/static/image/me.jpg';
 import { PopupIdentities } from 'srcRoot/utils/constants';
+import useLocalStorage, { KEYS } from 'srcRoot/Hooks/use-local-storage';
 
 import './style.scss';
 
 const LeftSidebar = () => {
   let xDown = null;
   let yDown = null;
+
+  const { value: hasShowWelcome, set: turnOffWelcome } = useLocalStorage({ key: KEYS['WELCOME'] });
 
   function getTouches(evt) {
     return evt.touches || evt.originalEvent.touches;
@@ -127,8 +131,21 @@ const LeftSidebar = () => {
                 Podcast
               </Link>
             </div>
-            {/* <div className="sperator" />
+            <div className="sperator" />
+
             <div>
+              <img src={IconFeatures} />
+              <a
+                onClick={() => {
+                  turnOffWelcome(false);
+                  location.reload();
+                }}
+              >
+                Giới Thiệu
+              </a>
+            </div>
+
+            {/* <div>
               <img src={IconChat} />
               <Link to="/chat" onClick={() => PopoverManager.closeAllPopover()}>
                 Chat

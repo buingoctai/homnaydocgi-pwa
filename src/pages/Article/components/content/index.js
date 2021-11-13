@@ -1,14 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDetailArticle } from 'srcRoot/Hooks/use-fetch-article';
-import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
-import { PopupIdentities, NOTI_TYPE } from 'srcRoot/utils/constants';
-import { popupGlobalState } from 'srcRoot/recoil/appState';
-import { useRecoilState } from 'recoil';
 import PermissionPop from '../permission-pop';
 import './style.scss';
 
 const Content = ({ index, post, listRef, heightStore, readedList, setReadedList }) => {
-  const [, setPopupGlobal] = useRecoilState(popupGlobalState);
   const { Id, Content, Title, Brief } = post;
   let newReadedList = {};
 
@@ -24,12 +19,6 @@ const Content = ({ index, post, listRef, heightStore, readedList, setReadedList 
   let [detailPost, setArticleId] = useDetailArticle(null, onUpdateListUI);
 
   const onCheckPermission = () => {
-    // if (index === 0) {
-    //   PopoverManager.openPopover(PopupIdentities['CHECK_PASS']);
-    // } else {
-    //   onReadMore();
-    // }
-
     onReadMore();
   };
 

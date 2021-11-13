@@ -13,7 +13,7 @@ interface Props {
 }
 const PermissionPop = (props: Props) => {
   const { onReadMore } = props;
-  const [, setPopupGlobal] = useRecoilState(popupGlobalState);
+  const [popupGlobal, setPopupGlobal] = useRecoilState(popupGlobalState);
 
   const [text, setText] = useState('');
 
@@ -30,6 +30,7 @@ const PermissionPop = (props: Props) => {
         onReadMore();
       } else {
         setPopupGlobal({
+          isOpening: true,
           title: 'Mật khẩu không khớp',
           message: 'Đừng nhập lại, oke?',
         });
@@ -40,6 +41,10 @@ const PermissionPop = (props: Props) => {
     },
     [text]
   );
+
+  useEffect(() => {
+    if (popupGlobal.isOpening) PopoverManager.openPopover(PopupIdentities['NOTI_GLOBAL']);
+  }, [popupGlobal]);
 
   return (
     <>

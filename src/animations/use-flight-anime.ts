@@ -115,6 +115,11 @@ const useFlightAnime = (targetEl: any, _typeAnime?: string, _colors?: Array<stri
       return;
     }
     const parent = targetEl.parentElement || targetEl;
+
+    // const height =  targetEl.getBoundingClientRect().height;
+    const top = targetEl.getBoundingClientRect().top + 20;
+    const left = targetEl.getBoundingClientRect().left;
+
     animeContainer.current = document.createElement('div');
     updateStyles(animeContainer.current, {
       width: '100px',
@@ -124,6 +129,8 @@ const useFlightAnime = (targetEl: any, _typeAnime?: string, _colors?: Array<stri
       color: '#eee',
       fontFamily: 'monospace',
       zIndex: '5',
+      top: `${top}px`,
+      left: `${left}px`,
     });
     parent.append(animeContainer.current);
   }, [targetEl]);

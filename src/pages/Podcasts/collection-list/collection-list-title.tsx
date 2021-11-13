@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import { createCollection, createMp3 } from 'srcRoot/services/Podcasts';
 import { collectionState } from '../podcasts-state';
 import { useRecoilState } from 'recoil';
@@ -15,7 +15,7 @@ interface Props {
   onReloadAudioList: (isMock?: boolean) => void;
 }
 const Title = (props: Props) => {
-  const [, setPopupGlobal] = useRecoilState(popupGlobalState);
+  const [popupGlobal, setPopupGlobal] = useRecoilState(popupGlobalState);
   const [collection, setCollection] = useRecoilState<{ selected: Array<string> } | {}>(
     collectionState
   );
@@ -83,15 +83,19 @@ const Title = (props: Props) => {
         .then(() => handler.onAfterDone())
         .catch((err) => {
           setPopupGlobal({
+            isOpening: true,
             title: 'Xảy ra lỗi',
             message: ErrorCode[err['error_code']],
           });
-          PopoverManager.openPopover(PopupIdentities['NOTI_GLOBAL']);
           handler.onAfterDone();
         });
     },
     [text, handler]
   );
+
+  useEffect(() => {
+    if (popupGlobal.isOpening) PopoverManager.openPopover(PopupIdentities['NOTI_GLOBAL']);
+  }, [popupGlobal]);
 
   return (
     <>

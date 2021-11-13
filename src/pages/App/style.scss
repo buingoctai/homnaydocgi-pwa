@@ -115,7 +115,7 @@ $FadeOutLoading: 1s;
     opacity: 0.8;
   }
   to {
-    transform: translateY(0);
+    transform: translateY(0%);
     opacity: 1;
   }
 }
@@ -172,4 +172,20 @@ $FadeOutLoading: 1s;
   max-height: 32px; /* fallback */
   -webkit-line-clamp: 3; /* number of lines to show */
   -webkit-box-orient: vertical;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--dark-grey-base);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-grey-300);
 }

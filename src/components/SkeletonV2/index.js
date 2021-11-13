@@ -3,7 +3,7 @@ import './style.scss';
 import SkeletonElement from './components/skeleton-unit';
 import Shimmer from './components/shimmer';
 
-function SkeletonProfile({ theme, numLine }) {
+function SkeletonProfile({ theme, numLine}) {
   const themeClass = theme || 'light';
 
   return (

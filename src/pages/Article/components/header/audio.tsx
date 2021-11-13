@@ -18,11 +18,11 @@ const Audio = (props: Props) => {
 
   const openAudio = useCallback(async () => {
     setPopupGlobal({
+      isOpening: true,
       title: 'Tính năng thử nghiệm',
       message: 'Chuyển văn bản sang âm thanh',
       timeout: 4000,
     });
-    PopoverManager.openPopover(PopupIdentities['NOTI_GLOBAL']);
 
     setIsListening(true);
 
@@ -38,6 +38,10 @@ const Audio = (props: Props) => {
   const closeAudio = useCallback(() => {
     setIsListening(false);
   }, []);
+
+  useEffect(() => {
+    if (popupGlobal.isOpening) PopoverManager.openPopover(PopupIdentities['NOTI_GLOBAL']);
+  }, [popupGlobal]);
 
   return isListening ? (
     <div className="audio-wrap active" onClick={closeAudio}>

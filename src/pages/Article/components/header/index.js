@@ -4,7 +4,7 @@ import Avatar from 'srcRoot/components/Avatar';
 import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 // import  Popover, { PopoverManager } from '../../../../../ui-libs/HPopover';
 import { useRecoilState } from 'recoil';
-import { popoverState } from 'srcRoot/recoil/appState';
+import { articleMenuState } from 'srcRoot/recoil/appState';
 import { PopupIdentities } from 'srcRoot/utils/constants';
 import Audio from './audio';
 import { getDetailPost } from 'srcRoot/services/Article';
@@ -42,7 +42,7 @@ const getRandomValidReader = () => {
 
 const Header = ({ index, id, title, author, time }) => {
   const actionRef = useRef(null);
-  const [popover, setPopover] = useRecoilState(popoverState);
+  const [articleMenu, setArticleMenu] = useRecoilState(articleMenuState);
 
   const handleCopyUrl = () => {
     const url = `${process.env.APP_BASE}/?id=${id}&${title.toLowerCase().replaceAll(' ', '-')}`;
@@ -69,7 +69,7 @@ const Header = ({ index, id, title, author, time }) => {
   ];
 
   const onCopyUrl = () => {
-    setPopover({ data: { items } });
+    setArticleMenu({ data: { items } });
     PopoverManager.openPopover({ ...POPUP_HEADER, name: `${POPUP_HEADER.name + id}` });
   };
 
@@ -117,7 +117,7 @@ const Header = ({ index, id, title, author, time }) => {
         identity={{ ...POPUP_HEADER, name: `${POPUP_HEADER.name + id}` }}
         style={{ width: '100%', bottom: '0px' }}
         className="popup-anime-bottom-fade-in"
-        content={<Menu items={popover.data.items} {...popover.handlers} />}
+        content={<Menu items={articleMenu.data.items} {...articleMenu.handlers} />}
       />
     </>
   );

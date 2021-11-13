@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Button from 'srcRoot/components/Button';
 import { useHistory } from 'react-router-dom';
 import { TRANSITION_TIME_PAGE } from 'srcRoot/app-config';
@@ -13,9 +13,15 @@ const AccessBtn = ({
   routes?: Array<{ route: { pathname: string; callback?: () => any } }>;
   showingIdx: number;
 }) => {
+  const [, force] = useState(0);
   const history = useHistory();
   const refBtn = useRef(null);
   const [onFlight] = useFlightAnime(refBtn.current);
+
+  useEffect(() => {
+    force(Math.random());
+  }, []);
+
   return (
     <Button
       text="Dùng Ngay"

@@ -35,7 +35,7 @@ const InstallApp = () => {
   return (
     <Popover
       identity={PopupIdentities['INSTALL_APP']}
-      className="install-app popup-anime-top-fade-in"
+      className="install-app"
       content={
         <div className="container">
           <Title onInstall={addHomeScreen} />

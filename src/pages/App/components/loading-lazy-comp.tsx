@@ -1,6 +1,6 @@
 import React from 'react';
 import LoadingV2 from 'srcRoot/components/LoadingV2';
-import IconWave from 'srcRoot/static/image/thumb-wave-blue.png';
+import IconWave from 'srcRoot/static/image/thumb-wave-blue.jpg';
 
 const LoadingLazyComp = () => (
   <div
@@ -9,7 +9,9 @@ const LoadingLazyComp = () => (
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#41bc3f',
+      backgroundImage: 'linear-gradient(to right, #999999 0%, #b2e2cb 20%, #7ecea7 40%, #b2e2cb 100%)',
+      boxShadow: '0 0 10px 0 rgb(0 0 0 / 18%)',
+      border:'1px solid #72808e'
     }}
   >
     {/* <LoadingV2
@@ -26,9 +28,9 @@ const LoadingLazyComp = () => (
     /> */}
     <img
       src={IconWave}
-      width={'200px'}
-      height={'200px'}
-      style={{ animation: ' wave 2.2s linear 0.4s 3' }}
+      // width={'80px'}
+      // height={'160px'}
+      style={{ animation: ' wave 2.2s linear 0.4s 3', borderRadius:'15px' }}
     />
   </div>
 );
