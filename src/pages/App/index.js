@@ -1,10 +1,9 @@
 import React, { useEffect, Suspense } from 'react';
-import { RELEASE_MENU_SIDBAR, TRANSITION_TIME_PAGE } from 'srcRoot/app-config';
-import { PopoverManager } from '@taibn.dev.vn/h-popover';
-import { NOTI_TYPE, PopupIdentities } from 'srcRoot/utils/constants';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { popupGlobalState } from 'srcRoot/recoil/appState';
+import { TRANSITION_TIME_PAGE } from 'srcRoot/app-config';
 import LoadingLazyComp from './components/loading-lazy-comp';
+import Toast from 'srcRoot/components/Toast';
+import MenuApp from './components/menu-app';
+import { ToastManager, TOAST_TYPE } from 'srcRoot/components/Toast';
 
 // const Article = React.lazy(() => import('srcRoot/pages/Article'));
 const Article = React.lazy(() => {
@@ -39,16 +38,12 @@ import 'srcRoot/static/scss/color.scss';
 
 const App = () => {
   useEffect(() => {
-    // const isMobilePlatform = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-    // if(!isMobilePlatform) {
-    //   console.log('navigator.userAgent',navigator.userAgent);
-    //   const articleNode = document.getElementById('root');
-    //   console.log('articleNode',articleNode);
-    //   if(articleNode) {
-    //     articleNode.style.padding = '0 400px';
-    //       articleNode.style.backgroundColor = 'var(--neutral-700)';
-    //   }
-    //  }
+    ToastManager.show({
+      text: 'Nếu Bạn Là Chuyên Viên Tuyển Dụng. Mở Menu Bên Trái <== Để Tải CV.',
+      type: TOAST_TYPE.INFO,
+      noBackground: true,
+      duration: 5000,
+    });
     initServiceWorker();
   }, []);
 
@@ -59,6 +54,8 @@ const App = () => {
         <InstallApp />
         <NotificationGlobal />
         <Welcome />
+        <Toast />
+        <MenuApp />
         <Route
           exact
           path="/"

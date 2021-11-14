@@ -1,11 +1,7 @@
-import React from "react";
-
+import React from 'react';
 
 const ScrollBack = () => {
-    return (
-        <>
-        </>
-    );
-}
+  return <></>;
+};
 
 export default ScrollBack;

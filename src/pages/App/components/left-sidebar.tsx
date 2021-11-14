@@ -16,6 +16,7 @@ import IconFeatures from 'srcRoot/static/svg/icon-welcome-features.svg';
 import Me from 'srcRoot/static/image/me.jpg';
 import { PopupIdentities } from 'srcRoot/utils/constants';
 import useLocalStorage, { KEYS } from 'srcRoot/Hooks/use-local-storage';
+import { ToastManager, TOAST_TYPE } from 'srcRoot/components/Toast';
 
 import './style.scss';
 
@@ -103,6 +104,11 @@ const LeftSidebar = () => {
               <Link
                 to="/"
                 onClick={() => {
+                  ToastManager.show({
+                    text: 'Tính Năng Trải Nghiệm Tốt Nhất Trên Mobile',
+                    type: TOAST_TYPE.INFO,
+                    noBackground: true,
+                  });
                   PopoverManager.closeAllPopover();
                   PopoverManager.openPopover({
                     ...PopupIdentities['FILTER_ARTICLE'],
@@ -127,7 +133,17 @@ const LeftSidebar = () => {
             <div>
               <img src={IconPodcast} />
 
-              <Link to="/podcasts" onClick={() => PopoverManager.closeAllPopover()}>
+              <Link
+                to="/podcasts"
+                onClick={() => {
+                  ToastManager.show({
+                    text: 'Tính Năng Trải Nghiệm Tốt Nhất Trên Mobile',
+                    type: TOAST_TYPE.INFO,
+                    noBackground: true,
+                  });
+                  PopoverManager.closeAllPopover();
+                }}
+              >
                 Podcast
               </Link>
             </div>

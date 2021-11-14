@@ -9,7 +9,6 @@ import Button from 'srcRoot/components/Button';
 import { useSetRecoilState } from 'recoil';
 import { filterState } from 'srcRoot/recoil/appState';
 import { translateTopicKeys } from 'srcRoot/utils/index-v2';
-import useFlightAnime from 'srcRoot/animations/use-flight-anime';
 
 // const topics = [
 //   { key: 'Topic', name: 'Tâm lý', idx: 0 },

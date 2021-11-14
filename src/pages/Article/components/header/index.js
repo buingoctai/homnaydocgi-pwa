@@ -9,8 +9,9 @@ import { PopupIdentities } from 'srcRoot/utils/constants';
 import Audio from './audio';
 import { getDetailPost } from 'srcRoot/services/Article';
 import { text2Speech } from 'srcRoot/services/Text2Speech';
-
+import { ToastManager, TOAST_TYPE } from 'srcRoot/components/Toast';
 import './style.scss';
+
 const POPUP_HEADER = PopupIdentities['COPY_URL'];
 
 const VALID_READER = [
@@ -51,10 +52,18 @@ const Header = ({ index, id, title, author, time }) => {
       navigator.clipboard
         .writeText(url)
         .then(() => {
-          console.log('Copy to clipboard success');
+          ToastManager.show({
+            text: 'Copy Thành Công. Chia sẻ ngay!',
+            type: TOAST_TYPE.SUCCESS,
+            noBackground: true,
+          });
         })
         .catch(() => {
-          console.log('Copy to clipboard failed');
+          ToastManager.show({
+            text: 'Copy Thất. Thử Lại!',
+            type: TOAST_TYPE.ERROR,
+            noBackground: true,
+          });
         });
     }
     PopoverManager.closePopover({ ...POPUP_HEADER, name: `${POPUP_HEADER.name + id}` });

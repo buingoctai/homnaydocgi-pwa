@@ -189,3 +189,27 @@ $FadeOutLoading: 1s;
 ::-webkit-scrollbar-thumb:hover {
   background: var(--dark-grey-300);
 }
+
+@media screen and (min-width: 600px) {
+  #root {
+    // background-color: blue;
+    width: 50% !important;
+    left: 25%;
+  }
+  .install-app {
+    width: calc(50% - 40px) !important;
+    left: calc(25% - -5px) !important;
+    top: 10px !important;
+  }
+
+  .menu-app {
+    cursor: pointer;
+    display: block !important;
+    position: fixed;
+    top: 50%;
+    left: calc(25% - 60px);
+  }
+  .sidebar-container {
+    width: calc(25% - 4px) !important;
+  }
+}

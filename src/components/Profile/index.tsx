@@ -1,6 +1,7 @@
 import React from 'react';
-import './style.scss';
 import Shimmer from './shimmer';
+import IconDownload from 'srcRoot/static/svg/icon-download.svg';
+import './style.scss';
 
 interface Props {
   avatarUrl: string;
@@ -9,6 +10,20 @@ interface Props {
 }
 const Profile = (props: Props) => {
   const { avatarUrl, email, job } = props;
+
+  function download() {
+    // fake server request, getting the file url as response
+    setTimeout(() => {
+      const response = {
+        file: 'https://docs.google.com/uc?export=download&id=1VCdXwwftJ-0QSESOXf5ibcsNz_Mjp65P',
+      };
+      // server sent the url to the file!
+      // now, let's download:
+      window.open(response.file);
+      // you could also do:
+      // window.location.href = response.file;
+    }, 100);
+  }
   return (
     <div className="profile-container">
       <div className="avatar-wrap">
@@ -18,6 +33,14 @@ const Profile = (props: Props) => {
       <div className="description-wrap">
         {job && <span className="job">{job}</span>}
         {email && <span className="email">{email}</span>}
+        <div
+          className="download__cv"
+          onClick={() => {
+            download();
+          }}
+        >
+          <img src={IconDownload} />
+        </div>
       </div>
     </div>
   );

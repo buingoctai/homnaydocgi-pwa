@@ -28,6 +28,16 @@
     & > .email {
       font-size: 13px;
     }
+    & > .download__cv {
+      margin-top: 6px;
+      background: #abb4bc;
+      border-radius: 6px;
+      width: 30px;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid var(--neutral-400);
+      box-shadow: 0 0 10px 0 rgb(0 0 0 / 18%);
+    }
   }
 
   /* Animation */

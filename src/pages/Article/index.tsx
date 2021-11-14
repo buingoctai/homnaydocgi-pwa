@@ -119,9 +119,6 @@ const Article = ({ headArticle }) => {
     }
   }, [totalRecord]);
 
- 
-
-
   return (
     <>
       <Filter />

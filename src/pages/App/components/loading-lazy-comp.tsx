@@ -9,9 +9,10 @@ const LoadingLazyComp = () => (
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundImage: 'linear-gradient(to right, #999999 0%, #b2e2cb 20%, #7ecea7 40%, #b2e2cb 100%)',
+      backgroundImage:
+        'linear-gradient(to right, #999999 0%, #b2e2cb 20%, #7ecea7 40%, #b2e2cb 100%)',
       boxShadow: '0 0 10px 0 rgb(0 0 0 / 18%)',
-      border:'1px solid #72808e'
+      border: '1px solid #72808e',
     }}
   >
     {/* <LoadingV2
@@ -30,7 +31,7 @@ const LoadingLazyComp = () => (
       src={IconWave}
       // width={'80px'}
       // height={'160px'}
-      style={{ animation: ' wave 2.2s linear 0.4s 3', borderRadius:'15px' }}
+      style={{ animation: ' wave 2.2s linear 0.4s 3', borderRadius: '15px' }}
     />
   </div>
 );

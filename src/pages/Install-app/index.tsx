@@ -4,6 +4,7 @@ import HCommon from 'srcRoot/utils/log-system';
 import Title from './title';
 import VideoIntro from './video-intro';
 import { PopupIdentities } from 'srcRoot/utils/constants';
+import { ToastManager, TOAST_TYPE } from 'srcRoot/components/Toast';
 
 import './style.scss';
 
@@ -15,9 +16,19 @@ const InstallApp = () => {
     deferredPrompt.current.prompt();
     deferredPrompt.current.userChoice.then((choiceResult: { outcome: string }) => {
       if (choiceResult.outcome === 'accepted') {
-        HCommon.log('[Install-App] User accept to install app.');
+        setTimeout(() => {
+          ToastManager.show({
+            text: 'Cài Đặt Thành Công. Trải Ngiệm Ngay.',
+            type: TOAST_TYPE.SUCCESS,
+            noBackground: true,
+          });
+        }, 5000);
       } else {
-        HCommon.logError('[Install-App] User deny to install app.');
+        ToastManager.show({
+          text: 'Bạn Từ Chối Cài Đặt App.',
+          type: TOAST_TYPE.INFO,
+          noBackground: true,
+        });
       }
       deferredPrompt.current = null;
     });
