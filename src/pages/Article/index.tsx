@@ -14,6 +14,7 @@ import { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { PopupIdentities } from 'srcRoot/utils/constants';
 
 import './style.scss';
+import { translateTopicKeys } from 'srcRoot/utils/index-v2';
 
 var heightStore = new CellMeasurerCache({
   defaultHeight: 300,
@@ -42,7 +43,7 @@ const Article = ({ headArticle }) => {
     payload,
     retryOptions: { retries: 3, retryDelay: 300 },
     forceFetch: page,
-    delayRes: 600,
+    delayRes: 1000,
   });
 
   // cached.current = useMemo(() => {
@@ -79,8 +80,12 @@ const Article = ({ headArticle }) => {
     (event) => {
       if (!event) return;
       const isScrollBottom = event.scrollTop + window.innerHeight >= event.scrollHeight - 10;
-
-      if (isScrollBottom && !isLoading) setPage({ number: page.number + 1 });
+      
+      if (isScrollBottom && !isLoading) {
+        setTimeout(() => {
+          setPage({ number: page.number + 1 });
+        }, 300);
+      }
     },
     [page, isLoading]
   );
@@ -126,7 +131,7 @@ const Article = ({ headArticle }) => {
         <div className="article" id="article">
           <div
             className="article-list"
-            style={isLoading ? { height: 'calc(100% - 44px)' } : { height: '100%' }}
+            style={isLoading ? { transform:'translateY(-44px)'} : { }}
           >
             <AutoSizer>
               {({ width, height, isScrolling }) => {
@@ -169,6 +174,10 @@ const Article = ({ headArticle }) => {
               borderTop: '2px solid #0068FF',
               borderwidth: '2px',
               animation: 'loadingAnim 1s cubic-bezier(0, 0, 0, 0) infinite',
+            }}
+            wrapStyle = {{
+              transform:'translateY(-44px)',
+
             }}
           />
         </div>

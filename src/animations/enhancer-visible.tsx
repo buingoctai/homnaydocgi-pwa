@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-const EnhancerVisible = (Comp: any) => (props: { show: Boolean; type: string; style: object }) => {
+const EnhancerVisible = (Comp: any) => (props: { show: Boolean; type: string; style: object,wrapStyle?:object }) => {
   const { show, type } = props;
   const [shouldRender, setRender] = useState(show);
 

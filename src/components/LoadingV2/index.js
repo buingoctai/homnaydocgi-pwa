@@ -11,10 +11,11 @@ function Loading({
   loadingWidth,
   animeClass,
   onAnimationEnd,
+  wrapStyle = {},
   ...props
 }) {
   return (
-    <div className={'loading-wrap ' + animeClass} onAnimationEnd={onAnimationEnd}>
+    <div className={'loading-wrap ' + animeClass} style={wrapStyle} onAnimationEnd={onAnimationEnd}>
       <div className="loading-background">
         <div
           className={'loading-v2 ' + (className || '')}
