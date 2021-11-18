@@ -200,6 +200,7 @@ $FadeOutLoading: 1s;
     width: calc(50% - 40px) !important;
     left: calc(25% - -5px) !important;
     top: 10px !important;
+    display: none;
   }
 
   .menu-app {
@@ -212,4 +213,12 @@ $FadeOutLoading: 1s;
   .sidebar-container {
     width: calc(25% - 4px) !important;
   }
+}
+
+
+@media screen and (min-width: 600px) and (max-height: 600px) {
+  .menu-wrap {
+    margin-top: 200px;
+  }
+
 }

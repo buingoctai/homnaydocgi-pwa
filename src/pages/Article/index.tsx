@@ -12,7 +12,6 @@ import { getAllPost } from 'srcRoot/services/Article';
 import IconEmpty from 'srcRoot/static/image/icon-empty-search.png';
 import { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { PopupIdentities } from 'srcRoot/utils/constants';
-
 import './style.scss';
 import { translateTopicKeys } from 'srcRoot/utils/index-v2';
 
