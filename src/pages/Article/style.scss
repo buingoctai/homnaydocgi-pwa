@@ -83,6 +83,9 @@ $fullHeight: 100%;
         font-size: 16px;
         font-weight: var(--semibold);
       }
+      & > img {
+        cursor: pointer;
+      }
     }
 
     & > .options {

@@ -104,11 +104,6 @@ const LeftSidebar = () => {
               <Link
                 to="/"
                 onClick={() => {
-                  ToastManager.show({
-                    text: 'Tính Năng Trải Nghiệm Tốt Nhất Trên Mobile',
-                    type: TOAST_TYPE.INFO,
-                    noBackground: true,
-                  });
                   PopoverManager.closeAllPopover();
                   PopoverManager.openPopover({
                     ...PopupIdentities['FILTER_ARTICLE'],
@@ -136,11 +131,6 @@ const LeftSidebar = () => {
               <Link
                 to="/podcasts"
                 onClick={() => {
-                  ToastManager.show({
-                    text: 'Tính Năng Trải Nghiệm Tốt Nhất Trên Mobile',
-                    type: TOAST_TYPE.INFO,
-                    noBackground: true,
-                  });
                   PopoverManager.closeAllPopover();
                 }}
               >

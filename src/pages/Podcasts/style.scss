@@ -33,6 +33,10 @@
     & > .list-wrap {
       height: calc(100% - 40px);
       margin-top: 16px;
+      .ReactVirtualized__Grid {
+        display: flex;
+        justify-content:center ;
+      }
     }
     .collection-item {
       display: flex;
@@ -85,24 +89,31 @@
           box-shadow: 0 0 2px 0 rgb(0 0 0 / 18%);
           color: var(--drak-grey-base);
           transition: background-image 0.5s ease;
+          cursor: pointer;
           & > .avatar {
             margin: 16px;
             height: 40px;
             width: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             & > img {
               border-radius: 10%;
+              width: 60px;
+              height: 40px;
             }
             & > .play__btn {
               position: absolute;
               width: 30px;
               height: 30px;
-              top: 15px;
-              left: 30px;
             }
           }
           & > .name {
             font-size: 14px;
-            width: 56%;
+            width: 100%;
+          }
+          & > img {
+            margin-right: 6px;
           }
           &:focus {
             background-image: linear-gradient(
@@ -185,7 +196,7 @@
         margin: 0px 6px;
       }
       & > .title {
-        width: 180px;
+        width: 100%;
         color: var(--blue-400);
       }
       & > .length {

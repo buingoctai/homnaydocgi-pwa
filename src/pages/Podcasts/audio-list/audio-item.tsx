@@ -58,7 +58,7 @@ const PodcastItem = (props: Props) => {
           name: `${PopupIdentities['RECOMMEND_AUDIOS'].name + index}`,
         }}
         style={{ width: 'calc(100% - 16px)', bottom: '0px' }}
-        className="popup-anime-bottom-fade-in"
+        className="popup-anime-bottom-fade-in recommend-audio-pop"
         content={<RecommendAudio audioId={data.audioId} audioName={data.audioName} />}
       />
     </div>

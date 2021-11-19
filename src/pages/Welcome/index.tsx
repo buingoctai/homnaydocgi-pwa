@@ -14,21 +14,21 @@ import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { PopupIdentities } from 'srcRoot/utils/constants';
 
 const mocks = [
-  {
-    thumbs: [WelcomeSearch],
-    title: 'Lọc bài viết',
-    summary: 'Tìm kiếm bài viết dễ dàng theo nhóm chủ đề yêu thích hoặc nhóm tác giả cụ thể.',
-    route: {
-      pathname: '/',
-      callback: () => {
-        PopoverManager.closeAllPopover();
-        PopoverManager.openPopover({
-          ...PopupIdentities['FILTER_ARTICLE'],
-          onAfterOpen: () => {},
-        });
-      },
-    },
-  },
+  // {
+  //   thumbs: [WelcomeSearch],
+  //   title: 'Lọc bài viết',
+  //   summary: 'Tìm kiếm bài viết dễ dàng theo nhóm chủ đề yêu thích hoặc nhóm tác giả cụ thể.',
+  //   route: {
+  //     pathname: '/',
+  //     callback: () => {
+  //       PopoverManager.closeAllPopover();
+  //       PopoverManager.openPopover({
+  //         ...PopupIdentities['FILTER_ARTICLE'],
+  //         onAfterOpen: () => {},
+  //       });
+  //     },
+  //   },
+  // },
   {
     thumbs: [WelcomeArticle],
     title: 'Nội dung hấp dẫn',

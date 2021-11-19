@@ -10,7 +10,7 @@ const LoadingLazyComp = () => (
       justifyContent: 'center',
       alignItems: 'center',
       backgroundImage:
-        'linear-gradient(to right, #999999 0%, #b2e2cb 20%, #7ecea7 40%, #b2e2cb 100%)',
+        'linear-gradient(to right, #e7f5ef 20%, #b2e2cb 40%, #e7f5ef 100%)',
       boxShadow: '0 0 10px 0 rgb(0 0 0 / 18%)',
       border: '1px solid #72808e',
     }}
@@ -29,7 +29,7 @@ const LoadingLazyComp = () => (
     /> */}
     <img
       src={IconWave}
-      // width={'80px'}
+      width={120}
       // height={'160px'}
       style={{ animation: ' wave 2.2s linear 0.4s 3', borderRadius: '15px' }}
     />

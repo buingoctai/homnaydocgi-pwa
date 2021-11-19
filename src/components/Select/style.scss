@@ -45,6 +45,7 @@
       font-size: 16px;
       color: var(--neutral-500);
       line-height: 26px;
+      cursor: pointer;
       &.selected {
         opacity: 0.5;
       }

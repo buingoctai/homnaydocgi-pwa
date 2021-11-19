@@ -28,6 +28,7 @@ $FadeOutLoading: 1s;
 //////////////////////// FADE IN POP FROM BOTTOM
 .popup-anime-bottom-fade-in {
   bottom: 0;
+
   -webkit-animation: fade-in-bottom $FadeInBottom linear 1;
   -moz-animation: fade-in-bottom $FadeInBottom linear 1;
   -ms-animation: fade-in-bottom $FadeInBottom linear 1;
@@ -37,6 +38,7 @@ $FadeOutLoading: 1s;
   from {
     transform: translateY(100%);
     opacity: 0.8;
+
   }
   to {
     transform: translateY(0);
@@ -210,8 +212,26 @@ $FadeOutLoading: 1s;
     top: 50%;
     left: calc(25% - 60px);
   }
+
   .sidebar-container {
     width: calc(25% - 4px) !important;
+  }
+
+  .copy-url-pop {
+    width: calc(50% - 36px) !important;
+    left: calc(25% + 8px) !important;
+    cursor: pointer !important;
+  }
+  .recommend-audio-pop {
+    width: calc(50% - 36px) !important;
+    left: calc(25% + 8px) !important;
+  }
+  .podcast-container {
+    padding: 30px 200px !important;
+  }
+
+  .media-player-container{
+    width: calc(50% - 16px) !important;
   }
 }
 
@@ -221,4 +241,7 @@ $FadeOutLoading: 1s;
     margin-top: 200px;
   }
 
+  .podcast-container {
+    padding: 30px 70px !important;
+  }
 }

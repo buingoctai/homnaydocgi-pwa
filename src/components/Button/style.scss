@@ -8,6 +8,7 @@
   color: var(--white-base);
   border: none;
   border-radius: 4px;
+  cursor: pointer;
   &.disabled {
     opacity: 0.5;
   }

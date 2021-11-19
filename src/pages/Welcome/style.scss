@@ -8,19 +8,23 @@
 
   background-image: linear-gradient(
     to right,
-    var(--purple-500),
-    var(--purple-400),
-    var(--purple-300)
+    var(--green-500),
+    var(--green-400),
+    var(--green-300)
   );
   overflow: hidden;
   & > .access__btn {
     height: 60px;
     width: 100%;
-    background-color: var(--blue-500);
-    color: var(--grey-500);
+    background-color: var(--green-base);
+    color: var(--white-base);
     font-size: 20px;
     bottom: 0px;
     cursor: pointer;
+  }
+  & > .access__btn:focus {
+    background-color: var(--green-500) !important;
+
   }
   & > .body {
     display: flex;

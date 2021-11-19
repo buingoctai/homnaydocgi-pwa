@@ -125,7 +125,7 @@ const Header = ({ index, id, title, author, time }) => {
       <Popover
         identity={{ ...POPUP_HEADER, name: `${POPUP_HEADER.name + id}` }}
         style={{ width: '100%', bottom: '0px' }}
-        className="popup-anime-bottom-fade-in"
+        className="popup-anime-bottom-fade-in copy-url-pop"
         content={<Menu items={articleMenu.data.items} {...articleMenu.handlers} />}
       />
     </>

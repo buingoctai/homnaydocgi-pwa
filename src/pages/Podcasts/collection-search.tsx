@@ -11,7 +11,7 @@ const SearchEntry = (props: Props) => {
     <div className="search">
       <Search
         text={searchTxt.text}
-        placeholder="Tìm kiếm..."
+        placeholder="Tìm bộ sưu tập..."
         autoFocus={false}
         onChange={onChangeSearchTxt}
       />

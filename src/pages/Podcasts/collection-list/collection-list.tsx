@@ -5,9 +5,10 @@ import useFetchData from 'srcRoot/Hooks/use-fetch-data';
 import { getAllCollection } from 'srcRoot/services/Podcasts';
 import { Collections, Collection } from 'srcRoot/enitities/Audio';
 import Title from './collection-list-title';
+import {isMobileDevices} from 'srcRoot/utils/index-v2';
 
 const DEFAULT: Collections = { data: [], totalRecord: 0 };
-const COLUMN_COUNT = 2;
+const COLUMN_COUNT = isMobileDevices() ? 2 : 3;
 const DEBOUNCE_TIME = 400;
 interface Props {
   searchTxt: { text: string };
