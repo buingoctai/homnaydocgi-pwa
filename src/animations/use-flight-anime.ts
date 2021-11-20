@@ -111,7 +111,6 @@ const useFlightAnime = (targetEl: any, _typeAnime?: string, _colors?: Array<stri
   /* Create flight place*/
   useEffect(() => {
     if (!targetEl) {
-      console.error('[Use-flight-anime]: Target was undefined', targetEl);
       return;
     }
     const parent = targetEl.parentElement || targetEl;

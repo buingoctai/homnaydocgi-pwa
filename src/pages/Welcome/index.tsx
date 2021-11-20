@@ -1,17 +1,17 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import './style.scss';
 import Slider from './slider';
 import AccessBtn from './access-btn';
 import WalkgroundPagination from './walkground-pagination';
 import PagiBtns from './pagi-btns';
 import WelcomeArticle from 'srcRoot/static/svg/icon-welcome-article.svg';
-import WelcomeSearch from 'srcRoot/static/svg/icon-welcome-search.svg';
+// import WelcomeSearch from 'srcRoot/static/svg/icon-welcome-search.svg';
 import WelcomeSound from 'srcRoot/static/svg/icon-welcome-sounds.svg';
 import WelcomeYoutube from 'srcRoot/static/svg/icon-welcome-youtube.svg';
 import useLocalStorage, { KEYS } from 'srcRoot/Hooks/use-local-storage';
 
-import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
-import { PopupIdentities } from 'srcRoot/utils/constants';
+// import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
+// import { PopupIdentities } from 'srcRoot/utils/constants';
+import './style.scss';
 
 const mocks = [
   // {

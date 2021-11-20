@@ -23,9 +23,9 @@ module.exports = merge(common, {
       // API_BASE: 'http://localhost:8080',
       APP_BASE: 'http://localhost:3007',
     }),
-    
+
     new webpack.DefinePlugin({
       PRODUCTION: JSON.stringify(false),
-    })
+    }),
   ],
 });

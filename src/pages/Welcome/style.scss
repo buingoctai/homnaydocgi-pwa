@@ -6,12 +6,7 @@
   display: flex;
   flex-direction: column;
 
-  background-image: linear-gradient(
-    to right,
-    var(--green-500),
-    var(--green-400),
-    var(--green-300)
-  );
+  background-image: linear-gradient(to right, var(--green-500), var(--green-400), var(--green-300));
   overflow: hidden;
   & > .access__btn {
     height: 60px;
@@ -24,7 +19,6 @@
   }
   & > .access__btn:focus {
     background-color: var(--green-500) !important;
-
   }
   & > .body {
     display: flex;

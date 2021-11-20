@@ -79,7 +79,7 @@ const Article = ({ headArticle }) => {
     (event) => {
       if (!event) return;
       const isScrollBottom = event.scrollTop + window.innerHeight >= event.scrollHeight - 10;
-      
+
       if (isScrollBottom && !isLoading) {
         setTimeout(() => {
           setPage({ number: page.number + 1 });
@@ -90,11 +90,11 @@ const Article = ({ headArticle }) => {
   );
 
   const renderItem = ({ index, style, listRef, isScrolling }) => {
-    if (data.length === 0 || !data[index]) return null;
+    if (data.length === 0 || !data[index]) return <span style={{}}></span>;
 
     return (
       <div style={{ ...style }} key={data[index].Id}>
-        <div className="article-item">
+        <div className="article-item" key={index}>
           <Header
             index={index}
             id={data[index].Id}
@@ -128,10 +128,7 @@ const Article = ({ headArticle }) => {
       <Filter />
       {totalRecord ? (
         <div className="article" id="article">
-          <div
-            className="article-list"
-            style={isLoading ? { transform:'translateY(-44px)'} : { }}
-          >
+          <div className="article-list" style={isLoading ? { transform: 'translateY(-44px)' } : {}}>
             <AutoSizer>
               {({ width, height, isScrolling }) => {
                 return (
@@ -174,9 +171,8 @@ const Article = ({ headArticle }) => {
               borderwidth: '2px',
               animation: 'loadingAnim 1s cubic-bezier(0, 0, 0, 0) infinite',
             }}
-            wrapStyle = {{
-              transform:'translateY(-44px)',
-
+            wrapStyle={{
+              transform: 'translateY(-44px)',
             }}
           />
         </div>
@@ -186,7 +182,7 @@ const Article = ({ headArticle }) => {
           <span>Tìm thấy bài viết rỗng! Thử lại</span>
         </div>
       ) : (
-        [6, 5, 7].map((item, index) => <SkeletonV2 numLine={item} theme="light" />)
+        [6, 5, 7].map((item, index) => <SkeletonV2 numLine={item} theme="light" key={index} />)
       )}{' '}
     </>
   );

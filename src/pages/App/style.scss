@@ -38,7 +38,6 @@ $FadeOutLoading: 1s;
   from {
     transform: translateY(100%);
     opacity: 0.8;
-
   }
   to {
     transform: translateY(0);
@@ -230,11 +229,10 @@ $FadeOutLoading: 1s;
     padding: 30px 200px !important;
   }
 
-  .media-player-container{
+  .media-player-container {
     width: calc(50% - 16px) !important;
   }
 }
-
 
 @media screen and (min-width: 600px) and (max-height: 600px) {
   .menu-wrap {

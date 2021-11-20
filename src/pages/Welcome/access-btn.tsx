@@ -24,7 +24,7 @@ const AccessBtn = ({
 
   return (
     <Button
-      text="Dùng Ngay"
+      text="Thử Ngay"
       className="access__btn"
       ref={refBtn}
       onClick={(e) => {

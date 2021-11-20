@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { Collection } from 'srcRoot/enitities/Audio';
-import { collectionState } from '../podcasts-state';
+import { selectedCollection } from '../podcasts-state';
 import { useRecoilState } from 'recoil';
 import { capitalizeFirstLetter } from 'srcRoot/utils/index-v2';
 
@@ -14,11 +14,11 @@ const CollectionItem = (props: Props) => {
   const { style, data } = props;
   if (!data) return null;
 
-  const [collection, setCollection] = useRecoilState(collectionState);
+  const [collection, setCollection] = useRecoilState(selectedCollection);
   const collectionRef = useRef(null);
   const timeoutRef = useRef(null);
   const selected = useMemo(() => {
-    return collection['selected'][0]?.collectionId === data.collectionId;
+    return collection[0]?.collectionId === data.collectionId;
   }, [collection, data]);
 
   const handleStart = useCallback(() => {

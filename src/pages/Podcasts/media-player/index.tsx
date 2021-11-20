@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './style.scss';
-import { useRecoilState } from 'recoil';
-import { currentAudioState } from '../podcasts-state';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { currentAudioState, CurrentAudio } from '../podcasts-state';
 import IconPlay from 'srcRoot/static/svg/icon-outline-play-btn.svg';
 import IconNext from 'srcRoot/static/svg/icon-outline-next-btn.svg';
 import IconPrevious from 'srcRoot/static/svg/icon-outline-previous-btn.svg';
@@ -9,6 +9,8 @@ import IconPlaying from 'srcRoot/static/gif/icon-playing-gif.gif';
 import IconPause from 'srcRoot/static/svg/icon-outline-pause-btn.svg';
 import { AudioList } from 'srcRoot/enitities/Audio';
 import { capitalizeFirstLetter } from 'srcRoot/utils/index-v2';
+import { audioListState } from 'srcRoot/recoil/appState';
+import { useHistory } from 'react-router-dom';
 
 const STATUS = {
   /* server status */
@@ -24,8 +26,21 @@ interface Props {
 }
 const MediaPlayer = (props: Props) => {
   const { audioList } = props;
+  const history = useHistory();
+  const routeData = history.location.state;
+
+  const initCurrentAudio = useCallback((): CurrentAudio => {
+    for (let i = 0; i < audioList['data'].length; i++) {
+      if (audioList['data'][i].audioId === routeData?.audioId) {
+        return { data: audioList['data'][i], idx: i };
+      }
+    }
+    return { data: null, idx: null };
+  }, [history, routeData, audioList]);
+
   const [currentAudio, setCurrentAudio] = useRecoilState(currentAudioState);
-  const [audio] = currentAudio['data'] || [];
+
+  const audio = currentAudio['data'];
   const idx = currentAudio['idx'];
 
   const [status, setStatus] = useState<{
@@ -60,11 +75,11 @@ const MediaPlayer = (props: Props) => {
   }, []);
 
   const onNextAudio = useCallback(() => {
-    setCurrentAudio({ data: [audioList['data'][idx + 1]], idx: idx + 1 });
+    setCurrentAudio({ data: audioList['data'][idx + 1], idx: idx + 1 });
   }, [idx, audioList]);
 
   const onBackAudio = useCallback(() => {
-    setCurrentAudio({ data: [audioList['data'][idx - 1]], idx: idx - 1 });
+    setCurrentAudio({ data: audioList['data'][idx - 1], idx: idx - 1 });
   }, [idx, audioList]);
 
   ///////////
@@ -113,7 +128,7 @@ const MediaPlayer = (props: Props) => {
   }, [status]);
 
   useEffect(() => {
-    const [audio] = currentAudio['data'] || [];
+    const audio = currentAudio['data'];
     if (audio) {
       setStatus({
         server: STATUS['NON_LOAD'],
@@ -134,6 +149,10 @@ const MediaPlayer = (props: Props) => {
     }
   }, [status]);
 
+  useEffect(() => {
+    if (routeData?.audioId && audioList['data'].length > 0) setCurrentAudio(initCurrentAudio());
+  }, [initCurrentAudio, audioList]);
+
   /////////
   return audio ? (
     <div className="media-player-container">
@@ -153,7 +172,7 @@ const MediaPlayer = (props: Props) => {
         </div>
         {status.server === STATUS['NON_LOAD'] || status.server === STATUS['ERROR'] ? (
           <div className="media-progress">
-            <span className="truncate name">{capitalizeFirstLetter(audio.audioName)}</span>
+            <span className="truncate name">{capitalizeFirstLetter(audio['audioName'])}</span>
           </div>
         ) : (
           <div className="media-progress">
@@ -174,14 +193,14 @@ const MediaPlayer = (props: Props) => {
         )}
       </div>
       <div className="level-right">
-        <img src={audio?.thumb} />
+        <img src={audio['thumb']} />
       </div>
       <audio
         id="media-player"
         ref={playerRef}
         audio-html5-video
         preload="auto"
-        src={audio?.url}
+        src={audio['url']}
         onCanPlay={onCanPlayAudio}
         onTimeUpdate={onTimeUpdateAudio}
         onEnded={onNextAudio}

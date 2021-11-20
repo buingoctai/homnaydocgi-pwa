@@ -5,7 +5,6 @@ import Toast from 'srcRoot/components/Toast';
 import MenuApp from './components/menu-app';
 import { ToastManager, TOAST_TYPE } from 'srcRoot/components/Toast';
 
-
 // const Article = React.lazy(() => import('srcRoot/pages/Article'));
 const Article = React.lazy(() => {
   return Promise.all([

@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { Audio } from 'srcRoot/enitities/Audio';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { currentAudioState } from '../podcasts-state';
 import IconPlay from 'srcRoot/static/svg/icon-solid-play-btn.svg';
 import IconList from 'srcRoot/static/svg/icon-solid-list.svg';
@@ -19,11 +19,11 @@ const PodcastItem = (props: Props) => {
   const animeRef = useRef(null);
 
   const { key, index, style, data } = props;
-  const [, setCurrentAudio] = useRecoilState(currentAudioState);
+  const setCurrentAudio = useSetRecoilState(currentAudioState);
 
   const handlePlayAudio = useCallback(
     (e) => {
-      setCurrentAudio({ data: [data], idx: index });
+      setCurrentAudio({ data: data, idx: index });
       setTimeout(() => {
         animeRef.current.blur();
       }, 200);

@@ -20,4 +20,9 @@ const articleMenu = {
 
 const filterArticle = null;
 
-export { popupGlobal, articleMenu, filterArticle };
+const audioList = {
+  data: [],
+  totalRecord: 0,
+};
+
+export { popupGlobal, articleMenu, filterArticle, audioList };

@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useRef } from 'react';
 import { buildClassName } from 'srcRoot/utils/index-v2';
 import useScrollDirection from 'srcRoot/Hooks/use-scroll';
-import {isMobileDevices} from 'srcRoot/utils/index-v2';
+import { isMobileDevices } from 'srcRoot/utils/index-v2';
 
 import './style.scss';
 
@@ -27,35 +27,34 @@ const Option = (props: Props) => {
     return buildClassName('option__item truncate', isSelected && 'selected');
   }, []);
 
+  const getChosingEvents = useCallback(
+    (item) => {
+      if (isMobileDevices()) {
+        return {
+          onTouchEnd: () => {
+            if (isScrolling) return;
+            if (selectedIdxs.includes(item.idx)) {
+              onUnSelect(selectedIdxs.filter((idx) => idx !== item.idx));
+            } else {
+              onSelect(item.idx);
+            }
+          },
+        };
+      }
 
-  const getChosingEvents = useCallback((item) => {
-    if(isMobileDevices()) {
       return {
-        onTouchEnd: () => {
+        onClick: () => {
           if (isScrolling) return;
           if (selectedIdxs.includes(item.idx)) {
             onUnSelect(selectedIdxs.filter((idx) => idx !== item.idx));
           } else {
             onSelect(item.idx);
           }
-        }
-      }
-    }
-
-    return {
-      onClick: () => {
-        if (isScrolling) return;
-        if (selectedIdxs.includes(item.idx)) {
-          onUnSelect(selectedIdxs.filter((idx) => idx !== item.idx));
-        } else {
-          onSelect(item.idx);
-        }
-      }
-    }
-
-
-  },[selectedIdxs,onUnSelect,onSelect,isScrolling]);
-
+        },
+      };
+    },
+    [selectedIdxs, onUnSelect, onSelect, isScrolling]
+  );
 
   return (
     <div className="select-wrap__option">

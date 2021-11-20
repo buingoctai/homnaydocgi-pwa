@@ -1151,10 +1151,10 @@
   resolved "https://registry.yarnpkg.com/@sheerun/mutationobserver-shim/-/mutationobserver-shim-0.3.3.tgz#5405ee8e444ed212db44e79351f0c70a582aae25"
   integrity sha512-DetpxZw1fzPD5xUBrIAoplLChO2VB8DlL5Gg+I1IR9b2wPqYIca2WSUxL5g1vLeR4MsQq1NeWriXAVffV+U1Fw==
 
-"@taibn.dev.vn/h-popover@1.0.9":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@taibn.dev.vn/h-popover/-/h-popover-1.0.9.tgz#969ce830f94fbe82f9de61868409998bf94dab96"
-  integrity sha512-zJ4/Gncu+8hW1LhbBVD/RGNgmbZyFLjUawAZhQZcToULhqT5wDLWLEvX6d/HKZ9faTHVXbmKHrPSS+rNOcX/6g==
+"@taibn.dev.vn/h-popover@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@taibn.dev.vn/h-popover/-/h-popover-1.1.0.tgz#d21be127114aa601d07495ee1456bd13f2ec57c7"
+  integrity sha512-Tuh7qBO1EJdSSVxlXBFAyhEgQAhpAyCZq52zJr874rlhLQ/NtXb7S+kWj90350wzkGId2GXnhg2gl7x0MACjTg==
   dependencies:
     copy-webpack-plugin "^7.0.0"
     react "^17.0.0"

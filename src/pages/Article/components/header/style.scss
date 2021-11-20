@@ -33,7 +33,7 @@
           border-radius: 10px;
           background-color: var(--neutral-700);
           & > .loaded {
-            animation: bell 2.2s linear 0.4s infinite;
+            animation: bell 2.2s linear 0.4s 1;
           }
         }
       }

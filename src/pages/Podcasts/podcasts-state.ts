@@ -1,59 +1,21 @@
-import { atom, selector } from 'recoil';
+import { atom } from 'recoil';
+import { Audio, Collection } from 'srcRoot/enitities/Audio';
 
-const defaultData = {
-  collection: {
-    selected: [],
-  },
-  audio: {
-    currentAudio: {
-      data: [],
-      idx: null,
-    },
-  },
+const defaultCurrentAudio = {
+  data: null,
+  idx: null,
 };
 
-const podcastsState = atom({
-  key: 'podcasts',
-  default: defaultData,
+export interface CurrentAudio {
+  data: Audio | null;
+  idx: number | null;
+}
+export const currentAudioState = atom<CurrentAudio>({
+  key: 'current-audio',
+  default: defaultCurrentAudio,
 });
 
-export const collectionState = selector({
-  key: 'collection',
-  get: ({ get }) => {
-    const podcasts = get(podcastsState);
-
-    return podcasts.collection;
-  },
-  set: ({ get, set }, newValue) => {
-    const podcasts = get(podcastsState);
-    set(podcastsState, { ...podcasts, collection: { selected: newValue } });
-  },
-});
-
-export const audioState = selector({
-  key: 'audio',
-  get: ({ get }) => {
-    const podcasts = get(podcastsState);
-
-    return podcasts.audio;
-  },
-  set: ({ get, set }, newValue) => {
-    const podcasts = get(podcastsState);
-
-    set(podcastsState, { ...podcasts, audio: newValue });
-  },
-});
-
-export const currentAudioState = selector({
-  key: 'currentAudio',
-  get: ({ get }) => {
-    const podcasts = get(podcastsState);
-
-    return podcasts.audio.currentAudio;
-  },
-  set: ({ get, set }, newValue) => {
-    const podcasts = get(podcastsState);
-
-    set(podcastsState, { ...podcasts, audio: { currentAudio: newValue } });
-  },
+export const selectedCollection = atom<Array<Collection>>({
+  key: 'selected-collection',
+  default: [],
 });

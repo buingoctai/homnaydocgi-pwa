@@ -43,11 +43,11 @@ const Content = ({ index, post, listRef, heightStore, readedList, setReadedList 
   }, []);
   const breakContent = (content) => {
     const contentList = content ? content.split('\n') : [];
-    const contentHtml = contentList.map((paragraph) => (
-      <>
+    const contentHtml = contentList.map((paragraph, idx) => (
+      <React.Fragment key={idx}>
         {paragraph}
         <br />
-      </>
+      </React.Fragment>
     ));
 
     return contentHtml;

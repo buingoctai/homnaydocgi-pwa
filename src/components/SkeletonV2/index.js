@@ -8,7 +8,7 @@ function SkeletonProfile({ theme, numLine }) {
 
   return (
     <div className={`skeleton-wrapper ${themeClass}`}>
-      <div className="skeleton-profile">
+      <div className="skeleton-profile" key="skeleton-profile">
         <div>
           <SkeletonElement type="avatar" />
         </div>
@@ -19,7 +19,7 @@ function SkeletonProfile({ theme, numLine }) {
         </div>
       </div>
       <Shimmer />
-      <div className="skeleton-article">
+      <div className="skeleton-article" key="skeleton-article">
         <SkeletonElement type="title" />
         {Array.from({ length: numLine }).map((item, index) => {
           if (index === numLine - 1) {

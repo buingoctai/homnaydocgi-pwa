@@ -1,6 +1,7 @@
 import { atom, selector } from 'recoil';
 import { GlobalProps, NotiGlobal, ArticleMenu, FilterArticle } from './data-types';
 import defaultData, { popupGlobal, articleMenu, filterArticle } from './default';
+import { AudioList } from 'srcRoot/enitities/Audio';
 
 const appState = atom<GlobalProps>({
   key: 'app',
@@ -20,5 +21,10 @@ export const popupGlobalState = atom<NotiGlobal>({
 
 export const filterState = atom<FilterArticle>({
   key: 'filter-article',
+  default: filterArticle,
+});
+
+export const audioListState = atom<AudioList>({
+  key: 'audio-list',
   default: filterArticle,
 });

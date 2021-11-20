@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import { createCollection, createMp3 } from 'srcRoot/services/Podcasts';
-import { collectionState } from '../podcasts-state';
+import { selectedCollection } from '../podcasts-state';
 import { useRecoilState } from 'recoil';
 import IconAdd from 'srcRoot/static/svg/icon-outline-add-collection.svg';
 import Button from 'srcRoot/components/Button';
@@ -9,6 +9,8 @@ import { popupGlobalState } from 'srcRoot/recoil/appState';
 import Popover, { PopoverManager } from '@taibn.dev.vn/h-popover';
 import { PopupIdentities } from 'srcRoot/utils/constants';
 import ErrorCode from 'srcRoot/utils/error-code';
+import { Collection } from 'srcRoot/enitities/Audio';
+
 interface Props {
   totalRecord: number;
   onReloadCollectionList: () => void;
@@ -16,9 +18,7 @@ interface Props {
 }
 const Title = (props: Props) => {
   const [popupGlobal, setPopupGlobal] = useRecoilState(popupGlobalState);
-  const [collection, setCollection] = useRecoilState<{ selected: Array<string> } | {}>(
-    collectionState
-  );
+  const [collection, setCollection] = useRecoilState<Array<Collection>>(selectedCollection);
   const { totalRecord, onReloadCollectionList, onReloadAudioList } = props;
   const [text, setText] = useState('');
   const onOpenFormInput = useCallback(() => {
@@ -26,13 +26,13 @@ const Title = (props: Props) => {
   }, []);
 
   const handler = useMemo(() => {
-    if (collection['selected']?.length > 0) {
+    if (collection.length > 0) {
       return {
         isMock: true,
-        title: `Thêm Vào Bộ Sưu Tập "${collection['selected'][0]?.collectionName}"`,
+        title: `Thêm Vào Bộ Sưu Tập "${collection[0]?.collectionName}"`,
         service: createMp3,
         placeholder: 'https://youtu.be/...',
-        payload: { collectionId: collection['selected'][0]?.collectionId, url: text },
+        payload: { collectionId: collection[0]?.collectionId, url: text },
 
         validator: (text: string) => {
           // return text.includes('https://youtu.be');

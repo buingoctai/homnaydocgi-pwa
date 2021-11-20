@@ -5,7 +5,7 @@ import Title from './title';
 import VideoIntro from './video-intro';
 import { PopupIdentities } from 'srcRoot/utils/constants';
 import { ToastManager, TOAST_TYPE } from 'srcRoot/components/Toast';
-import {isMobileDevices} from 'srcRoot/utils/index-v2';
+import { isMobileDevices } from 'srcRoot/utils/index-v2';
 
 import './style.scss';
 
@@ -37,7 +37,7 @@ const InstallApp = () => {
   };
 
   useEffect(() => {
-    if(!isMobileDevices()) return;
+    if (!isMobileDevices()) return;
     window.addEventListener('beforeinstallprompt', (event) => {
       HCommon.log('[Install-App] Able to install app as mobile');
       event.preventDefault();

@@ -1,4 +1,4 @@
-import React,{useRef} from 'react';
+import React, { useRef } from 'react';
 import IconMenuApp from 'srcRoot/static/svg/icon-menu-app.svg';
 import { PopupIdentities } from 'srcRoot/utils/constants';
 import { PopoverManager } from '@taibn.dev.vn/h-popover';
@@ -9,7 +9,7 @@ const MenuApp = () => {
   const [onFlight] = useFlightAnime(refBtn.current);
 
   return (
-    <div className="menu-app" style={{ display: 'none' }} >
+    <div className="menu-app" style={{ display: 'none' }}>
       <img
         src={IconMenuApp}
         width={60}
