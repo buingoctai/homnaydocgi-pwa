@@ -21,8 +21,8 @@ const Podcasts = React.lazy(() => import('srcRoot/pages/Podcasts'));
 //   ]).then(([moduleExports]) => moduleExports);
 // });
 
-const Events = React.lazy(() => import('srcRoot/pages/Events'));
-const Chat = React.lazy(() => import('srcRoot/pages/Chat'));
+// const Events = React.lazy(() => import('srcRoot/pages/Events'));
+// const Chat = React.lazy(() => import('srcRoot/pages/Chat'));
 import Welcome from '../Welcome';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';

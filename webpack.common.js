@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 // const ESLintPlugin = require("eslint-webpack-plugin");
 // const options = {
 //     "parserOptions": {
@@ -75,5 +76,9 @@ module.exports = {
       patterns: [{ from: 'public', to: '.' }],
     }),
     new CaseSensitivePathsPlugin(),
+    // Analyze size package
+    new BundleAnalyzerPlugin(
+
+    )
   ],
 };
