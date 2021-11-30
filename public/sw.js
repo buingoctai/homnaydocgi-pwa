@@ -1,8 +1,8 @@
 self.addEventListener('install', function (event) {
   event.waitUntil(
-    caches.open('static').then(function (cache) {
+    caches.open('js').then(function (cache) {
       return cache.addAll([
-        // '/index.bundle.js',
+        '/index.bundle.js',
         // '/favico.png',
         // '/logo192.png',
         // '/logo512.png',
@@ -13,19 +13,43 @@ self.addEventListener('install', function (event) {
 });
 
 self.addEventListener('fetch', function (event) {
-  // event.respondWith(
-  //   caches.open('homnaydocgi').then(function (cache) {
-  //     return cache.match(event.request).then(function (response) {
-  //       return (
-  //         response ||
-  //         fetch(event.request).then(function (response) {
-  //           cache.put(event.request, response.clone());
-  //           return response;
-  //         })
-  //       );
-  //     });
-  //   })
-  // );
+  if (event.request.url.includes('.svg') ||
+    event.request.url.includes('.png') || 
+    event.request.url.includes('.jpg') || 
+    event.request.url.includes('.gif') 
+  ) {
+    event.respondWith(
+      caches.open('static').then(function (cache) {
+        return cache.match(event.request).then(function (response) {
+          return (
+            response ||
+            fetch(event.request).then(function (response) {
+              cache.put(event.request, response.clone());
+              return response;
+            })
+          );
+        });
+      })
+    );
+  }
+
+  if (event.request.url.includes('.js')
+  ) {
+    event.respondWith(
+      caches.open('js').then(function (cache) {
+        return cache.match(event.request).then(function (response) {
+          return (
+            response ||
+            fetch(event.request).then(function (response) {
+              cache.put(event.request, response.clone());
+              return response;
+            })
+          );
+        });
+      })
+    );
+  }
+  
 
   // if (event.request.url.includes('image.shutterstock')) {
   //   event.respondWith(
@@ -57,6 +81,8 @@ self.addEventListener('fetch', function (event) {
   //     })
   //   );
   // }
+
+
   // if (event.request.url.includes('blog/allPost')) {
   //   event.respondWith(
   //     caches.open('all post').then(function (cache) {
@@ -73,23 +99,23 @@ self.addEventListener('fetch', function (event) {
   //   );
   // }
 
-  if (event.request.url.includes('blog/getDetailPost')) {
-    const id = event.request.url.substring(event.request.url.indexOf('id') + 3);
+  // if (event.request.url.includes('blog/getDetailPost')) {
+  //   const id = event.request.url.substring(event.request.url.indexOf('id') + 3);
 
-    event.respondWith(
-      caches.open(`post - ${id}`).then(function (cache) {
-        return cache.match(event.request).then(function (response) {
-          return (
-            response ||
-            fetch(event.request).then(function (response) {
-              cache.put(event.request, response.clone());
-              return response;
-            })
-          );
-        });
-      })
-    );
-  }
+  //   event.respondWith(
+  //     caches.open(`post - ${id}`).then(function (cache) {
+  //       return cache.match(event.request).then(function (response) {
+  //         return (
+  //           response ||
+  //           fetch(event.request).then(function (response) {
+  //             cache.put(event.request, response.clone());
+  //             return response;
+  //           })
+  //         );
+  //       });
+  //     })
+  //   );
+  // }
 });
 
 function receivePushNotification(event) {
